@@ -1,0 +1,41 @@
+page-workpermit {
+   .background-image{
+    background-image:  url(./../assets/images/Gears2.png);
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+            }
+ 
+
+          .bg-color{
+    background-color:rgba(51, 51, 51, 0.9);
+    opacity: inherit;
+                  }
+
+ .bg-size{
+    width: 100%;
+    height: 100%;
+    display: table
+  }
+   .danger{
+    color: #f53d3d;
+     }
+
+    .img-size{
+       width: 250px;
+      } 
+
+  ion-grid {
+      min-height: 100%;
+
+      [header]{
+        flex: 1;
+      }
+  }
+
+}

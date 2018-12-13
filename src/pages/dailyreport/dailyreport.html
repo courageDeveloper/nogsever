@@ -1,0 +1,258 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-buttons>
+        <button (click)="home()" ion-button icon-only>
+                    <ion-icon name="ios-home"></ion-icon>
+                </button>
+      </ion-buttons>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<!-- Themes  register-flat-->
+<ion-content class="background-image">
+  <ion-grid no-padding class="bg-color">
+    <ion-row header align-items-start align-items-stretch>
+      <!-- Section form>-->
+      <ion-col class="margin-top" col-10 offset-1 col-md-10 offset-md-1>
+        <ion-slides (ionSlideDidChange)="slideChanged()">
+          <ion-slide>
+            <form no-padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>Daily Report</strong></h1>
+                  <h2> <b>Production Report</b> </h2>
+                </ion-col>
+              </ion-row>
+              <!-- Input-field -->
+              <ion-row>
+                <ion-col col-6>
+                  <strong class="oil">Oil Production</strong>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Oil produced from oil stabilization train 1" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Oil produced from oil stabilization train 2" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Oil produced to surge vessel" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Oil transferred to NPDC storage tank" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <br>
+                </ion-col>
+                <ion-col col-6>
+                  <strong class="gas">Gas Production</strong>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Total gas exported to NGC" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Total gas fled from HP" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Total gas fled from LP" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input placeholder="Total volume of fuel gas" type="text" [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <br>
+                </ion-col>
+                <!-- Login button -->
+                <ion-col col-12 no-padding>
+                  <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Next</button>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+          <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>Equipment Status</strong></h1>
+                </ion-col>
+              </ion-row>
+              <!-- Input-field -->
+              <ion-row>
+                <ion-col col-12>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <!-- <ion-label><strong>Gas Compressor 1</strong></ion-label> -->
+                    <ion-item>
+                      <ion-label>Gas Compressor 1</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Gas Compressor 2</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Process Train 1</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Process Train 2</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Instrument Air Compressor A</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Instrument Air Compressor B</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Gas Gen 1</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Gas Gen 3</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Gas Gen 4</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Gas Gen 5</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Diesel Gen Set</ion-label>
+                      <ion-select [(ngModel)]="gas1" name="gas1">
+                        <ion-option *ngFor="let status of statuses" [value]="status" [selected]="selectedGas == status">{{status}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <br>
+                  <!-- Login button -->
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Next</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+          <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>Daily Activities</strong></h1>
+                </ion-col>
+              </ion-row>
+              <!-- Input-field -->
+              <ion-row>
+                <ion-col col-12>
+                  <div input-field>
+                    <ion-item>
+                      <ion-label>Department</ion-label>
+                      <ion-select [(ngModel)]="department" name="department">
+                        <ion-option *ngFor="let department of departments" [value]="department" [selected]="selectedDepartment == department">{{department}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </div>
+                  <br>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-textarea placeholder="Daily Activities" type="text" rows="15" [(ngModel)]="activities" name="activities"></ion-textarea>
+                    </ion-item>
+                  </div>
+                  <br>
+                  <!-- Login button -->
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Submit</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab bottom right *ngIf="!startSlide">
+    <button ion-fab color="primary" (click)="prev()" mini> <ion-icon name="arrow-back">  </ion-icon> </button>
+  </ion-fab>
+</ion-content>

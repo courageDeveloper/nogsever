@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Work Order</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (ionInput)="filterWorkorder($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="newWorkorder()" color="secondary"><ion-icon name="ios-copy"></ion-icon></button>
+  </ion-fab>
+
+  <ion-card *ngFor="let workorder of filterWorkorder; let i = index">
+    <ion-card-content (press)="deleteWorkorder(workorder, i)">
+      <ion-row>
+        <ion-item>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openWorkorder(workorder)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteWorkorder(workorder, i)"></ion-icon>
+
+        </ion-item>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <h2 text-bold><strong>{{ workorder.worktype }}</strong></h2>
+        <p ion-text class="list-price">{{ workorder.responsibility }}</p>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <p text-bold>{{ workorder.department }}</p>
+        <p ion-text class="list-price">{{ workorder.frequency }}</p>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <p class="shop">{{ workorder.location }}</p>
+        <p  class="list-price">{{ workorder.worktypeno }}</p>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <p class="shop eng-color">{{ workorder.equipment }}</p>
+        <p class="list-price eng-color">{{ workorder.description }}</p>
+      </ion-row>
+      <ion-row>
+        <!-- <button ion-button small color="attrgreen" class="list-price">Approve</button> -->
+        <button ion-button small color="danger" class="list-price">Dismiss</button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab bottom left>
+    <button ion-fab mini (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+  </ion-fab>
+</ion-content>

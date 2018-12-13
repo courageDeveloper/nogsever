@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Fault Register</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <ion-fab top right edge *ngIf="platform.is('cordova')">
+    <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
+  </ion-fab>
+
+  <form margin-top (ngSubmit)="submit()">
+    <ion-item>
+      <ion-icon item-right name="md-calendar"></ion-icon>
+      <ion-input placeholder="Date" type="date" [(ngModel)]="faultregister.date" name="date"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Location" type="text" [(ngModel)]="faultregister.location" name="location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Fault Id" type="text" [(ngModel)]="faultregister.faultid" name="faultid" disable></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Equipment" type="text" [(ngModel)]="faultregister.equipment" name="equipment"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Description" type="text" [(ngModel)]="faultregister.description" name="description"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Submit</button>
+  </form>
+</ion-content>

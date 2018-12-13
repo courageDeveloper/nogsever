@@ -1,0 +1,36 @@
+page-viewworkpermit {
+.bar-container {
+        border: 1px solid color($colors, secondary);
+
+        ion-col {
+            background-color: white;
+
+            &.bar-success {
+                background-color: color($colors, primary);
+            }
+        }
+    }
+
+    .eng-color{
+        color: color($colors, attrgreen);
+    }
+
+    .list-price, .items-count {
+        margin-left: auto;
+        padding: 2px 5px;
+    }
+
+    .attrgreen{
+        color: #006600;
+    }
+
+    .danger{
+        color: #f53d3d;
+    }
+
+    @media screen and (min-width: 768px) {
+        .margin-top{
+            margin-top:56px;
+        }
+    }
+}

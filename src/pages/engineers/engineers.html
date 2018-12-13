@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Supervisors</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+    <ion-toolbar color="primary">
+        <ion-searchbar (ionInput)="filterEngineers($event)"></ion-searchbar>
+    </ion-toolbar>
+    
+    <ion-fab top right edge>
+        <button ion-fab mini (click)="newEngineer()" color="secondary"><ion-icon name="person-add"></ion-icon></button>
+    </ion-fab>
+
+    <ion-card *ngFor="let engineer of filteredEngineers; let i = index">
+        <ion-card-content (press)="deleteEngineer(engineer, i)">
+            <ion-row>
+                <ion-item>
+                    <ion-avatar item-start (click)="openEngineer(engineer)">
+                        <img [src]="engineer.sex == 'Male' ? 'assets/images/male.png' : 'assets/images/female.png'">
+                    </ion-avatar>
+                    <ion-icon color="secondary" item-right small name="md-create" (click)="openEngineer(engineer)"></ion-icon>
+                    <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteCustomer(customer, i)"></ion-icon>
+                    
+                </ion-item>
+            </ion-row>
+            <ion-row (click)="openEngineer(engineer)">
+                <h2 text-bold text-uppercase><strong>{{ engineer.name }}</strong></h2>
+                <p ion-text class="list-price">{{ engineer.mobile }}</p>
+            </ion-row>
+            <ion-row (click)="openEngineer(engineer)">
+                <p class="shop">{{ engineer.address }}</p>
+                <p class="shop" class="list-price">{{ engineer.email }}</p>
+            </ion-row>
+              <ion-row (click)="openEngineer(engineer)">
+                <p class="shop eng-color">{{ engineer.department }}</p>
+                <p class="list-price eng-color">{{ engineer.position }}</p>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+    <ion-fab bottom left>
+        <button ion-fab mini (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-fab>
+</ion-content>

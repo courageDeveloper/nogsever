@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Equipments</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <ion-fab top right edge *ngIf="platform.is('cordova')">
+    <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
+  </ion-fab>
+
+  <form margin-top (ngSubmit)="submit()">
+    <ion-item>
+      <ion-input placeholder="Name" type="text" [(ngModel)]="equipments.name" name="name"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Submit</button>
+  </form>
+</ion-content>

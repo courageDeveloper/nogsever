@@ -1,0 +1,110 @@
+page-home {
+    
+
+        ion-card {
+            background-color:  #e2efe2; 
+            position: relative;
+            text-align: center;
+            text-decoration: #97cc99
+        }
+
+        .card-title {
+            position: absolute;
+            top: 36%;
+            font-size: 2.0em;
+            width: 100%;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .menu-color{
+            background-color: #222 !important;
+        }
+
+        .con-color{
+            background-color: #222 !important;
+        }
+
+        .title{
+            color: #ffcc00;
+        }
+
+        .txt-size{
+            font-size: 4.5rem;
+            text-align: center;
+        }
+
+        .card-point{
+            cursor: pointer;
+        }
+
+        .background-image{
+            background-image:  url(./../assets/images/Gears2.png);
+            background-repeat: no-repeat;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            }
+
+            .bg-color{
+                background-color:rgba(51, 51, 51, 0.9) !important;
+                opacity: inherit !important;
+                  }
+
+                   .bg-size{
+                width: 100%;
+                height: 100%;
+                display: table;
+                  }
+
+        .card-subtitle {
+            font-size: 1.0em;
+            position: absolute;
+            top: 52%;
+            width: 100%;
+            color: #fff;
+        }
+        .ion-card-content{
+            background-color:  #e2efe2; 
+            position: relative;
+            text-align: center;
+            text-decoration: #97cc99
+        }
+    
+
+    .scroll-content {
+        //background-color: map-get($colors, light);
+    }
+
+     .align-user{
+            text-align: center !important;
+        }
+
+    .align-bottom{
+        position: inherit;
+        margin-bottom: inherit;
+    }
+
+    .icon-color{
+        color: #ffcc00,
+    }
+
+    .icon-color2{
+        color: #006600,
+    }
+
+    ion-card-header {
+        font-weight: bold;
+    }
+
+    @media screen and (min-width: 768px) {
+        .margin-top{
+            margin-top:65px;
+        }
+    }
+    
+} 

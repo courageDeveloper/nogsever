@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Engineer</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <ion-fab top right edge *ngIf="platform.is('cordova')">
+      <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
+  </ion-fab>
+
+  <form margin-top (ngSubmit)="submit()">
+    <ion-item>
+      <ion-input placeholder="Full Name" type="text" [(ngModel)]="engineer.name" name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Phone Number" type="text" [(ngModel)]="engineer.mobile" name="mobile"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Email" type="email" [(ngModel)]="engineer.email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Username" type="text" [(ngModel)]="engineer.username" name="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Position" type="text" [(ngModel)]="engineer.position" name="position"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Address" type="text" [(ngModel)]="engineer.address" name="address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Department</ion-label>
+      <ion-select  [(ngModel)]="engineer.department" name="department">
+          <ion-option *ngFor="let department of departments" [value]="department">{{department}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Password" type="password" name="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sex</ion-label>
+      <ion-select [(ngModel)]="engineer.sex" name="sex">
+          <ion-option value="Male" >Male</ion-option>
+          <ion-option value="Female">Female</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button type="submit" block>Submit</button>
+  </form>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Worker's Schedule</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (ionInput)="filteredWorkschedules($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="newWorkschedules()" color="secondary"><ion-icon name="ios-create"></ion-icon></button>
+  </ion-fab>
+
+  <ion-card *ngFor="let workschedule of filteredWorkschedules; let i = index">
+    <ion-card-content (press)="deleteWorkschedules(workschedule, i)">
+      <ion-row>
+        <ion-item>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openWorkschedules(workschedule)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteWorkschedules(workschedule, i)"></ion-icon>
+        </ion-item>
+      </ion-row>
+      <ion-row (click)="openWorkschedules(workschedule)">
+        <h2 text-bold text-uppercase><strong>{{ workschedule.name }}</strong></h2>
+        <p ion-text class="list-price">{{ workschedule.date }}</p>
+      </ion-row>
+      <ion-row (click)="openWorkschedules(workschedule)">
+        <p class="shop eng-color"><strong>{{workschedule.typeofshift }}</strong></p>
+        <p class="shop" class="list-price eng-color">{{ workschedule.department}}</p>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab bottom left>
+    <button ion-fab mini (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+  </ion-fab>
+</ion-content>

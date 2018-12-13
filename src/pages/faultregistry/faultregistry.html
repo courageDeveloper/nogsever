@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Fault Registry</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (ionInput)="filterRegistries($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="newRegistry()" color="secondary"><ion-icon name="ios-clipboard"></ion-icon></button>
+  </ion-fab>
+
+  <ion-card *ngFor="let registry of filterRegistries; let i = index">
+    <ion-card-content (press)="deleteRegistry(registry, i)">
+      <ion-row>
+        <ion-item>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openRegistry(registry)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteRegistry(Registry, i)"></ion-icon>
+
+        </ion-item>
+      </ion-row>
+      <ion-row (click)="openRegistry(Registry)">
+        <h2 text-bold text-uppercase><strong>{{ registry.date }}</strong></h2>
+        <p ion-text class="list-price">{{ registry.location }}</p>
+      </ion-row>
+      <ion-row (click)="openRegistry(registry)">
+        <p  class="list-price">{{ registry.faultid }}</p>
+      </ion-row>
+      <ion-row (click)="openRegistry(registry)">
+        <p class="shop eng-color">{{ registry.equipment }}</p>
+        <p class="list-price eng-color">{{ registry.description }}</p>
+      </ion-row>
+      <ion-row>
+        <button ion-button small color="attrgreen" class="list-price">Acknowledge</button>
+        <button ion-button small color="danger" class="list-price">Dismiss</button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab bottom left>
+    <button ion-fab mini (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+  </ion-fab>
+</ion-content>

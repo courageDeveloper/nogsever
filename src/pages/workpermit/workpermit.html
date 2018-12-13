@@ -1,0 +1,263 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-buttons>
+        <button (click)="home()" ion-button icon-only>
+                    <ion-icon name="ios-home"></ion-icon>
+                </button>
+      </ion-buttons>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<!-- Themes  register-flat-->
+<ion-content class="background-image">
+  <ion-grid no-padding class="bg-color">
+    <ion-row header align-items-start align-items-stretch>
+      <!-- Section form>-->
+      <ion-col col-10 offset-1 col-md-6 offset-md-3>
+        <ion-slides (ionSlideDidChange)="slideChanged()">
+          <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>WORK PERMIT</strong></h1>
+                </ion-col>
+              </ion-row>
+              <!-- Input-field -->
+              <ion-row>
+                <ion-col col-12>
+                  <div input-field>
+                    <!-- Input-field-text -->
+                    <ion-item>
+                      <ion-input ng2-auto-complete [source]="pmArray" (valueChanged)="selectPMs($event)" placeholder="PM/WO Number" type="text"
+                        [(ngModel)]="pmName" name="pmName"></ion-input>
+                    </ion-item>
+                  </div>
+                  <br>
+                  <!-- Login button -->
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Next</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+          <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>WORK PERMIT</strong></h1>
+                </ion-col>
+              </ion-row>
+              <!-- Input-field -->
+              <ion-row>
+                <ion-col col-12>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-icon item-right name="md-calendar"></ion-icon>
+                      <ion-input class="text-input" type="date" placeholder="Date" name="date" required></ion-input>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-input class="text-input" type="text" placeholder="Faculty/Installation" name="faculty" required></ion-input>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-input class="text-input" type="text" placeholder="Exact Location" name="exactlocation" required></ion-input>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-textarea class="text-input" type="text" placeholder="Work" name="work" required></ion-textarea>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-textarea class="text-input" type="text" placeholder="Equipments,Tools or Material to be used" name="work" required></ion-textarea>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-icon item-right name="md-calendar"></ion-icon>
+                      <ion-input class="text-input" type="date" placeholder="Start Date" name="date" required></ion-input>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-icon item-right name="md-calendar"></ion-icon>
+                      <ion-input class="text-input" type="date" placeholder="End Date" name="date" required></ion-input>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-password -->
+                    <ion-item no-padding>
+                      <ion-input class="text-input" type="number" placeholder="No of Workers" name="workers" required></ion-input>
+                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                    </ion-item>
+                  </div>
+                  <br>
+                  <!-- Login button -->
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Next</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+          <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>WORK PERMIT</strong></h1>
+                  <br>
+                  <div>
+                    <h2 class="danger"> Safety Precautions to be carried out</h2>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <!-- Input-field -->
+              <ion-row>
+                <ion-col col-12>
+                  <div input-field>
+                    <!-- Input-field-email -->
+                    <ion-item no-padding>
+                      <ion-textarea class="text-input" type="text" [(ngModel)]="safetyPrecautions" rows="7" name="safety" placeholder="Safety Precautions"
+                        required></ion-textarea>
+                    </ion-item>
+                  </div>
+                  <br>
+                  <!-- Login button -->
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Submit</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+          <!--  <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>WORK PERMIT</strong></h1>
+                  <br>
+                  <h2>AREA AUTHORITY</h2>
+                  <div> I authorise that work may be carried out <br> provided the stated precautions and preparations are <br> 
+                   observed and clearance given by the Area Authority Site Supervisor.
+                  </div>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col col-12>
+                  <div input-field>
+                    
+                      <button ion-button medium color="attrgreen">APPROVE</button> 
+                      <button ion-button medium color="danger">DISAPPROVE</button> 
+                  </div>
+                  <br>
+                  
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Next</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+            <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>WORK PERMIT</strong></h1>
+                  <br>
+                  <h2>AREA AUTHORITY (Site Supervisor)</h2>
+                  <div> I authorise that work may be carried out <br> provided the stated precautions and preparations are <br> 
+                   observed and clearance given by the Area Authority Site Supervisor.
+                  </div>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col col-12>
+                  <div input-field>
+                    
+                      <button ion-button medium color="attrgreen">APPROVE</button> 
+                      <button ion-button medium color="danger">DISAPPROVE</button> 
+                  </div>
+                  <br>
+                  
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Next</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide>
+          <ion-slide>
+            <form padding>
+              <ion-row class="wlm-msg" align-items-start>
+                <ion-col align-self-baseline col-12>
+                  <ion-list text-center>
+                    <img src="assets/images/NOG-LOGO.jpg" class="img-size" />
+                  </ion-list>
+                  <h1><strong>Hi! We can’t wait to meet you!!</strong></h1>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col col-12>
+
+                  
+                  <ion-col col-12 no-padding>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="submit(users)">Submit</button>
+                  </ion-col>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-slide> -->
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab bottom right *ngIf="!startSlide">
+    <button ion-fab color="primary" (click)="prev()" mini> <ion-icon name="arrow-back">  </ion-icon> </button>
+  </ion-fab>
+</ion-content>

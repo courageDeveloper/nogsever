@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Preventive Maintenance</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <ion-fab top right edge *ngIf="platform.is('cordova')">
+    <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
+  </ion-fab>
+
+  <form margin-top (ngSubmit)="submit()">
+    <ion-item>
+      <ion-input placeholder="Work Id" type="text" [(ngModel)]="pm.workorder" name="workorder" disable></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Work Type</ion-label>
+      <ion-select [(ngModel)]="worktype" (ngModelChange)="getWorktype(worktype)" name="worktype">
+        <ion-option *ngFor="let worktype of worktypes" [value]="worktype" [selected]="selectedWorktype == worktype">{{worktype}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Name" type="text" [(ngModel)]="pm.name" name="name"></ion-input>
+    </ion-item>
+    <!-- <ion-item>
+      <span>Date Created</span>
+      <ion-icon item-right name="md-calendar"></ion-icon>
+      <ion-input placeholder="Date" type="date" [(ngModel)]="pm.date" name="date"></ion-input>
+    </ion-item> -->
+    <ion-item>
+      <ion-input placeholder="Location" type="text" [(ngModel)]="pm.location" name="location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Equipment" type="text" [(ngModel)]="pm.equipment" name="equipment"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Description" type="text" [(ngModel)]="pm.description" name="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <div [froalaEditor]>Write work procedure here!</div>
+    </ion-item>
+    <ion-item>
+      <div [froalaEditor]>Write Job Safety Advice!</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Priority</ion-label>
+      <ion-select [(ngModel)]="priority" name="priority">
+        <ion-option *ngFor="let priority of priorities" [value]="priority" [selected]="selectedPriority == priority">{{priority}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Responsibility</ion-label>
+      <ion-select [(ngModel)]="responsibility" name="responsibility">
+        <ion-option *ngFor="let responsibility of responsibilities" [value]="responsibility" [selected]="selectedResponsibility == responsibility">{{responsibility}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf=show>
+      <span>Date Created</span>
+      <ion-icon item-right name="md-calendar"></ion-icon>
+      <ion-input placeholder="Date" type="date" [(ngModel)]="pm.date" name="date"></ion-input>
+    </ion-item>
+    <ion-item *ngIf=!show>
+      <ion-input placeholder="Frequency in days" type="number" [(ngModel)]="pm.frequency" name="frequency"></ion-input>
+    </ion-item>
+    <p class="danger"> Enter the period for reminder </p>
+    <button ion-button type="submit" block>Submit</button>
+  </form>
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Preventive Maintenance</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (ionInput)="filterPms($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="newPm()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
+  </ion-fab>
+
+  <ion-card *ngFor="let pm of filterPms; let i = index">
+    <ion-card-content (press)="deletePm(Pm, i)">
+      <ion-row>
+        <ion-item>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openPm(pm)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deletePm(pm, i)"></ion-icon>
+
+        </ion-item>
+      </ion-row>
+      <ion-row (click)="openPm(pm)">
+        <h2 text-bold text-uppercase><strong>{{ pm.date }}</strong></h2>
+        <p ion-text class="list-price">{{ pm.location }}</p>
+      </ion-row>
+      <ion-row (click)="openPm(pm)">
+        <p class="shop">{{ pm.name }}</p>
+        <p  class="list-price">{{ pm.workorder }}</p>
+      </ion-row>
+      <ion-row (click)="openPm(pm)">
+        <p class="shop eng-color">{{ pm.equipment }}</p>
+        <p class="list-price eng-color">{{ pm.description }}</p>
+      </ion-row>
+      <ion-row>
+        <button ion-button small color="attrgreen" class="list-price">Acknowledge</button>
+        <button ion-button small color="danger" class="list-price">Dismiss</button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab bottom left>
+    <button ion-fab mini (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+  </ion-fab>
+</ion-content>
