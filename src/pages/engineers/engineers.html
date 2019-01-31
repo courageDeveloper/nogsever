@@ -7,14 +7,14 @@
 <ion-content class="bg-primary50">
 
     <ion-toolbar color="primary">
-        <ion-searchbar (ionInput)="filterEngineers($event)"></ion-searchbar>
+        <ion-searchbar (ionInput)="filterSupervisors($event)"></ion-searchbar>
     </ion-toolbar>
     
-    <ion-fab top right edge>
+    <ion-fab top right>
         <button ion-fab mini (click)="newEngineer()" color="secondary"><ion-icon name="person-add"></ion-icon></button>
     </ion-fab>
 
-    <ion-card *ngFor="let engineer of filteredEngineers; let i = index">
+    <ion-card *ngFor="let engineer of filteredSupervisors; let i = index">
         <ion-card-content (press)="deleteEngineer(engineer, i)">
             <ion-row>
                 <ion-item>
@@ -22,7 +22,7 @@
                         <img [src]="engineer.sex == 'Male' ? 'assets/images/male.png' : 'assets/images/female.png'">
                     </ion-avatar>
                     <ion-icon color="secondary" item-right small name="md-create" (click)="openEngineer(engineer)"></ion-icon>
-                    <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteCustomer(customer, i)"></ion-icon>
+                    <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEngineer(engineer, i)"></ion-icon>
                     
                 </ion-item>
             </ion-row>

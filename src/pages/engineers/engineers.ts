@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, Platform, NavController, NavParams, AlertController } from 'ionic-angular';
+import { PouchService } from '../../pouch-service/pouch.service';
+import { Supervisor } from '../../models/supervisor';
 
 /**
  * Generated class for the EngineersPage page.
@@ -10,43 +12,102 @@ import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angu
 
 @IonicPage()
 @Component({
-  selector: 'page-engineers',
-  templateUrl: 'engineers.html',
+    selector: 'page-engineers',
+    templateUrl: 'engineers.html',
 })
 export class EngineersPage {
-  filteredEngineers;
+    public filteredSupervisors: Array<Supervisor> = [];
+    public supervisors: Array<Supervisor> = [];
+    localStorageItem: any;
+    user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
-  }
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public platform: Platform, public db: PouchService, public navParams: NavParams, public modalCtrl: ModalController) {
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EngineersPage');
-    this.filteredEngineers = [{name:"Godspower Idhude", username:"idhude", sex:"Male", email:"lawal@gmail.com", address:"No 8, east circular road, benin city", position:"Operations Surpevisor", mobile:"08023467585",department:"Operations"},
-   {name:"Siloko Akpobor", username:"siloko", email:"kate@gmail.com", sex:"Male", address:"No 18, siluko road, benin city", position:"Instrument Surpevisor", mobile:"08023467566",department:"Instruments"},{name:"Bright Okunbor", username:"bright", email:"bright@gmail.com", sex:"Male", address:"No 7, Ihama road, benin city", position:"Electrical Surpevisor", mobile:"08023467455",department:"Electrical"},
-   {name:"Osazee Emumwen", username:"da", email:"da@gmail.com", address:"No 7, sapele road, benin city", position:"HSE Surpevisor", mobile:"08023467545",department:"HSE"}
-  ]
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad EngineersPage');
+        this.platform.ready()
+            .then(() => {
+                this._loadSupervisors();
+            });
 
-  back(){
-    this.navCtrl.pop();
-  }
+        this.localStorageItem = JSON.parse(localStorage.getItem('user'));
 
-   newEngineer(): void {
-        let modal = this.modalCtrl.create('AddengineerPage',{type:'Add'});
+        this.db.getSupervisor(this.localStorageItem).then(item => {
+            this.user = item;
+        })
+
+    }
+
+    /**
+    * On display page
+    */
+    ionViewDidEnter() {
+        this._loadSupervisors();
+    }
+
+    private _loadSupervisors(): void {
+        this.db.getSupervisors()
+            .then((supervisors: Array<Supervisor>) => {
+                this.filteredSupervisors = supervisors.filter(data => data.post == 'Supervisor');
+                this.supervisors = supervisors.filter(data => data.post == 'Supervisor');
+            });
+    }
+
+    back() {
+        this.navCtrl.pop();
+    }
+
+    newEngineer(): void {
+        let modal = this.modalCtrl.create('AddengineerPage', { type: 'Add' });
         modal.onDidDismiss((data) => {
-            if(data){
-                //this._loadCustomers();
+            if (data) {
+                this._loadSupervisors();
             }
         });
         modal.present();
     }
 
-     openEngineer(engineer?: any): void {
-        let modal = this.modalCtrl.create('AddengineerPage',{type:'Edit', engineer:engineer});
+    openEngineer(engineer?: any): void {
+        console.log(engineer);
+        let modal = this.modalCtrl.create('AddengineerPage', { type: 'Edit', engineer: engineer });
         modal.onDidDismiss((data) => {
-            //this._loadCustomers();
+            this._loadSupervisors();
         });
         modal.present();
     }
 
+    filterSupervisors($event: any): void {
+        const value: string = $event.target.value ? $event.target.value.toLowerCase() : '';
+        this.filteredSupervisors = [];
+
+        for (let supervisor of this.supervisors) {
+            if (supervisor.name.toLowerCase().indexOf(value) !== -1) {
+                this.filteredSupervisors.push(supervisor);
+            }
+        }
+    }
+
+    deleteEngineer(engineer: Supervisor) {
+        const alert = this.alertCtrl.create({
+            title: 'Delete engineer',
+            message: 'Are you sure you want to delete engineer: ' + engineer.name,
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Confirm',
+                    handler: () => {
+                        this.db.deleteSupervisor(engineer)
+                            .then((success: boolean) => {
+                                this._loadSupervisors();
+                            });
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
 }

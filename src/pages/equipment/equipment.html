@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Equipments</ion-title>
+    <ion-title>Equipments Category</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -8,23 +8,23 @@
 <ion-content class="bg-primary50">
 
   <ion-toolbar color="primary">
-    <ion-searchbar (ionInput)="filterEquipments($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="filterEquipmentcats($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-fab top right edge>
-    <button ion-fab mini (click)="newEquipment()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
+  <ion-fab top right>
+    <button ion-fab mini (click)="newEquipmentcat()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let equipment of filterEquipments; let i = index">
-    <ion-card-content (press)="deleteEquipment(equipment, i)">
+  <ion-card *ngFor="let equipment of filteredEquipmentcats; let i = index">
+    <ion-card-content (press)="deleteEquipmentcat(equipment, i)">
       <ion-row>
         <ion-item>
-          <ion-icon color="secondary" item-right small name="md-create" (click)="openEquipment(equipment)"></ion-icon>
-          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEquipment(equipment, i)"></ion-icon>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openEquipmentcat(equipment)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEquipmentcat(equipment, i)"></ion-icon>
 
         </ion-item>
       </ion-row>
-      <ion-row (click)="openEquipment(equipment)">
+      <ion-row (click)="openEquipmentcat(equipment)">
         <h2 text-bold text-uppercase><strong>{{equipment.name }}</strong></h2>
       </ion-row>
     </ion-card-content>

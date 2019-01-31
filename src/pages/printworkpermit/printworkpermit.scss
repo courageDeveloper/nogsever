@@ -1,0 +1,105 @@
+page-printworkpermit {
+.bar-container {
+        border: 1px solid color($colors, secondary);
+
+        ion-col {
+            background-color: white;
+
+            &.bar-success {
+                background-color: color($colors, primary);
+            }
+        }
+    }
+
+    .eng-color{
+        color: color($colors, attrgreen);
+    }
+
+    .align-details{
+        margin-right: auto;
+    }
+
+    .list-price, .items-count {
+        margin-left: auto;
+        padding: 2px 5px;
+    }
+
+    .td-3{
+        width: 50%;
+    }
+    .td-4{
+        width: 1%;
+    }
+
+    .attrpend{
+        color: red;
+    }
+
+    .attrgreen{
+        color: #006600;
+    }
+
+    .align-3{
+        margin-bottom: 300px !important;
+    }
+
+    .align-4{
+        margin-bottom: 500px !important;
+    }
+
+    .danger{
+        color: #f53d3d;
+    }
+
+    .txt-orient{
+        writing-mode: tb-rl;
+        text-orientation: mixed;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -o-transform: rotate(180deg); 
+    }
+    .border-line{
+        border: solid;
+        border-width: 0.1em
+    }
+    .txt-align{
+        text-align: center;
+        max-width: 80%;
+    }
+    .td1{
+        width: 5%;
+    }
+    table {
+        border-collapse: collapse;
+      }
+      
+      table, td, th {
+        border: 1px solid black;
+      }
+    .txt-size{
+        font-size: 1.1rem
+    }
+    .float-end{
+        text-align: right !important;
+    }
+
+    @media screen and (min-width: 768px) {
+        .margin-top{
+            margin-top:56px;
+        }
+    }
+
+    @media print{
+        printed-div{
+            display:block;
+        }
+    }
+
+    .logo-print{
+        width:291px;
+        height:109px;
+        display: list-item;
+        list-style-image: url(../assets/images/NOG-LOGO.jpg);
+        list-style-position: inside;
+    }
+}

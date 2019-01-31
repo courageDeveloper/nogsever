@@ -2,53 +2,65 @@
   <ion-navbar color="secondary">
     <ion-buttons left>
       <button color="primary" ion-button (click)="cancel()">
-          <ion-icon name="close"></ion-icon>
+        <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title class="title-color">{{title}} Engineer</ion-title>
+    <ion-title class="title-color">{{title}} Supervisor</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="bg-primary50" padding>
   <ion-fab top right edge *ngIf="platform.is('cordova')">
-      <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
+    <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
   </ion-fab>
 
-  <form margin-top (ngSubmit)="submit()">
+  <form margin-top [formGroup]="supervisorForm" (ngSubmit)="submit()">
     <ion-item>
-      <ion-input placeholder="Full Name" type="text" [(ngModel)]="engineer.name" name="name"></ion-input>
+      <ion-input placeholder="Full Name" type="text" [(ngModel)]="supervisor.name" name="name" [formControl]="supervisorForm.controls['name']"
+        required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Phone Number" type="text" [(ngModel)]="engineer.mobile" name="mobile"></ion-input>
+      <ion-input placeholder="Phone Number" type="text" [(ngModel)]="supervisor.mobile" name="mobile" [formControl]="supervisorForm.controls['mobile']"
+        required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Email" type="email" [(ngModel)]="engineer.email" name="email"></ion-input>
+      <ion-input placeholder="Email" type="email" [(ngModel)]="supervisor.email" name="email" (ngModelChange)="checkEmail()" [formControl]="supervisorForm.controls['email']"
+        required></ion-input>
+        <br>
+      <ion-label color="danger" class="error-size" *ngIf="!supervisorForm.controls.email.valid && supervisorForm.controls.email.dirty"
+        no-margin>Please enter a valid email.</ion-label>
+        <ion-label color="danger" no-margin>{{errorMessageUser}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Username" type="text" [(ngModel)]="engineer.username" name="username"></ion-input>
+      <ion-input placeholder="Username" type="text" [(ngModel)]="supervisor.username" name="username" (ngModelChange)="checkUser()" [formControl]="supervisorForm.controls['username']"
+        required></ion-input>
+        <ion-label color="danger" no-margin>{{errorMessage}}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Position" type="text" [(ngModel)]="engineer.position" name="position"></ion-input>
+      <ion-input placeholder="Position" type="text" [(ngModel)]="supervisor.position" name="position" [formControl]="supervisorForm.controls['position']"
+        required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Address" type="text" [(ngModel)]="engineer.address" name="address"></ion-input>
+      <ion-input placeholder="Address" type="text" [(ngModel)]="supervisor.address" name="address" [formControl]="supervisorForm.controls['address']"
+        required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Department</ion-label>
-      <ion-select  [(ngModel)]="engineer.department" name="department">
-          <ion-option *ngFor="let department of departments" [value]="department">{{department}}</ion-option>
+      <ion-select [(ngModel)]="supervisor.departments" name="departments" [formControl]="supervisorForm.controls['departments']">
+        <ion-option *ngFor="let department of departments" [value]="department">{{department}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Password" type="password" name="password"></ion-input>
+      <ion-input placeholder="Password" [(ngModel)]="supervisor.password" type="password" name="password" [formControl]="supervisorForm.controls['password']"
+        required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Sex</ion-label>
-      <ion-select [(ngModel)]="engineer.sex" name="sex">
-          <ion-option value="Male" >Male</ion-option>
-          <ion-option value="Female">Female</ion-option>
+      <ion-select [(ngModel)]="supervisor.sex" name="sex" [formControl]="supervisorForm.controls['sex']">
+        <ion-option value="Male">Male</ion-option>
+        <ion-option value="Female">Female</ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button type="submit" block>Submit</button>
+    <button ion-button type="submit" block [disabled]='supervisorForm.invalid || disabled'>Submit</button>
   </form>
 </ion-content>

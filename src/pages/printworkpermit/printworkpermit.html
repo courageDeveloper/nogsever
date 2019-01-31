@@ -1,0 +1,423 @@
+<ion-header>
+    <ion-navbar color="secondary">
+        <ion-buttons right>
+          <button color="primary" ion-button (click)="cancel()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-title class="title-color">Print Work Permit</ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div style="overflow-x:auto">
+      <div id="printArea">
+        <ion-row class="txt-align">
+            <ion-col>
+          <img class="printed-div logo-print" src="assets/images/NOG-LOGO.jpg" width="250px" />
+          </ion-col>
+          <ion-col class="txt-align">
+              <h1><b> Network Oil & Gas Limited </b></h1>
+              <h2 color="danger" style="color:#f53d3d; text-align: center">Permit to Work</h2>
+              </ion-col>
+              <ion-col>
+                PTWNO: {{workpermit.ptwno}}
+                </ion-col>
+          </ion-row>
+  <table>
+    <tr class="border-line">
+      <td class="border-line td1">
+          <ion-row align-items-stretch>
+         <ion-col> <strong class="txt-orient txt-size print-orient"> SECTION 1 TO BE COMPLETED BY THE PERMIT HOLDER </strong> </ion-col>
+        </ion-row>
+      </td>
+      <td class="print-td">
+        <div>
+        
+          <ion-row>
+            <ion-col> <b>Date: </b></ion-col>
+          </ion-row>
+          <ion-row>
+            <div class="print-margin">   <ion-col><b> Facility/installation: </b>{{workpermit.faculty}}</ion-col></div> <div class="print-margin"> <ion-col align-self-center><b> Exact Location: </b> {{workpermit.exactlocation}} </ion-col> </div>
+          </ion-row>
+          <ion-row>
+            <div class="print-margin">
+            <ion-col> <b>Description of Work: </b> {{workpermit.description}} </ion-col>
+                </div>
+            </ion-row>
+            <ion-row>
+              <div class="print-margin"> <ion-col> <b>Equipments/Tools/Materials to be used: </b>  {{workpermit.equipmentpartname}} </ion-col> </div>
+                </ion-row>
+                <ion-row>
+                  <div class="print-margin"> <ion-col><b> Start Date/Time:  </b>{{workpermit.startdate}}</ion-col></div> <div class="print-margin"><ion-col align-self-center><b> Duration:</b> {{duration}} days</ion-col></div>
+                  <div class="print-margin"><ion-col align-self-center><b> No of Workers: </b> {{workpermit.noofworkers}} </ion-col></div>
+                  </ion-row>
+        </div>
+      </td>
+    </tr>
+    <tr class="border-line">
+        <td class="border-line">
+            <ion-row align-items-stretch>
+              <div class="print-margin"><ion-col> <strong class="txt-orient txt-size print-align print-orient"> SECTION 2 TO BE COMPLETED BY THE AUTHORISED PERSON AND THE AREA AUTHORITY SITE SUPERVISOR </strong> </ion-col></div>
+          </ion-row>
+        </td>
+        <td class="td-3 print-td">
+          <div class="align-3">
+            <ion-row>
+                <div class="print-margin">
+              <ion-col>
+             <b>SAFETY PRECAUTIONS TO BE TAKEN: </b>
+              </ion-col>
+              </div>
+            </ion-row>
+            <ion-row>
+                <div class="print-margin">
+              <ion-col> 
+              WORK PLACE
+              <ol> 
+              <li>Gas Test</li>
+              <li>Warning Signs</li>
+              <li>Safety Notice</li>
+              <li>Temporary Demarcation</li>
+              <li>Temporary Road Closure</li>
+              <li>Additional Lighting</li>
+              <li>Work Platform/Ladder</li>
+              </ol>
+              </ion-col> 
+              </div>
+              <ion-col align-self-center>
+                PERSONAL
+                <ol> 
+                    <li>Safety Helmet</li>
+                    <li>Safety Shoes</li>
+                    <li>Safety Notice</li>
+                    <li>Safety Googles</li>
+                    <li>Protective Apron</li>
+                    <li>Nose Mask</li>
+                    <li>Hearing Protection</li>
+                    <li>Breathing Apparatus</li>
+                    <li>Dotted Gloves</li>
+                    <li>Welding Glooves</li>
+                    <li>Safety Harness</li>
+                    </ol>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <div class="print-margin">
+              <ion-col> <b>Additional Precautions: </b>  {{workpermit.precautions}} </ion-col></div>
+              </ion-row>
+          </div>
+        </td>
+        <td class="border-line td-4">
+            <ion-row>
+                <div class="print-margin"><ion-col> <strong class="txt-orient txt-size print-orient">AREA AUTHORITY</strong> </ion-col></div>
+          </ion-row>
+        </td> 
+        <td class="border-line">
+            <div class="align-4">
+            <ion-row>
+                <div class="print-margin"> <ion-col> <strong>SECTION 3</strong> </ion-col></div>
+          </ion-row>
+          <ion-row>
+              <div class="print-margin">
+              <ion-col>I authorise that work may be carried out Provided the <br> stated Precautions
+              and preparations are observed and clearance given by the Area Authority Site Supervisor.
+              </ion-col>
+              </div>
+             </ion-row>
+             <ion-row>
+                <div class="print-margin">
+                <ion-col>
+                  <b>Name: {{managerName}}</b>
+                </ion-col>
+                </div>
+               </ion-row>
+               <ion-row>
+                  <div class="print-margin">
+                  <ion-col>
+                    <b>Date: {{workpermit.managerdate}}</b>
+                  </ion-col>
+                  </div>
+                 </ion-row>
+                 <ion-row>
+                  <div class="print-margin">
+                    <ion-col>
+                      <b>Status: {{mastatus}}</b>
+                    </ion-col>
+                    </div>
+                   </ion-row>
+          </div>
+        </td>
+      </tr>
+      <tr class="border-line">
+          <td class="border-line td1">
+              <ion-row align-items-stretch>
+             <ion-col> <strong class="txt-orient txt-size print-orient"> SECTION 4 TO BE COMPLETED BY AREA AUTH SITE SUPERVISOR </strong> </ion-col>
+            </ion-row>
+          </td>
+          <td class="print-td">
+            <div class="align-3">
+              <ion-row>
+                <ion-col> <b>VALIDITY AND RENEWAL OF PERMIT</b></ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col> Maximum Validity without renewal is 12 hours </ion-col>
+              </ion-row>
+              <ion-row>
+                  <div class="print-margin">
+                <ion-col> <b>Date:</b>  </ion-col>
+                </div>
+                <div class="print-margin">
+                <ion-col> <b>Valid from:</b>  </ion-col> </div>
+                <div class="print-margin">
+                <ion-col> <b>Until:</b>  </ion-col> </div>
+                <div class="print-margin">
+                <ion-col> <b>Initial:</b> </ion-col></div>
+                </ion-row>
+            </div>
+          </td>
+          <td class="border-line td-4">
+              <ion-row>
+             <ion-col> <strong class="txt-orient txt-size print-orient">AREA AUTHORITY SITE SUPERVISOR</strong> </ion-col>
+            </ion-row>
+          </td> 
+          <td class="border-line">
+              <div class="align-3">
+            <ion-row>
+              <div class="print-margin">
+                <ion-col>I am satisfied that all the required safety Precautions have been taken, <br> all the
+                Application Certificates are issued, work can therefore commence 
+                </ion-col>
+              </div>
+               </ion-row>
+               <ion-row>
+                  <div class="print-margin">
+                  <ion-col>
+                    <b>Name: {{hseName}} </b>
+                  </ion-col>
+                  </div>
+                 </ion-row>
+                 <ion-row>
+                    <div class="print-margin">
+                    <ion-col>
+                      <b>Date: {{workpermit.hsedate}} </b>
+                    </ion-col>
+                    </div>
+                   </ion-row>
+                   <ion-row>
+                    <div class="print-margin">
+                      <ion-col>
+                        <b>Status: {{hseastatus}}</b>
+                      </ion-col>
+                      </div>
+                     </ion-row>
+            </div>
+          </td>
+        </tr>
+        <tr class="border-line">
+            <td class="border-line td1">
+                <ion-row align-items-stretch>
+               <ion-col> <strong class="txt-orient txt-size print-orient"> SECTION 5 BY PERMIT HOLDER & AUTHORISED PERSON </strong> </ion-col>
+              </ion-row>
+            </td>
+            <td class="print-td">
+              <div>
+                <ion-row>
+                  <ion-col> <b>HANDBACK OF WORK</b></ion-col>
+                </ion-row>
+                <ion-row>
+                    <div class="print-margin">
+                  <ion-col> The job is completed and worksite cleared </ion-col>
+                  <ion-col> <input type="checkbox" /> </ion-col>
+                  </div>
+                </ion-row>
+                <ion-row>
+                    <div class="print-margin">
+                    <ion-col> The job is suspended/not completed </ion-col>
+                    <ion-col> <input type="checkbox" /> </ion-col>
+                    </div>
+                  </ion-row>
+                <ion-row>
+                    <div class="print-margin">
+                  <ion-col> <b>Reason:</b>  </ion-col></div>
+                  </ion-row>
+                  <ion-row>
+                      <div class="print-margin">
+                      <ion-col> <b>Name:</b>  </ion-col></div>
+                      <div class="print-margin">
+                      <ion-col> <b>Date:</b>  </ion-col></div>
+                      </ion-row>
+              </div>
+            </td>
+            <td class="border-line td-4">
+                <ion-row>
+               <ion-col> <strong class="txt-orient txt-size print-orient">AUTHORISED PERSON</strong> </ion-col>
+              </ion-row>
+            </td> 
+            <td class="border-line">
+                <div class="align-3">
+              <ion-row>
+                  <ion-col>I confirm that the Safety Precautions specified will be observed 
+                  </ion-col>
+                 </ion-row>
+                 <ion-row>
+                    <div class="print-margin">
+                    <ion-col>
+                      <b>Name: {{supervisorName}}</b>
+                    </ion-col>
+                    </div>
+                   </ion-row>
+                   <ion-row>
+                      <div class="print-margin">
+                      <ion-col>
+                        <b>Date: {{workpermit.areasupervisordate}}</b>
+                      </ion-col>
+                      </div>
+                      <div class="print-margin">
+                      <ion-col>
+                          <b>Signature:  </b>
+                        </ion-col>
+                      </div>
+                     </ion-row>
+                     <ion-row>
+                      <div class="print-margin">
+                        <ion-col>
+                          <b>Status: {{supervisorastatus}}</b>
+                        </ion-col>
+                        </div>
+                       </ion-row>
+              </div>
+            </td>
+          </tr>
+          <tr>
+              <td class="border-line td-4">
+                  
+              </td> 
+              <td class="border-line print-td">
+                
+              </td>
+              <td class="border-line td-4">
+                  <ion-row>
+                 <ion-col> <strong class="txt-orient txt-size print-orient">PERMIT HOLDER</strong> </ion-col>
+                </ion-row>
+              </td> 
+              <td class="border-line">
+                  <div class="align-3">
+                <ion-row>
+                    <ion-col>I confirm that i have read the Safety Precautions specified and they will be observed 
+                    </ion-col>
+                   </ion-row>
+                   <ion-row>
+                      <div class="print-margin">
+                      <ion-col>
+                        <b>Name: {{workpermit.permitholdername}} </b>
+                      </ion-col>
+                      </div>
+                     </ion-row>
+                     <ion-row>
+                        <div class="print-margin">
+                        <ion-col>
+                          <b>Date: {{workpermit.datecreated}} </b>
+                        </ion-col>
+                        </div>
+                        <div class="print-margin">
+                        <ion-col>
+                            <b>Signature:  </b>
+                          </ion-col>
+                        </div>
+                       </ion-row>
+                       <ion-row>
+                        <div class="print-margin">
+                          <ion-col>
+                            <b>Status: {{workpermit.status}}</b>
+                          </ion-col>
+                          </div>
+                         </ion-row>
+                </div>
+              </td>
+            </tr>
+            <tr>
+                <td class="border-line td-4">
+                    
+                </td> 
+                <td class="border-line print-td">
+                  
+                </td>
+                <td class="border-line td-4">
+                    <ion-row>
+                   <ion-col> <strong class="txt-orient txt-size print-orient">BY AUTHORISED PERSON</strong> </ion-col>
+                  </ion-row>
+                </td> 
+                <td class="border-line">
+                    <div class="align-3">
+                        <ion-row>
+                          <ion-col> <b>HAND OVER OF WORK</b></ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <div class="print-margin">
+                          <ion-col> <b>From Time:</b>  </ion-col>
+                          </div>
+                          <div class="print-margin">
+                          <ion-col> <b>Initial:</b>  </ion-col>
+                          </div>
+                          <div class="print-margin">
+                          <ion-col> <b>to:</b>  </ion-col>
+                          </div>
+                          <div class="print-margin">
+                          <ion-col> <b>Initial:</b>  </ion-col>
+                          </div>
+                          <div class="print-margin">
+                          <ion-col> <b>Date:</b>  </ion-col>
+                          </div>
+                          </ion-row>
+                      </div>
+                </td>
+              </tr>
+              <tr>
+                  <td class="border-line td-4">
+                      
+                  </td> 
+                  <td class="border-line print-td">
+                    
+                  </td>
+                  <td class="border-line td-4">
+                      <ion-row>
+                     <ion-col> <strong class="txt-orient txt-size print-orient">AREA AUTHORITY SITE SUPERVISOR</strong> </ion-col>
+                    </ion-row>
+                  </td> 
+                  <td class="border-line">
+                      <div class="align-3">
+                          <ion-row>
+                              <ion-col> <b>WORK ACCEPTANCE AND CLOSURE OF PERMIT</b></ion-col>
+                            </ion-row>
+                    <ion-row>
+                        <div class="print-margin">
+                        <ion-col>
+                          Job acceptance as stated and permit to work closed. 
+                        </ion-col>
+                        </div>
+                       </ion-row>
+                       <ion-row>
+                         
+                          <ion-col>
+                            <b>Name:  </b>
+                          </ion-col>
+                         </ion-row>
+                         <ion-row>
+                            <ion-col>
+                              <b>Date:  </b>
+                            </ion-col>
+                            <ion-col>
+                                <b>Time:  </b>
+                              </ion-col>
+                            <ion-col>
+                                <b>Signature:  </b>
+                              </ion-col>
+                           </ion-row>
+                    </div>
+                  </td>
+                </tr>
+  </table>
+  </div>
+  </div>
+</ion-content>

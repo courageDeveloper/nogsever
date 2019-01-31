@@ -17,6 +17,10 @@ page-workpermit {
     opacity: inherit;
                   }
 
+    fieldset{
+      border: 0;
+    }
+
  .bg-size{
     width: 100%;
     height: 100%;
@@ -24,6 +28,10 @@ page-workpermit {
   }
    .danger{
     color: #f53d3d;
+     }
+
+     .pre-color{
+       background-color: #006600;
      }
 
     .img-size{

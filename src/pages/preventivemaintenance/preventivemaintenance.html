@@ -8,37 +8,46 @@
 <ion-content class="bg-primary50">
 
   <ion-toolbar color="primary">
-    <ion-searchbar (ionInput)="filterPms($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="filterWorkorders($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-fab top right edge>
-    <button ion-fab mini (click)="newPm()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
+  <ion-fab top right>
+    <button ion-fab mini (click)="newWorkorder()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let pm of filterPms; let i = index">
-    <ion-card-content (press)="deletePm(Pm, i)">
+  <ion-card *ngFor="let workorder of filteredWorkorder; let i = index" [ngClass]="{'high':workorder.beepstatus==true && workorder.priority=='High',
+        'medium':workorder.beepstatus==true && workorder.priority=='Medium', 'low':workorder.beepstatus==true && workorder.priority=='Low'}" [@elementState]="workorder.animateswitch">
+    <ion-card-content (press)="deleteWorkorder(workorder, i)">
+        <ion-row>
+            <h2 text-bold text-uppercase><strong>WONO: 00{{ workorder.workorderno}}</strong></h2>
+          </ion-row>
+          <ion-row>
+              <h2 text-bold text-uppercase>Worktype: {{ workorder.worktypes}}</h2>
+            </ion-row>
       <ion-row>
         <ion-item>
-          <ion-icon color="secondary" item-right small name="md-create" (click)="openPm(pm)"></ion-icon>
-          <ion-icon color="danger" item-right small name="ios-trash" (click)="deletePm(pm, i)"></ion-icon>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openWorkorder(workorder)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteWorkorder(workorder, i)"></ion-icon>
 
         </ion-item>
       </ion-row>
-      <ion-row (click)="openPm(pm)">
-        <h2 text-bold text-uppercase><strong>{{ pm.date }}</strong></h2>
-        <p ion-text class="list-price">{{ pm.location }}</p>
+     
+      <ion-row (click)="openWorkorder(workorder)">
+        <h2 text-bold text-uppercase><strong>{{ workorder.datecreated}}</strong></h2>
+        <p ion-text class="list-price">{{ workorder.facility }}</p>
       </ion-row>
-      <ion-row (click)="openPm(pm)">
-        <p class="shop">{{ pm.name }}</p>
-        <p  class="list-price">{{ pm.workorder }}</p>
+      <ion-row (click)="openWorkorder(workorder)">
+        <p class="shop">{{ workorder.name }}</p>
+        <p  class="list-price">{{ workorder.description}}</p>
       </ion-row>
-      <ion-row (click)="openPm(pm)">
-        <p class="shop eng-color">{{ pm.equipment }}</p>
-        <p class="list-price eng-color">{{ pm.description }}</p>
+      <ion-row (click)="openWorkorder(workorder)">
+        <p class="shop eng-color">{{ workorder.equipmentcatname }}</p>
+        <p class="list-price eng-color">{{ workorder.Operator }}</p>
       </ion-row>
-      <ion-row>
-        <button ion-button small color="attrgreen" class="list-price">Acknowledge</button>
-        <button ion-button small color="danger" class="list-price">Dismiss</button>
+      <ion-row *ngIf="position=='Operator'">
+        <button *ngIf="!workorder.status" ion-button small color="attrgreen" class="list-price" (click)="ackWo(workorder)" [disabled]="workorder.status">Acknowledge</button>
+        <button *ngIf="workorder.status" ion-button small color="attrgreen" class="list-price" (click)="navPtw(workorder)">Generate PTW</button>
+        <button ion-button small color="danger" class="list-price" (click)="disackWo(workorder)" [disabled]="workorder.dstatus">Dismiss</button>
       </ion-row>
     </ion-card-content>
   </ion-card>

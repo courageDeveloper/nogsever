@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Platform, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, Platform, NavParams } from 'ionic-angular';
+import { Equipmentpart } from '../../models/equipmentpart';
+import { PouchService } from '../../pouch-service/pouch.service';
+
 
 /**
  * Generated class for the AddsparepartsPage page.
@@ -14,44 +17,80 @@ import { IonicPage, NavController, Platform, NavParams } from 'ionic-angular';
   templateUrl: 'addspareparts.html',
 })
 export class AddsparepartsPage {
-  public spareParts: any;
+  public equipmentparts: Equipmentpart;
   add = false;
   title = 'Edit';
   search = false;
   sparePartsArray;
+  sparePartsId;
+  equipmentCatObject;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public db: PouchService, public navParams: NavParams, public platform: Platform) {
     if (this.navParams.get('type') == 'Add') {
       this.add = true;
       this.title = 'Add';
-      this.spareParts = {
-        /*  id: Math.round((new Date()).getTime()).toString(),
-         rev: '', */
+      this.equipmentparts = {
+        id: Math.round((new Date()).getTime()).toString(),
+        rev: '',
         name: '',
-        quantity:0,
-        description:''
+        equipmentcatname: '',
+        equipmentcatid: '',
+        equipmenttags: []
       }
     }
     else {
-      this.spareParts = this.navParams.get('sparepart');
+      this.equipmentparts = this.navParams.get('sparepart');
     }
   }
 
   ionViewDidLoad() {
-    this.sparePartsArray = [];
     console.log('ionViewDidLoad AddsparepartsPage');
-    this.spareParts = [{ name: "Valves"},
-    {  name: "Pipes"}, {  name: "Cables"},
-    {  name: "Drills"}
-    ]
-
-    this.spareParts.map(res => {
-     this.sparePartsArray.push(res.name);
+    this.db.getEquipmentcats().then(res => {
+      this.sparePartsArray = [];
+      this.sparePartsArray = res;
     })
   }
 
-   selectSpareparts(newVal){
-    this.spareParts.name = newVal;
+  selectSpareparts(newVal) {
+    this.equipmentCatObject = newVal;
+    if (this.add) {
+    this.equipmentparts.equipmentcatname = newVal.name;
+    }
+    else{
+      this.equipmentparts.equipmentcatname = newVal;
+    }
+  }
+
+  submit() {
+    if (this.add) {
+      this.equipmentparts.equipmentcatid = this.equipmentCatObject.id
+      this.db.saveEquipmentpart(this.equipmentparts).then(res => {
+        this.viewCtrl.dismiss(res);
+        this.equipmentCatObject.equipmentparts.push(res.id);
+        this.db.updateEquipmentcat(this.equipmentCatObject).then(res => {
+
+        });
+      });
+    }
+    else {
+      if(typeof this.equipmentCatObject == 'object'){
+      this.equipmentparts.equipmentcatid = this.equipmentCatObject.id;
+      this.equipmentparts.equipmentcatname = this.equipmentCatObject.name;
+      this.db.updateEquipmentpart(this.equipmentparts).then(result => {
+        this.viewCtrl.dismiss();
+      });
+      }
+      else{
+        this.db.updateEquipmentpart(this.equipmentparts).then(result => {
+          this.viewCtrl.dismiss();
+        });
+      }
+     
+    }
+  }
+
+  cancel() {
+    this.viewCtrl.dismiss();
   }
 
 }

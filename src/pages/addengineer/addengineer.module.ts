@@ -8,6 +8,6 @@ import { AddengineerPage } from './addengineer';
   ],
   imports: [
     IonicPageModule.forChild(AddengineerPage),
-  ],
+  ]
 })
 export class AddengineerPageModule {}

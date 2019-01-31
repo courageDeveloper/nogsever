@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Equipments</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <ion-fab top right edge *ngIf="platform.is('cordova')">
+    <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
+  </ion-fab>
+
+  <form margin-top (ngSubmit)="submit()">
+    <ion-item>
+      <ion-input ng2-auto-complete [source]="equipmentsCatArray" list-formatter="name" (valueChanged)="selectEquipmentsCats($event)" placeholder="Category Name" type="text" [(ngModel)]="equipmentsadds.equipmentcatname" name="equipmentcatname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input ng2-auto-complete [source]="equipmentsPartArray" list-formatter="name" (valueChanged)="selectEquipmentsParts($event)" placeholder="Part Name" type="text" [(ngModel)]="equipmentsadds.equipmentpartname" name="equipmentpartname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Tag name" type="text" [(ngModel)]="equipmentsadds.tagname" name="tagname"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block>Submit</button>
+  </form>
+</ion-content>

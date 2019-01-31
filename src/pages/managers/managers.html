@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Managers</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+    <ion-toolbar color="primary">
+        <ion-searchbar (ionInput)="filterSupervisors($event)"></ion-searchbar>
+    </ion-toolbar>
+    
+    <ion-fab top right>
+        <button ion-fab mini (click)="newManager()" color="secondary"><ion-icon name="person-add"></ion-icon></button>
+    </ion-fab>
+
+    <ion-card *ngFor="let manager of filteredSupervisors; let i = index">
+        <ion-card-content (press)="deleteManager(manager, i)">
+            <ion-row>
+                <ion-item>
+                    <ion-avatar item-start (click)="openManager(manager)">
+                        <img [src]="manager.sex == 'Male' ? 'assets/images/male.png' : 'assets/images/female.png'">
+                    </ion-avatar>
+                    <ion-icon color="secondary" item-right small name="md-create" (click)="openManager(manager)"></ion-icon>
+                    <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteManager(manager, i)"></ion-icon>
+                    
+                </ion-item>
+            </ion-row>
+            <ion-row (click)="openManager(manager)">
+                <h2 text-bold text-uppercase><strong>{{ manager.name }}</strong></h2>
+                <p ion-text class="list-price">{{ manager.mobile }}</p>
+            </ion-row>
+            <ion-row (click)="openManager(manager)">
+                <p class="shop">{{ manager.address }}</p>
+                <p class="shop" class="list-price">{{ manager.email }}</p>
+            </ion-row>
+              <ion-row (click)="openManager(manager)">
+                <p class="shop eng-color">{{ manager.department }}</p>
+                <p class="list-price eng-color">{{ manager.position }}</p>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+    <ion-fab bottom left>
+        <button ion-fab mini (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+    </ion-fab>
+</ion-content>
