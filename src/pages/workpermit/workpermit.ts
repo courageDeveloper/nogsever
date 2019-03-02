@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, ViewController, NavController, AlertController, NavParams } from 'ionic-angular';
+import { IonicPage, ViewController, NavController, AlertController, Platform, NavParams } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 import { PouchService } from '../../pouch-service/pouch.service';
 import { HttpserviceProvider } from '../../providers/httpservice';
@@ -32,7 +32,9 @@ export class WorkpermitPage {
   equipmentsCatArray;
   equipmentCatObject;
   equipmentsPartArray;
+  equipmentsPartTagArray;
   equipmentPartObject;
+  equipmentPartTagObject;
   equipmentsTagArray;
   equipmentTagObject;
   localStorageItem;
@@ -46,7 +48,7 @@ export class WorkpermitPage {
   workorder = false;
   wono;
 
-  constructor(public navCtrl: NavController, public httpService: HttpserviceProvider, public emailcomposer: EmailComposer, public alertCtrl: AlertController, public viewCtrl: ViewController, public navParams: NavParams, public db: PouchService) {
+  constructor(public navCtrl: NavController, private platform: Platform, public httpService: HttpserviceProvider, public emailcomposer: EmailComposer, public alertCtrl: AlertController, public viewCtrl: ViewController, public navParams: NavParams, public db: PouchService) {
     this.localStorageItem = JSON.parse(localStorage.getItem('user'));
 
     if (this.navParams.get('type') == 'Add') {
@@ -55,7 +57,7 @@ export class WorkpermitPage {
       this.workpermit = {
         id: Math.round((new Date()).getTime()).toString(),
         rev: '',
-        ptwno: '',
+        ptwno: 0,
         tagname: '',
         tagid: '',
         equipmentpartname: '',
@@ -63,9 +65,10 @@ export class WorkpermitPage {
         equipmentcatid: '',
         equipmentcatname: '',
         datecreated: new Date().toJSON().slice(0, 10).replace(/-/g, '-'),
-        faculty: '',
+        faculty: 'OGPOOC',
         exactlocation: '',
         description: '',
+        equipmenttag:'',
         equipments: '',
         startdate: new Date().toJSON().slice(0, 10).replace(/-/g, '-'),
         enddate: new Date().toJSON().slice(0, 10).replace(/-/g, '-'),
@@ -93,17 +96,35 @@ export class WorkpermitPage {
         department: '',
         post: '',
         wono: '',
-        holderdate: new Date().toJSON().slice(0, 10).replace(/-/g, '-')
+        holderdate: new Date().toJSON().slice(0, 10).replace(/-/g, '-'),
+        messagemanager: '',
+        messageareasupervisor:'',
+        messagehse:''
       }
+      this.db.getWorkpermits().then(data => {
+        console.log(data);
+        if (data.length != 0) {
+          this.workpermit.ptwno = data[0].ptwno + 1;
+        }
+        else {
+          this.workpermit.ptwno = 1;
+        }
+      });
     }
     else if (this.navParams.get('type') == 'Workorder') {
       this.workorder = true;
       this.wono = this.navParams.get('workorder').workorderno;
       this.workpermit = this.navParams.get('workorder'); 
-      console.log(this.workpermit);
-     /*  if (this.workpermit.permitholderid != this.localStorageItem) {
-        this.disabled = true;
-      } */
+      
+      this.db.getWorkpermits().then(data => {
+        console.log(data);
+        if (data.length != 0) {
+          this.workpermit.ptwno = data[0].ptwno + 1;
+        }
+        else {
+          this.workpermit.ptwno = 1;
+        }
+      });
     }
     else {
       this.workpermit = this.navParams.get('workpermit');
@@ -118,23 +139,19 @@ export class WorkpermitPage {
     this.db.getEquipmentcats().then(res => {
       this.equipmentsCatArray = [];
       this.equipmentsCatArray = res;
+      this.equipmentsTagArray = [];
+      this.equipmentsTagArray = res;
     })
 
     this.db.getEquipmentparts().then(res => {
       this.equipmentsPartArray = [];
       this.equipmentsPartArray = res;
+      this.equipmentsPartTagArray = [];
+      this.equipmentsPartTagArray = res;
     });
-    this.db.getEquipmentsadds().then(res => {
-      this.equipmentsTagArray = [];
-      this.equipmentsTagArray = res;
-    })
+    
     this.slides.lockSwipes(true);
-    /* this.pmArray = ["WONO-001", "PMNO-001", "WONO-002", "PMNO-002", "WONO-003", "PMNO-003"];
-    this.filterPmNumber = ["WONO-001", "PMNO-001", "WONO-002", "PMNO-002", "WONO-003", "PMNO-003"];
-    console.log('ionViewDidLoad WorkpermitPage');
-
-    this.safetyPrecautions = "Safety Helmet,\n Safety Shoes,\n Safety Googles,\n Nose Mask,\n Gas Tests,\n Warning Signs,\n Additional Lighting,\n Work Platform Ladder,\n";
- */
+   
     this.localStorageItem = JSON.parse(localStorage.getItem('user'));
     this.db.getSupervisor(this.localStorageItem).then(item => {
       this.user = item;
@@ -152,51 +169,52 @@ export class WorkpermitPage {
 
 
   selectEquipmentsCats(newVal) {
+    console.log(newVal);
     this.equipmentCatObject = newVal;
-    /* if (this.add) {
-      this.equipmentCatObject.equipmentparts.forEach(item => {
-        this.db.getEquipmentpart(item).then(res => {
-          this.equipmentsPartArray.push(res);
-        })
-      })
-    } */
+   
     if (this.add || this.workorder) {
       this.workpermit.equipmentcatname = newVal.name;
+      this.workpermit.equipmenttag = newVal.tag;
     }
     else {
       this.workpermit.equipmentcatname = newVal;
     }
   }
 
+   selectEquipmentsTags(newVal) {
+    this.equipmentTagObject = newVal;
+    if (this.add || this.workorder) {
+      this.workpermit.equipmenttag = newVal.tag;
+    }
+    else {
+      this.workpermit.equipmenttag = newVal;
+    }
+  }
+ 
+  
+
   selectEquipmentsParts(newVal) {
     this.equipmentPartObject = newVal;
-    /* if (this.add) {
-      this.equipmentPartObject.equipmenttags.forEach(item => {
-        console.log(item);
-        this.db.getEquipmentsadd(item).then(res => {
-          this.equipmentsTagArray.push(res);
-          console.log(this.equipmentsTagArray);
-        })
-      })
-    } */
     if (this.add || this.workorder) {
       this.workpermit.equipmentpartname = newVal.name;
+      this.workpermit.tagname = newVal.tag;
     }
     else {
       this.workpermit.equipmentpartname = newVal;
     }
   }
 
-  selectEquipmentsTags(newVal) {
-    this.equipmentTagObject = newVal;
-    if (this.add || this.workorder) {
-      this.workpermit.tagname = newVal.name;
+  selectEquipmentsPartsTags(newVal) {
+    this.equipmentPartTagObject = newVal;
+    if(this.add || this.workorder){
+      this.workpermit.tagname = newVal.tag;
     }
-    else {
-      this.workpermit.tagname = newVal;
+    else{
+        this.workpermit.tagname = newVal;
     }
   }
 
+ 
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.slides.lockSwipes(true);
@@ -218,7 +236,18 @@ export class WorkpermitPage {
   }
 
   home() {
-    this.navCtrl.setRoot('OperatorhomePage');
+    if(this.position == 'Manager'){
+      this.navCtrl.setRoot('HomePage');
+      }
+      else if(this.position == 'Supervisor'){
+        this.navCtrl.setRoot('SupervisorhomePage');
+      }
+      else if(this.position == 'Admin'){
+        this.navCtrl.setRoot('AdminHomePage');
+      }
+      else{
+        this.navCtrl.setRoot('OperatorhomePage');
+      }
   }
 
   submit() {
@@ -230,9 +259,6 @@ export class WorkpermitPage {
       }
       if (typeof this.equipmentPartObject == 'object') {
         this.workpermit.equipmentpartid = this.equipmentPartObject.id;
-      }
-      if (typeof this.equipmentTagObject == 'object') {
-        this.workpermit.tagid = this.equipmentTagObject.id;
       }
       this.workpermit.permitholderid = this.localStorageItem;
       this.workpermit.permitholdername = this.user.name;
@@ -278,8 +304,7 @@ export class WorkpermitPage {
           this.filterAreaSupervisor.forEach(item => {
             this.supervisorArray.push(item.email);
           });
-          console.log(this.supervisorArray);
-          console.log(res);
+        
           var emailInfo = {
             name: this.user.name,
             department: this.user.departments,
@@ -294,8 +319,14 @@ export class WorkpermitPage {
           }
 
           this.httpService.sendEmail(emailInfo).subscribe(res => {
-            console.log(res);
+            
           });
+
+          if (this.platform.is('cordova')) {
+          this.httpService.workpermitNotification(emailInfo).subscribe(res => {
+          })
+        }
+        
 
         });
 
@@ -315,6 +346,14 @@ export class WorkpermitPage {
         this.workpermit.equipmentcatid = this.workpermit.equipmentcatid;
         this.workpermit.equipmentcatname = this.workpermit.equipmentcatname;
       }
+      if (typeof this.equipmentTagObject == 'object') {
+        this.workpermit.equipmentcatid = this.equipmentCatObject.id;
+        this.workpermit.equipmenttag = this.equipmentTagObject.tag;
+      }
+      else {
+        this.workpermit.equipmentcatid = this.workpermit.equipmentcatid;
+        this.workpermit.equipmenttag = this.workpermit.equipmenttag;
+      }
       if (typeof this.equipmentPartObject == 'object') {
         this.workpermit.equipmentpartid = this.equipmentPartObject.id;
         this.workpermit.equipmentpartname = this.equipmentPartObject.name;
@@ -323,10 +362,15 @@ export class WorkpermitPage {
         this.workpermit.equipmentpartid = this.workpermit.equipmentpartid;
         this.workpermit.equipmentpartname = this.workpermit.equipmentpartname;
       }
-      if (typeof this.equipmentPartObject == 'object') {
-        this.workpermit.tagid = this.equipmentTagObject.id;
-        this.workpermit.tagname = this.equipmentTagObject.name;
+      if (typeof this.equipmentPartTagObject == 'object') {
+        this.workpermit.equipmentpartid = this.equipmentPartTagObject.id;
+        this.workpermit.tagname = this.equipmentPartTagObject.tag;
       }
+      else {
+        this.workpermit.equipmentpartid = this.workpermit.equipmentpartid;
+        this.workpermit.tagname = this.workpermit.tagname;
+      }
+     
       this.workpermit.permitholderid = this.localStorageItem;
       this.workpermit.permitholdername = this.user.name;
       this.workpermit.department = this.user.departments;

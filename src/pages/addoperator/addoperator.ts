@@ -33,6 +33,7 @@ export class AddoperatorPage {
     address: new FormControl(),
     email: new FormControl(),
     sex: new FormControl(),
+    otp: new FormControl(),
     position: new FormControl(),
     departments: new FormControl(),
     username: new FormControl(),
@@ -58,10 +59,14 @@ export class AddoperatorPage {
         position: '',
         departments: 'Process Operations',
         username: '',
+        otp: '',
         password: '',
         post: 'Operator',
         workpermits: [],
-        workorders: []
+        workorders: [],
+        woalert: [],
+        faultregistrys: [],
+        dailyreports: []
       }
     }
     else {
@@ -84,11 +89,13 @@ export class AddoperatorPage {
       address: [this.operator.address],
       email: [this.operator.email, Validators.compose([Validators.required, Validators.pattern(this.emailValidate)])],
       sex: [this.operator.sex],
+      otp: [this.operator.otp],
       position: [this.operator.position],
       departments: [this.operator.departments],
       username: [this.operator.username],
       password: [this.operator.password],
-      post: [this.operator.post]
+      post: [this.operator.post],
+      woalert: [this.operator.woalert]
     })
   }
 
@@ -98,6 +105,7 @@ export class AddoperatorPage {
       rev: [this.operator.rev],
       name: [this.operator.name],
       mobile: [this.operator.mobile],
+      otp: [this.operator.otp],
       address: [this.operator.address],
       email: [this.operator.email, Validators.compose([Validators.required, Validators.pattern(this.emailValidate)])],
       sex: [this.operator.sex],
@@ -105,7 +113,8 @@ export class AddoperatorPage {
       departments: [this.operator.departments],
       username: [this.operator.username],
       password: [this.operator.password],
-      post: [this.operator.post]
+      post: [this.operator.post],
+      woalert: [this.operator.woalert]
     })
   }
 
@@ -116,7 +125,8 @@ export class AddoperatorPage {
       });
     }
     else {
-      this.operator.workorders = []
+      //this.operator.workorders = [];
+      //this.operator.woalert = [];
       this.db.updateSupervisor(this.operator).then(result => {
         this.viewCtrl.dismiss();
       });

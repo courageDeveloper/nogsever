@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Daily Report</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (ionInput)="filterDailyreports($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-fab top right *ngIf="show">
+    <button ion-fab mini (click)="newWorkorder()" color="secondary"><ion-icon name="ios-copy"></ion-icon></button>
+  </ion-fab>
+
+  <button ion-button mini (click)="printSelected()" color="danger" [disabled]="disable"><div>Print Selected</div> <ion-icon class="text-space" name="print"></ion-icon></button>
+
+  <ion-list style="width: 100%" [virtualScroll]="filteredDailyreport" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let workorder" style="margin-top: 35px; margin-bottom: 60px;">
+    <ion-card-content (press)="deleteDailyreport(workorder, i)">
+      <ion-row>
+        <ion-checkbox color="primary" (click)="checkboxClicked(workorder)"></ion-checkbox>
+        <ion-item>
+          <button class="list-price" color="primary" title="Print Daily Report" ion-fab item-right mini (click)="print(workorder)"><ion-icon
+              name="print"></ion-icon></button>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openWorkorder(workorder)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteDailyreport(workorder, i)"></ion-icon>
+
+        </ion-item>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <ion-col>
+          <h2 text-bold><strong>Date Created: </strong> {{ workorder.datecreated }}</h2>
+        </ion-col>
+        <ion-col>
+          <h2 ion-text class="list-price"><strong>Department: </strong> {{ workorder.department }}</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <ion-col>
+          <h2 text-bold><strong>Oil produced from oil stabilization train 1: </strong> {{ workorder.optrain1 }}</h2>
+        </ion-col>
+        <ion-col>
+          <h2 ion-text class="list-price"><strong>Oil produced from oil stabilization train 2: </strong> {{ workorder.optrain2 }}</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <ion-col>
+          <h2 text-bold><strong>Oil produced to surge vessel: </strong> {{ workorder.opsurgevessel }}</h2>
+        </ion-col>
+        <ion-col>
+          <h2 ion-text class="list-price"><strong>Oil transferred to NPDC storage tank: </strong> {{ workorder.otnpdc }}</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openWorkorder(workorder)">
+        <ion-col>
+          <h2 text-bold><strong>Total gas exported to NGC: </strong> {{ workorder.tgngc }}</h2>
+        </ion-col>
+        <ion-col>
+          <h2 ion-text class="list-price"><strong>Total gas fled from HP: </strong> {{ workorder.tghp }}</h2>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-list>
+  <ion-fab bottom left>
+    <button ion-fab mini (click)="back()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

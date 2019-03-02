@@ -49,4 +49,8 @@ export class WorkerschedulePage {
         modal.present();
   }
 
+  trackByName = (index, item) => {
+    return item.id;
+  }
+
 }

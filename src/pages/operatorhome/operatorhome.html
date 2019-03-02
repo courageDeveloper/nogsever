@@ -3,16 +3,16 @@
     <ion-content class="bg-primary50 margin-top">
       <ion-list>
         <button color="dark" ion-item detail-push (click)="openWorkPermit()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left ></ion-icon>Work Permit</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon> <ion-badge *ngIf="filteredWorkpermitLength!=0" id="notifications-badge" color="danger">{{filteredWorkpermitLength}}</ion-badge></button>
-        <button color="dark" ion-item detail-push (click)="openPm()"><span class="icon-color"><ion-icon name="ios-construct" padding-right padding-left ></ion-icon>Daily Reports</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>
-        <button color="dark" ion-item detail-push (click)="openWorkorder()"><span class="icon-color"><ion-icon name="ios-copy" padding-right padding-left ></ion-icon>Fault Registry</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>
+        <button color="dark" ion-item detail-push (click)="openDailyreport()"><span class="icon-color"><ion-icon name="ios-construct" padding-right padding-left ></ion-icon>Daily Reports</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>
+        <button color="dark" ion-item detail-push (click)="openRegistry()"><span class="icon-color"><ion-icon name="ios-copy" padding-right padding-left ></ion-icon>Fault Registry</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon> <ion-badge *ngIf="filteredFaultreistryLength!=0" id="notifications-badge" color="danger">{{filteredFaultreistryLength}}</ion-badge></button>
         <button color="dark" ion-item detail-push (click)="toggleSelection(index)"><span class="icon-color"><ion-icon name="hammer" padding-right padding-left ></ion-icon>Equipments</span><ion-icon *ngIf="!show" item-right class="icon-color2" name="ios-arrow-forward"></ion-icon><ion-icon *ngIf="show" item-right class="icon-color2" name="ios-arrow-down"></ion-icon></button>
         <button *ngIf="show" color="light" ion-item detail-push (click)="openEquipments()"><span><ion-icon name="ios-add" padding-right padding-left ></ion-icon>Equipment Category</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>
         <button *ngIf="show" color="light" ion-item detail-push (click)="openSpareparts()"><span><ion-icon name="ios-build" padding-right padding-left ></ion-icon>Equipment Parts</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>
-        <button *ngIf="show" color="light" ion-item detail-push (click)="openAddequipments()"><span><ion-icon name="md-backspace" padding-right padding-left ></ion-icon>Add Equipments</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>  
-        <button color="dark" ion-item detail-push (click)="openPm()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left ></ion-icon>PM/Work Order</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>
-        <button color="dark" ion-item detail-push (click)="openEngineer()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left></ion-icon>Material List</span><ion-icon class="icon-color2" item-right name="ios-arrow-forward"></ion-icon></button>
-       <button color="dark" ion-item detail-push (click)="openEngineer()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left></ion-icon>Operation Manual</span><ion-icon class="icon-color2" item-right name="ios-arrow-forward"></ion-icon></button> 
-       <button color="dark" ion-item detail-push (click)="openEngineer()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left></ion-icon>Operators Schedule</span><ion-icon class="icon-color2" item-right name="ios-arrow-forward"></ion-icon></button>
+        <!-- <button *ngIf="show" color="light" ion-item detail-push (click)="openAddequipments()"><span><ion-icon name="md-backspace" padding-right padding-left ></ion-icon>Add Equipments</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon></button>   -->
+        <button color="dark" ion-item detail-push (click)="openPm()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left ></ion-icon>PM/Work Order</span><ion-icon item-right class="icon-color2" name="ios-arrow-forward"></ion-icon> <ion-badge *ngIf="filteredWorkorderLength!=0" id="notifications-badge" color="danger">{{filteredWorkorderLength}}</ion-badge></button>
+        <button color="dark" ion-item detail-push (click)="openMaterial()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left></ion-icon>Material List</span><ion-icon class="icon-color2" item-right name="ios-arrow-forward"></ion-icon></button>
+      <!--  <button color="dark" ion-item detail-push (click)="openEngineer()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left></ion-icon>Operation Manual</span><ion-icon class="icon-color2" item-right name="ios-arrow-forward"></ion-icon></button> 
+       <button color="dark" ion-item detail-push (click)="openEngineer()"><span class="icon-color"><ion-icon name="ios-clipboard" padding-right padding-left></ion-icon>Operators Schedule</span><ion-icon class="icon-color2" item-right name="ios-arrow-forward"></ion-icon></button> -->
       </ion-list>
     </ion-content>
   </ion-menu>
@@ -39,7 +39,7 @@
           <ion-col align-self-baseline col-12>
             <ion-list text-center>
               <img src="assets/images/NOG-LOGO.jpg" width="200px" />
-              <h3 class="title">Preventive Maintenance Solution</h3>
+              <h3 class="title">OGPOOC (CMMS)</h3>
             </ion-list>
           </ion-col>
         </ion-row>
@@ -49,15 +49,15 @@
               <form>
                 <ion-item>
                   <ion-icon item-right name="md-calendar"></ion-icon>
-                  <ion-input placeholder="Date" type="date" name="date"></ion-input>
+                  <ion-input [(ngModel)]="currentDate" (ngModelChange)="dailyWorkorder()" placeholder="Date" type="date" name="date"></ion-input>
                 </ion-item>
               </form>
               <ion-item>
-                <ion-icon item-left name="ios-construct"></ion-icon>
+                <ion-icon item-left name="document"></ion-icon>
                 <strong color="dark">Daily Work Order/PM actions</strong>
               </ion-item>
-              <ion-item class="txt-size">2</ion-item>
-              <ion-item><button ion-button item-right small>View Work Orders</button></ion-item>
+              <ion-item class="txt-size">{{dailyWolength}}</ion-item>
+              <ion-item><button ion-button item-right small (click)="openPm()">View Work Orders</button></ion-item>
             </ion-card>
           </ion-col>
           <ion-col>
@@ -66,10 +66,10 @@
               </ion-item>
               <ion-item>
                 <ion-icon item-left name="ios-construct"></ion-icon>
-                <strong color="dark">Available Spare Parts</strong>
+                <strong color="dark">Equipmets</strong>
               </ion-item>
-              <ion-item class="txt-size">12</ion-item>
-              <ion-item><button ion-button item-right small>View Spare Parts List</button></ion-item>
+              <ion-item class="txt-size">{{equipmentLength}}</ion-item>
+              <ion-item><button ion-button item-right small (click)="openEquipments()">View Equipments</button></ion-item>
             </ion-card>
           </ion-col>
           <ion-col>
@@ -80,8 +80,8 @@
                 <ion-icon item-left name="ios-cog"></ion-icon>
                 <strong color="dark">No of Fault Registry</strong>
               </ion-item>
-              <ion-item class="txt-size">5</ion-item>
-              <ion-item><button ion-button item-right small>View Fault Registry</button></ion-item>
+              <ion-item class="txt-size">{{faultRegistrylength}}</ion-item>
+              <ion-item><button ion-button item-right small (click)="openRegistry()">View Fault Registry</button></ion-item>
             </ion-card>
           </ion-col>
         </ion-row>
@@ -92,8 +92,8 @@
                 <ion-icon item-left name="ios-clipboard"></ion-icon>
                 <strong color="dark">Available Material</strong>
               </ion-item>
-              <ion-item class="txt-size">50</ion-item>
-              <ion-item><button ion-button item-right small>View Material List</button></ion-item>
+              <ion-item class="txt-size">{{materialList}}</ion-item>
+              <ion-item><button ion-button item-right small (click)="openMaterial()">View Material List</button></ion-item>
             </ion-card>
           </ion-col>
           <ion-col>
@@ -102,8 +102,8 @@
                 <ion-icon item-left name="document"></ion-icon>
                 <strong color="dark">Work Permit</strong>
               </ion-item>
-              <ion-item class="txt-size">2</ion-item>
-              <ion-item><button ion-button item-right small (click)="dailyWorkPermit()">View Work Permit List</button></ion-item>
+              <ion-item class="txt-size">{{deptWorkpermitslength}}</ion-item>
+              <ion-item><button ion-button item-right small (click)="openWorkPermit()">View Work Permit List</button></ion-item>
             </ion-card>
           </ion-col>
           <ion-col>
@@ -112,25 +112,11 @@
                 <ion-icon item-left name="ios-folder-open"></ion-icon>
                 <strong color="dark">Total No of PM/Work Order History</strong>
               </ion-item>
-              <ion-item class="txt-size">100</ion-item>
-              <ion-item><button ion-button item-right small>View PM</button></ion-item>
+              <ion-item class="txt-size">{{totalWolength}}</ion-item>
+              <ion-item><button ion-button item-right small (click)="openPm()">View PM</button></ion-item>
             </ion-card>
           </ion-col>
         </ion-row>
-
-        <ion-card>
-          <ion-card-header>
-            <ion-item>
-              <span item-left>Sales and Expenses for the Year</span>
-              <select (change)="selectYear($event.target.value)" item-right>
-                        <option *ngFor="let year of years">{{year}}</option>
-                    </select>
-            </ion-item>
-          </ion-card-header>
-          <ion-card-content>
-            <canvas #barCanvas></canvas>
-          </ion-card-content>
-        </ion-card>
 
       </div>
       <ion-fab class="align-bottom" bottom left menuToggle>

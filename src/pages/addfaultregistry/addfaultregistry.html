@@ -2,10 +2,10 @@
   <ion-navbar color="secondary">
     <ion-buttons left>
       <button color="primary" ion-button (click)="cancel()">
-          <ion-icon name="close"></ion-icon>
+        <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title class="title-color">{{title}} Fault Register</ion-title>
+    <ion-title class="title-color">{{title}} Fault Registry</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,22 +15,39 @@
   </ion-fab>
 
   <form margin-top (ngSubmit)="submit()">
+    <fieldset [disabled]="disabled">
+    <ion-item>
+      <ion-input placeholder="Fault Number" type="text" [(ngModel)]="faultregistry.faultid" name="faultid" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Name" type="text" [(ngModel)]="faultregistry.name" name="name"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-icon item-right name="md-calendar"></ion-icon>
-      <ion-input placeholder="Date" type="date" [(ngModel)]="faultregister.date" name="date"></ion-input>
+      <ion-input placeholder="Date" type="date" [(ngModel)]="faultregistry.date" name="date"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Location" type="text" [(ngModel)]="faultregister.location" name="location"></ion-input>
+      <ion-input placeholder="Facility" type="text" [(ngModel)]="faultregistry.faculty" name="faculty" disabled></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Fault Id" type="text" [(ngModel)]="faultregister.faultid" name="faultid" disable></ion-input>
+      <ion-input placeholder="Location" type="text" [(ngModel)]="faultregistry.location" name="location"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Equipment" type="text" [(ngModel)]="faultregister.equipment" name="equipment"></ion-input>
+      <ion-input ng2-auto-complete [source]="equipmentsCatArray" list-formatter="name" (valueChanged)="selectEquipmentsCats($event)" placeholder="Equipment" type="text" [(ngModel)]="faultregistry.equipmentcatname" name="equipmentcatname"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Description" type="text" [(ngModel)]="faultregister.description" name="description"></ion-input>
+      <ion-input ng2-auto-complete [source]="equipmentsTagArray" list-formatter="tag" (valueChanged)="selectEquipmentsTags($event)" placeholder="Equipment tag name" type="text" [(ngModel)]="faultregistry.equipmenttag" name="equipmenttag"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input ng2-auto-complete [source]="equipmentsPartArray" list-formatter="name" (valueChanged)="selectEquipmentsParts($event)" placeholder="Equipment Part" type="text" [(ngModel)]="faultregistry.equipmentpartname" name="equipmentpartname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input ng2-auto-complete [source]="equipmentsPartTagArray" list-formatter="tag" (valueChanged)="selectEquipmentsPartsTags($event)" placeholder="Equipment Part tag" type="text" [(ngModel)]="faultregistry.tagname" name="tagname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Description" type="text" [(ngModel)]="faultregistry.description" name="description"></ion-textarea>
     </ion-item>
     <button ion-button type="submit" block>Submit</button>
+    </fieldset>
   </form>
 </ion-content>

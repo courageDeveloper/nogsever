@@ -8,14 +8,16 @@
 <ion-content class="bg-primary50">
 
   <ion-toolbar color="primary">
-    <ion-searchbar (ionInput)="filterRegistries($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="filterFaultregistrys($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-fab top right edge>
+  <ion-fab top right *ngIf="position=='Supervisor'">
     <button ion-fab mini (click)="newRegistry()" color="secondary"><ion-icon name="ios-clipboard"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let registry of filterRegistries; let i = index">
+  <ion-list style="width: 100%" [virtualScroll]="filteredFaultregistry" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let registry" style="margin-top: 25px; margin-bottom: 40px;" [ngClass]="{'faulty':registry.color=='faulty' && registry.status==true}"
+    [@elementState]="registry.animateswitch">
     <ion-card-content (press)="deleteRegistry(registry, i)">
       <ion-row>
         <ion-item>
@@ -25,25 +27,37 @@
         </ion-item>
       </ion-row>
       <ion-row (click)="openRegistry(Registry)">
-        <h2 text-bold text-uppercase><strong>{{ registry.date }}</strong></h2>
-        <p ion-text class="list-price">{{ registry.location }}</p>
+        <h2 text-bold><strong>Name: </strong> {{registry.name }}</h2>
+        <h2 ion-text class="list-price"><strong>Date Created: </strong>{{registry.datecreated}}</h2>
       </ion-row>
       <ion-row (click)="openRegistry(registry)">
-        <p  class="list-price">{{ registry.faultid }}</p>
+        <h2 text-bold><strong>Facility: </strong> {{registry.faculty }}</h2>
+        <h2 class="list-price"><strong>Location: </strong>{{ registry.location }}</h2>
       </ion-row>
       <ion-row (click)="openRegistry(registry)">
-        <p class="shop eng-color">{{ registry.equipment }}</p>
-        <p class="list-price eng-color">{{ registry.description }}</p>
+        <h2 text-bold><strong>Equipment: </strong> {{registry.equipmentcatname }}</h2>
+        <h2 class="list-price eng-color"><strong>Equipment Tag: </strong>{{ registry.equipmenttag }}</h2>
       </ion-row>
-      <ion-row>
-        <button ion-button small color="attrgreen" class="list-price">Acknowledge</button>
-        <button ion-button small color="danger" class="list-price">Dismiss</button>
+      <ion-row (click)="openRegistry(registry)">
+        <h2 text-bold><strong>Sub Equipment: </strong> {{registry.equipmentpartname }}</h2>
+        <h2 class="list-price eng-color"><strong>Sub Equipment Tag: </strong>{{ registry.tagname }}</h2>
+      </ion-row>
+      <ion-row (click)="openRegistry(registry)">
+        <h2 text-bold><strong>Description: </strong> {{registry.description }}</h2>
+      </ion-row>
+      <ion-row *ngIf="position=='Operator'">
+        <button ion-button small color="attrgreen" class="list-price" (click)="fixed(registry)">Fixed?</button>
+      </ion-row>
+      <ion-row *ngIf="position=='Supervisor' || position=='Manager'">
+          <button ion-button small color="attrgreen" class="list-price" (click)="approve(registry)" [disabled]="!registry.fixedstatus">Approve</button>
+        <button ion-button small color="danger" class="list-price" (click)="disapprove(registry)" [disabled]="!registry.fixedstatus">Disapprove</button>
       </ion-row>
     </ion-card-content>
   </ion-card>
+  </ion-list>
   <ion-fab bottom left>
     <button ion-fab mini (click)="back()">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
   </ion-fab>
 </ion-content>

@@ -113,4 +113,8 @@ export class OperatorsPage {
     alert.present();
   }
 
+  trackByName = (index, item) => {
+    return item.id;
+  }
+
 }

@@ -98,4 +98,8 @@ export class EquipmentsaddPage {
     alert.present();
   }
 
+  trackByName = (index, item) => {
+    return item.id;
+  }
+
 }

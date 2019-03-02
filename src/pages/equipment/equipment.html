@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Equipments Category</ion-title>
+    <ion-title>Main Equipments</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -11,27 +11,47 @@
     <ion-searchbar (ionInput)="filterEquipmentcats($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-fab top right>
+  <ion-fab *ngIf="showButton" top right>
     <button ion-fab mini (click)="newEquipmentcat()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let equipment of filteredEquipmentcats; let i = index">
-    <ion-card-content (press)="deleteEquipmentcat(equipment, i)">
-      <ion-row>
-        <ion-item>
-          <ion-icon color="secondary" item-right small name="md-create" (click)="openEquipmentcat(equipment)"></ion-icon>
-          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEquipmentcat(equipment, i)"></ion-icon>
-
-        </ion-item>
-      </ion-row>
-      <ion-row (click)="openEquipmentcat(equipment)">
-        <h2 text-bold text-uppercase><strong>{{equipment.name }}</strong></h2>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
+  <button ion-button small *ngIf="!show" class="align-right"  (click)="activate()" color="secondary">Import</button>
+  <button ion-button small *ngIf="show" class="align-right" color="secondary"><a href="assets/images/sampleequipments.xlsx">Download Sample</a></button>
+  <input accept="*" *ngIf="show" class="margin-btm" type="file" (change)="handleFiles($event)" />
+  
+  <ion-list style="width: 100%" [virtualScroll]="filteredEquipmentcats" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+    <ion-card *virtualItem="let equipment" style="margin-top: 25px; margin-bottom: 30px;">
+      <ion-card-content (press)="deleteEquipmentcat(equipment, i)">
+        <ion-row>
+          <ion-item>
+            <ion-icon color="secondary" item-right small name="md-create" (click)="openEquipmentcat(equipment)"></ion-icon>
+            <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEquipmentcat(equipment, i)"></ion-icon>
+          </ion-item>
+        </ion-row>
+        <ion-row (click)="openEquipmentcat(equipment)">
+          <h2 text-bold text-uppercase><strong>Name:</strong> {{equipment.name }}</h2>
+          <p ion-text class="list-price"><strong>Tag:</strong> {{ equipment.tag }}</p>
+        </ion-row>
+        <ion-row (click)="openEquipmentcat(equipment)">
+          <h2 text-bold text-uppercase><strong>Size:</strong> {{equipment.size }}</h2>
+        </ion-row>
+        <ion-row (click)="openEquipmentcat(equipment)">
+          <h2 text-bold text-uppercase><strong>Design Condition:</strong> {{equipment.designcondition}}</h2>
+          <p ion-text class="list-price"><strong>Design Temperature:</strong> {{ equipment.designtemperature}}</p>
+        </ion-row>
+        <ion-row (click)="openEquipmentcat(equipment)">
+          <h2 text-bold text-uppercase><strong>Additional Info:</strong> {{equipment.additionalinfo}}</h2>
+        </ion-row>
+        <ion-row *ngIf="showButton">
+          <ion-col><button ion-button small (click)="faultreg(equipment)" color="secondary">Fault Registry</button></ion-col>
+          <ion-col><button ion-button small (click)="pm(equipment)" color="secondary">PM/WO</button></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
   <ion-fab bottom left>
     <button ion-fab mini (click)="back()">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
   </ion-fab>
 </ion-content>

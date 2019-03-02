@@ -13,6 +13,7 @@ export interface Workorder {
     name: string,
     faculty: any,
     exactlocation: string,
+    equipmenttag: string,
     description: string,
     workprocedure: string,
     precautions: string,

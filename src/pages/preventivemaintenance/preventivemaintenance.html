@@ -11,11 +11,12 @@
     <ion-searchbar (ionInput)="filterWorkorders($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-fab top right>
+  <ion-fab *ngIf="position=='Supervisor'" top right>
     <button ion-fab mini (click)="newWorkorder()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let workorder of filteredWorkorder; let i = index" [ngClass]="{'high':workorder.beepstatus==true && workorder.priority=='High',
+  <ion-list style="width: 100%" [virtualScroll]="filteredWorkorder" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let workorder" style="margin-top: 5px; margin-bottom: 10px;" [ngClass]="{'high':workorder.beepstatus==true && workorder.priority=='High',
         'medium':workorder.beepstatus==true && workorder.priority=='Medium', 'low':workorder.beepstatus==true && workorder.priority=='Low'}" [@elementState]="workorder.animateswitch">
     <ion-card-content (press)="deleteWorkorder(workorder, i)">
         <ion-row>
@@ -50,7 +51,8 @@
         <button ion-button small color="danger" class="list-price" (click)="disackWo(workorder)" [disabled]="workorder.dstatus">Dismiss</button>
       </ion-row>
     </ion-card-content>
-  </ion-card>
+    </ion-card>
+  </ion-list>
   <ion-fab bottom left>
     <button ion-fab mini (click)="back()">
             <ion-icon name="arrow-back"></ion-icon>

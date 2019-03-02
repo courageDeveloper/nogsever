@@ -42,7 +42,7 @@
                     <!-- Input-field-text -->
                     <ion-item>
                       <ion-input placeholder="PTWONO" type="text"
-                        [(ngModel)]="workpermit.ptwno" name="ptwno"></ion-input>
+                        [(ngModel)]="workpermit.ptwno" name="ptwno" disabled></ion-input>
                     </ion-item>
                   </div>
                 </fieldset>
@@ -79,7 +79,7 @@
                   <div input-field>
                     <!-- Input-field-faculty -->
                     <ion-item no-padding>
-                      <ion-input class="text-input" type="text" [(ngModel)]="workpermit.faculty" placeholder="Facility/Installation" name="faculty" required></ion-input>
+                      <ion-input class="text-input" type="text" [(ngModel)]="workpermit.faculty" placeholder="Facility/Installation" name="faculty" required disabled></ion-input>
                   
                     </ion-item>
                   </div>
@@ -99,9 +99,14 @@
                   </div>
                   <div input-field>
                   <ion-item no-padding>
-                      <ion-input ng2-auto-complete [source]="equipmentsCatArray" list-formatter="name" (valueChanged)="selectEquipmentsCats($event)" placeholder="Category Name" type="text" [(ngModel)]="workpermit.equipmentcatname" name="equipmentcatname"></ion-input>
+                      <ion-input ng2-auto-complete [source]="equipmentsCatArray" list-formatter="name" (valueChanged)="selectEquipmentsCats($event)" placeholder="Main Equipment Name" type="text" [(ngModel)]="workpermit.equipmentcatname" name="equipmentcatname"></ion-input>
                     </ion-item>
                   </div>
+                  <div input-field>
+                      <ion-item no-padding>
+                          <ion-input ng2-auto-complete [source]="equipmentsTagArray" list-formatter="tag" (valueChanged)="selectEquipmentsTags($event)" placeholder="Main Equipment Tag" type="text" [(ngModel)]="workpermit.equipmenttag" name="equipmenttag"></ion-input>
+                        </ion-item>
+                      </div>
                   <div input-field>
                     <ion-item no-padding>
                       <ion-input ng2-auto-complete [source]="equipmentsPartArray" list-formatter="name" (valueChanged)="selectEquipmentsParts($event)" placeholder="Part Name" type="text" [(ngModel)]="workpermit.equipmentpartname" name="equipmentpartname"></ion-input>
@@ -109,7 +114,7 @@
                   </div>
                  <div input-field>
                     <ion-item no-padding>
-                      <ion-input ng2-auto-complete [source]="equipmentsTagArray" list-formatter="tagname" (valueChanged)="selectEquipmentsTags($event)" placeholder="Tag name" type="text" [(ngModel)]="workpermit.tagname" name="tagname"></ion-input>
+                      <ion-input ng2-auto-complete [source]="equipmentsPartTagArray" list-formatter="tag" (valueChanged)="selectEquipmentsPartsTags($event)" placeholder="Part Tag" type="text" [(ngModel)]="workpermit.tagname" name="tagname"></ion-input>
                     </ion-item>
                   </div>
                   <div input-field>

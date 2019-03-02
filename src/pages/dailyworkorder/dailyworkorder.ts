@@ -32,6 +32,10 @@ filterWorkorder;
     this.navCtrl.pop();
   }
 
+  trackByName = (index, item) => {
+    return item.responsibility;
+  }
+
   newWorkorder() {
     let modal = this.modalCtrl.create('AddworkorderPage', { type: 'Add' });
     modal.onDidDismiss((data) => {

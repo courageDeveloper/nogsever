@@ -67,4 +67,8 @@ export class LoginPage {
     });
   }
 
+  navFpassword(){
+    this.navCtrl.push("ForgotpasswordPage");
+  }
+
 }

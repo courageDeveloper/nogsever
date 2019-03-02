@@ -10,4 +10,8 @@ page-addpreventivemaintenance {
     .danger{
         color: color($colors, danger);
     }
+
+    fieldset{
+        border: 0;
+      }
 }

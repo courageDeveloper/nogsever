@@ -8,11 +8,11 @@ import { HttpModule} from '@angular/http';
 import { HttpClientModule} from '@angular/common/http';
 import { PouchService} from './../pouch-service/pouch.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { OneSignal } from '@ionic-native/onesignal';
 import "froala-editor/js/froala_editor.pkgd.min.js";
-
 import { MyApp } from './app.component';
 import { HttpserviceProvider } from '../providers/httpservice';
+
 //import { HomePage } from '../pages/home/home';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { HttpserviceProvider } from '../providers/httpservice';
   providers: [
     StatusBar,
     PouchService,
-    
+    OneSignal,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpserviceProvider

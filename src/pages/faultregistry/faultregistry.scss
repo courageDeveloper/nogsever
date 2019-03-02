@@ -15,6 +15,14 @@ page-faultregistry {
         color: color($colors, attrgreen);
     }
 
+    .faulty{
+        background-color: #eecc46;
+    }
+
+    .normal{
+        background-color: white;
+    }
+
     .list-price, .items-count {
         margin-left: auto;
         padding: 2px 5px;

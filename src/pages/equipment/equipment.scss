@@ -19,6 +19,14 @@ page-equipment {
         margin-left: auto;
         padding: 2px 5px;
     }
+    .margin-btm{
+        margin-top: 20px;
+    }
+
+    .align-right{
+        float: right;
+        background-color: red;
+    }
 
     @media screen and (min-width: 768px) {
         .margin-top{
