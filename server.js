@@ -144,6 +144,7 @@ database.setSchema([
 ])
 
 var port = process.env.PORT || 3000;
+//Newest Update;
 
 //FUNCTIONS
 function workorderBeep() {
@@ -174,9 +175,7 @@ function workorderBeep() {
                     var addedDate = someDate.getDate() + Number(numberOfDaysToAdd);
                     workorder.frequencyspandate = someDate.setDate(addedDate);
 
-                    /*  var mypromise = new Promise(function (resolve, reject) {
-         
-                     }) */
+                   
                     database.rel.save('workorder', workorder).then(data => {
                         //console.log(data);
                         if (data && data.workorders && data.workorders[0]) {

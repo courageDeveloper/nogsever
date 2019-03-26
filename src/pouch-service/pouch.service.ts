@@ -52,6 +52,7 @@ export class PouchService {
         this.db.setSchema(Schema);
 
         this.enableSyncing();
+        console.log(this.enableSyncing());
 
         this.db.createIndex({
             index: {
