@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PouchService } from '../../pouch-service/pouch.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,8 +18,10 @@ export class LoginPage {
   user: any;
   username;
   users: {};
+  password: string;
+  error = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: PouchService) {
     this.user = [];
   }
 
@@ -31,20 +34,37 @@ export class LoginPage {
   }
 
   login() {
-    for (var i = 0; i < this.user.length; i++) {
-      if (this.user[i].username == this.username && this.user[i].position == "Manager") {
-        this.navCtrl.setRoot('HomePage');
-        localStorage.setItem('user',JSON.stringify(this.user[i]));
+    this.error = "";
+    //Get Staffs
+    this.db.getSupervisors().then(user => {
+      var found = false;
+      
+      for (var i = 0; i < user.length; i++) {
+        if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Manager") {
+          found = true;
+          this.navCtrl.setRoot('HomePage');
+          localStorage.setItem('user', JSON.stringify(user[i].id));
+        }
+        else if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Supervisor") {
+          found = true;
+          this.navCtrl.setRoot('SupervisorhomePage');
+          localStorage.setItem('user', JSON.stringify(user[i].id));
+        }
+        else if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Operator") {
+          found = true;
+          this.navCtrl.setRoot('OperatorhomePage');
+          localStorage.setItem('user', JSON.stringify(user[i].id));
+        }
+        else if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Admin") {
+          found = true;
+          this.navCtrl.setRoot('AdminHomePage');
+          localStorage.setItem('user', JSON.stringify(user[i].id));
+        }
       }
-      else if (this.user[i].username == this.username && this.user[i].position == "Operations Surpevisor") {
-        this.navCtrl.setRoot('SupervisorhomePage');
-        localStorage.setItem('user',JSON.stringify(this.user[i]));
+      if (found == false) {
+        this.error = "Username or Password is not correct, click forgot password for account recovery";
       }
-      else if (this.user[i].username == this.username && this.user[i].position == "Operator") {
-        this.navCtrl.setRoot('OperatorhomePage');
-        localStorage.setItem('user',JSON.stringify(this.user[i]));
-      }
-    }
+    });
   }
 
 }

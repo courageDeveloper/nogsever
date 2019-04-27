@@ -37,13 +37,15 @@
               <!-- Input-field -->
               <ion-row>
                 <ion-col col-12>
+                <fieldset [disabled] = 'disabled'>
                   <div input-field>
                     <!-- Input-field-text -->
                     <ion-item>
-                      <ion-input ng2-auto-complete [source]="pmArray" (valueChanged)="selectPMs($event)" placeholder="PM/WO Number" type="text"
-                        [(ngModel)]="pmName" name="pmName"></ion-input>
+                      <ion-input placeholder="PTWONO" type="text"
+                        [(ngModel)]="workpermit.ptwno" name="ptwno"></ion-input>
                     </ion-item>
                   </div>
+                </fieldset>
                   <br>
                   <!-- Login button -->
                   <ion-col col-12 no-padding>
@@ -66,65 +68,81 @@
               <!-- Input-field -->
               <ion-row>
                 <ion-col col-12>
+                <fieldset [disabled] = 'disabled'>
+                  <div input-field>
+                    <!-- Input-field-date -->
+                    <ion-item no-padding>
+                      <ion-icon item-right name="md-calendar"></ion-icon>
+                      <ion-input class="text-input" [(ngModel)]="workpermit.datecreated" type="date" placeholder="Date Created" name="datecreated" required></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-faculty -->
+                    <ion-item no-padding>
+                      <ion-input class="text-input" type="text" [(ngModel)]="workpermit.faculty" placeholder="Facility/Installation" name="faculty" required></ion-input>
+                  
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-location -->
+                    <ion-item no-padding>
+                      <ion-input class="text-input" [(ngModel)]="workpermit.exactlocation" type="text" placeholder="Exact Location" name="exactlocation" required></ion-input>
+                      
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-description -->
+                    <ion-item no-padding>
+                      <ion-textarea class="text-input" [(ngModel)]="workpermit.description" type="text" placeholder="Description of Work" name="description" required></ion-textarea>
+                      
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                  <ion-item no-padding>
+                      <ion-input ng2-auto-complete [source]="equipmentsCatArray" list-formatter="name" (valueChanged)="selectEquipmentsCats($event)" placeholder="Category Name" type="text" [(ngModel)]="workpermit.equipmentcatname" name="equipmentcatname"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <ion-item no-padding>
+                      <ion-input ng2-auto-complete [source]="equipmentsPartArray" list-formatter="name" (valueChanged)="selectEquipmentsParts($event)" placeholder="Part Name" type="text" [(ngModel)]="workpermit.equipmentpartname" name="equipmentpartname"></ion-input>
+                    </ion-item>
+                  </div>
+                 <div input-field>
+                    <ion-item no-padding>
+                      <ion-input ng2-auto-complete [source]="equipmentsTagArray" list-formatter="tagname" (valueChanged)="selectEquipmentsTags($event)" placeholder="Tag name" type="text" [(ngModel)]="workpermit.tagname" name="tagname"></ion-input>
+                    </ion-item>
+                  </div>
+                  <div input-field>
+                    <!-- Input-field-equipments -->
+                    <ion-item no-padding>
+                      <ion-textarea class="text-input" [(ngModel)]="workpermit.equipments" type="text" placeholder="Equipments,Tools or Material to be used" name="equipments" required></ion-textarea>
+                      
+                    </ion-item>
+                  </div>
                   <div input-field>
                     <!-- Input-field-password -->
                     <ion-item no-padding>
                       <ion-icon item-right name="md-calendar"></ion-icon>
-                      <ion-input class="text-input" type="date" placeholder="Date" name="date" required></ion-input>
-                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
-                    </ion-item>
-                  </div>
-                  <div input-field>
-                    <!-- Input-field-password -->
-                    <ion-item no-padding>
-                      <ion-input class="text-input" type="text" placeholder="Faculty/Installation" name="faculty" required></ion-input>
-                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
-                    </ion-item>
-                  </div>
-                  <div input-field>
-                    <!-- Input-field-password -->
-                    <ion-item no-padding>
-                      <ion-input class="text-input" type="text" placeholder="Exact Location" name="exactlocation" required></ion-input>
-                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
-                    </ion-item>
-                  </div>
-                  <div input-field>
-                    <!-- Input-field-password -->
-                    <ion-item no-padding>
-                      <ion-textarea class="text-input" type="text" placeholder="Work" name="work" required></ion-textarea>
-                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
-                    </ion-item>
-                  </div>
-                  <div input-field>
-                    <!-- Input-field-password -->
-                    <ion-item no-padding>
-                      <ion-textarea class="text-input" type="text" placeholder="Equipments,Tools or Material to be used" name="work" required></ion-textarea>
-                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                      <ion-input class="text-input" [(ngModel)]="workpermit.startdate" type="date" placeholder="Start Date" name="startdate" required></ion-input>
+                      
                     </ion-item>
                   </div>
                   <div input-field>
                     <!-- Input-field-password -->
                     <ion-item no-padding>
                       <ion-icon item-right name="md-calendar"></ion-icon>
-                      <ion-input class="text-input" type="date" placeholder="Start Date" name="date" required></ion-input>
-                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
+                      <ion-input class="text-input" [(ngModel)]="workpermit.enddate" type="date" placeholder="End Date" name="enddate" required></ion-input>
+                      
                     </ion-item>
                   </div>
                   <div input-field>
                     <!-- Input-field-password -->
                     <ion-item no-padding>
-                      <ion-icon item-right name="md-calendar"></ion-icon>
-                      <ion-input class="text-input" type="date" placeholder="End Date" name="date" required></ion-input>
+                      <ion-input class="text-input" [(ngModel)]="workpermit.noofworkers" type="number" placeholder="No of Workers" name="noofworkers" required></ion-input>
                       <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
                     </ion-item>
                   </div>
-                  <div input-field>
-                    <!-- Input-field-password -->
-                    <ion-item no-padding>
-                      <ion-input class="text-input" type="number" placeholder="No of Workers" name="workers" required></ion-input>
-                      <!-- <ion-label no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label> -->
-                    </ion-item>
-                  </div>
+                </fieldset>
                   <br>
                   <!-- Login button -->
                   <ion-col col-12 no-padding>
@@ -144,27 +162,30 @@
                   <h1><strong>WORK PERMIT</strong></h1>
                   <br>
                   <div>
-                    <h2 class="danger"> Safety Precautions to be carried out</h2>
+                    <h2 class="danger"> Safety Precautions to be carried out</h2> 
+                    <button ion-button small class="pre-color" (click)="openAlert()"><ion-icon name="md-clipboard"></ion-icon></button>
                   </div>
                 </ion-col>
               </ion-row>
               <!-- Input-field -->
               <ion-row>
-                <ion-col col-12>
+                    <ion-col col-12>
+                <fieldset [disabled] = 'disabled'>
                   <div input-field>
                     <!-- Input-field-email -->
                     <ion-item no-padding>
-                      <ion-textarea class="text-input" type="text" [(ngModel)]="safetyPrecautions" rows="7" name="safety" placeholder="Safety Precautions"
+                      <ion-textarea class="text-input" type="text" [(ngModel)]="workpermit.precautions" rows="7" name="precautions" placeholder="Safety Precautions"
                         required></ion-textarea>
                     </ion-item>
                   </div>
                   <br>
                   <!-- Login button -->
                   <ion-col col-12 no-padding>
-                    <button no-margin ion-button color="primary" full text-uppercase (click)="next()">Submit</button>
+                    <button no-margin ion-button color="primary" full text-uppercase (click)="submit()">Submit</button>
                   </ion-col>
+                </fieldset>
                 </ion-col>
-              </ion-row>
+            </ion-row>
             </form>
           </ion-slide>
           <!--  <ion-slide>

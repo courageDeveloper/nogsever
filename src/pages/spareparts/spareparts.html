@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Spare Parts</ion-title>
+    <ion-title>Equipment Parts</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -8,28 +8,25 @@
 <ion-content class="bg-primary50">
 
   <ion-toolbar color="primary">
-    <ion-searchbar (ionInput)="filterSpareparts($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="filterEquipmentparts($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-fab top right edge>
+  <ion-fab top right>
     <button ion-fab mini (click)="newSparepart()" color="secondary"><ion-icon name="ios-hammer"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let sparepart of filterSpareparts; let i = index">
-    <ion-card-content (press)="deleteSparepart(sparepart, i)">
+  <ion-card *ngFor="let sparepart of filteredEquipmentparts; let i = index">
+    <ion-card-content (press)="deleteEquipmentpart(sparepart, i)">
       <ion-row>
         <ion-item>
           <ion-icon color="secondary" item-right small name="md-create" (click)="openSparepart(sparepart)"></ion-icon>
-          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteSparepart(sparepart, i)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEquipmentpart(sparepart, i)"></ion-icon>
 
         </ion-item>
       </ion-row>
       <ion-row (click)="openSparepart(sparepart)">
         <h2 text-bold text-uppercase><strong>{{ sparepart.name }}</strong></h2>
-        <p ion-text class="list-price">{{sparepart.quantity}}</p>
-      </ion-row>
-      <ion-row (click)="openSparepart(sparepart)">
-        <p class="shop">{{ sparepart.description }}</p>
+        <p ion-text class="list-price">{{sparepart.equipmentcatname}}</p>
       </ion-row>
     </ion-card-content>
   </ion-card>

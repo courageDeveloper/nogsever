@@ -15,9 +15,18 @@ page-viewworkpermit {
         color: color($colors, attrgreen);
     }
 
+   
+    .align-details{
+        margin-right: auto;
+    }
+
     .list-price, .items-count {
         margin-left: auto;
         padding: 2px 5px;
+    }
+
+    .attrpend{
+        color: red;
     }
 
     .attrgreen{

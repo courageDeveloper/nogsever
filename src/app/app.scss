@@ -18,3 +18,14 @@
 .bg-primary50 {
     background: color($colors, dark);
 }
+
+.modal-fullscreen {
+    .modal-wrapper {
+        //position: absolute;
+        top: 45px;
+        left: 65px;
+        display: block;
+        width: 90%;
+        height: 90%;
+    }
+}
