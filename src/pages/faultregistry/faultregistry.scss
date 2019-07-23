@@ -15,6 +15,22 @@ page-faultregistry {
         color: color($colors, attrgreen);
     }
 
+    .equip-image{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        padding: 3px;
+        cursor: pointer;
+    }
+
+    .faulty{
+        background-color: #eecc46;
+    }
+
+    .normal{
+        background-color: white;
+    }
+
     .list-price, .items-count {
         margin-left: auto;
         padding: 2px 5px;

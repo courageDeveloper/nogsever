@@ -20,6 +20,10 @@ export class AddequipmentPage {
   add = false;
   title = 'Edit';
   search = false;
+  showButton = false;
+  localStorageItem;
+  position;
+  public user: any;
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, public db: PouchService, public navParams: NavParams, public platform: Platform) {
     if (this.navParams.get('type') == 'Add') {
@@ -29,6 +33,11 @@ export class AddequipmentPage {
         id: Math.round((new Date()).getTime()).toString(),
         rev: '',
         name: '',
+        tag:'',
+        size:'',
+        designcondition:'',
+        designtemperature:'',
+        additionalinfo:'',
         equipmentparts: []
       }
     }
@@ -38,11 +47,26 @@ export class AddequipmentPage {
   }
 
   ionViewDidLoad() {
+    this.localStorageItem = JSON.parse(localStorage.getItem('user'));
     console.log('ionViewDidLoad AddequipmentPage');
+    this.db.getSupervisor(this.localStorageItem).then(item => {
+      this.user = item;
+      this.position = item.post;
+      if (this.position == 'Operator') {
+        this.showButton = true;
+      }
+    });
   }
 
   submit() {
     if (this.add) {
+      var arrayCheck = ['name', 'tag', 'size', 'spec', 'designcondition', 'designtemperature', 'additionalinfo'];
+
+      for (var i = 0; i < arrayCheck.length; i++) {
+        if (this.equipmentcats[arrayCheck[i]] == '') {
+          this.equipmentcats[arrayCheck[i]] = 'N/A';
+        }
+      }
       this.db.saveEquipmentcat(this.equipmentcats).then(res => {
         this.viewCtrl.dismiss(res);
       });
@@ -57,5 +81,22 @@ export class AddequipmentPage {
   cancel() {
     this.viewCtrl.dismiss();
   }
+
+  /* submit() {
+    if (this.add) {
+      this.db.saveEquipmentcat(this.equipmentcats).then(res => {
+        this.viewCtrl.dismiss(res);
+      });
+    }
+    else {
+      this.db.updateEquipmentcat(this.equipmentcats).then(result => {
+        this.viewCtrl.dismiss();
+      });
+    }
+  }
+
+  cancel() {
+    this.viewCtrl.dismiss();
+  } */
 
 }

@@ -11,28 +11,92 @@
     <ion-searchbar (ionInput)="filterEquipmentparts($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-fab top right>
+  <ion-fab *ngIf="showButton" top right>
     <button ion-fab mini (click)="newSparepart()" color="secondary"><ion-icon name="ios-hammer"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let sparepart of filteredEquipmentparts; let i = index">
-    <ion-card-content (press)="deleteEquipmentpart(sparepart, i)">
-      <ion-row>
-        <ion-item>
-          <ion-icon color="secondary" item-right small name="md-create" (click)="openSparepart(sparepart)"></ion-icon>
-          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEquipmentpart(sparepart, i)"></ion-icon>
+  <div class="wrapper" *ngIf="tableCheck">
+    <button class="align-center" color="primary" title="Delete Equipment" ion-fab mini (click)="deleteSelected()"><ion-icon
+        name="trash"></ion-icon></button>
+  </div>
 
-        </ion-item>
-      </ion-row>
-      <ion-row (click)="openSparepart(sparepart)">
-        <h2 text-bold text-uppercase><strong>{{ sparepart.name }}</strong></h2>
-        <p ion-text class="list-price">{{sparepart.equipmentcatname}}</p>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
+  <button ion-button small *ngIf="!show" class="align-right" (click)="activate()" color="secondary">Import</button>
+  <button ion-button small *ngIf="show" class="align-right" color="secondary"><a href="assets/images/sampleparts.xlsx">Download
+      Sample</a></button>
+  <input accept="*" *ngIf="show" class="margin-btm" type="file" (change)="handleFiles($event)" />
+
+  <ion-list style="width: 100%" [virtualScroll]="filteredEquipmentparts" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+    <ion-card *virtualItem="let sparepart" style="margin-top: 25px; margin-bottom: 50px;">
+      <ion-card-content (press)="deleteEquipmentpart(sparepart, i)">
+        <ion-row>
+          <ion-item>
+            <ion-checkbox color="primary" (ionChange)="checkboxClicked(sparepart, $event)"></ion-checkbox>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-icon color="secondary" item-right small name="md-create" (click)="openSparepart(sparepart)"></ion-icon>
+            <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteEquipmentpart(sparepart, i)"></ion-icon>
+
+          </ion-item>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <h2 text-bold text-uppercase><strong>NAME:</strong> {{ sparepart.name }}</h2>
+          </ion-col>
+          <p ion-text class="list-price"><strong>EQUIPMENT NAME:</strong> {{sparepart.equipmentcatname}}</p>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <h2 text-bold text-uppercase><strong>TYPE:</strong> {{ sparepart.type }}</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <h2 text-bold text-uppercase><strong>TAG:</strong> {{ sparepart.tag }}</h2>
+          </ion-col>
+          <p ion-text class="list-price"><strong>SIZE:</strong> {{sparepart.size}}</p>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <h2 text-bold text-uppercase><strong>SPEC:</strong> {{ sparepart.spec }}</h2>
+          </ion-col>
+          <p ion-text class="list-price"><strong>RATING:</strong> {{sparepart.rating}}</p>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <h2 text-bold text-uppercase><strong>SET-POINT:</strong> {{ sparepart.setpoint }}</h2>
+          </ion-col>
+          <p ion-text class="list-price"><strong>CALIBRATED NUMBER:</strong> {{sparepart.calibratedno}}</p>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <p ion-text><strong>ADDITIONAL INFO:</strong> {{sparepart.additionalinfo}}</p>
+          </ion-col>
+          <p ion-text class="list-price"><strong>AREA:</strong> {{sparepart.area}}</p>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <p ion-text><strong>LINE LOCATION:</strong> {{sparepart.linelocation}}</p>
+          </ion-col>
+          <p ion-text class="list-price"><strong>RANGE(Psi):</strong> {{sparepart.rangep}}</p>
+        </ion-row>
+        <ion-row (click)="openSparepart(sparepart)">
+          <ion-col>
+            <p ion-text><strong>RANGE(°F):</strong> {{sparepart.rangef}}</p>
+          </ion-col>
+          <p ion-text class="list-price"><strong>INSTRUMENT IDENTIFICATION:</strong> {{sparepart.instrumentidentification}}</p>
+        </ion-row>
+        <ion-row *ngIf="showButton">
+          <ion-col><button ion-button small (click)="faultreg(sparepart)" color="secondary">Fault Registry</button></ion-col>
+          <ion-col><button ion-button small (click)="pm(sparepart)" color="secondary">PM/WO</button></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
   <ion-fab bottom left>
     <button ion-fab mini (click)="back()">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
   </ion-fab>
 </ion-content>

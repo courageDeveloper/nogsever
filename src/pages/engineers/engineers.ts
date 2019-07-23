@@ -69,7 +69,6 @@ export class EngineersPage {
     }
 
     openEngineer(engineer?: any): void {
-        console.log(engineer);
         let modal = this.modalCtrl.create('AddengineerPage', { type: 'Edit', engineer: engineer });
         modal.onDidDismiss((data) => {
             this._loadSupervisors();
@@ -110,4 +109,8 @@ export class EngineersPage {
         });
         alert.present();
     }
+
+    trackByName = (index, item) => {
+        return item.id;
+      }
 }

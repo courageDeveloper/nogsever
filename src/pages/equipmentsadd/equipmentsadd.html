@@ -15,7 +15,8 @@
     <button ion-fab mini (click)="newEquipmentsadd()" color="secondary"><ion-icon name="ios-hammer"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let equipmentsadd of filteredEquipmentsadd; let i = index">
+  <ion-list style="width: 100%" [virtualScroll]="filteredEquipmentsadd" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let equipmentsadd" style="margin-top: 5px; margin-bottom: 10px;">
     <ion-card-content (press)="deleteEquipmentsadd(equipmentsadd, i)">
       <ion-row>
         <ion-item>
@@ -33,6 +34,7 @@
     </ion-row>
     </ion-card-content>
   </ion-card>
+  </ion-list>
   <ion-fab bottom left>
     <button ion-fab mini (click)="back()">
             <ion-icon name="arrow-back"></ion-icon>

@@ -2,7 +2,7 @@
   <ion-navbar color="secondary">
     <ion-buttons left>
       <button color="primary" ion-button (click)="cancel()">
-          <ion-icon name="close"></ion-icon>
+        <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title class="title-color">{{title}} Equipment Parts</ion-title>
@@ -15,12 +15,104 @@
   </ion-fab>
 
   <form margin-top (ngSubmit)="submit()">
+      <fieldset [disabled]="showButton">
     <ion-item>
-      <ion-input ng2-auto-complete [source]="sparePartsArray" list-formatter="name" (valueChanged)="selectSpareparts($event)" placeholder="Name" type="text" [(ngModel)]="equipmentparts.equipmentcatname" name="equipmentcatname"></ion-input>
+      <ion-input ng2-auto-complete [source]="sparePartsArray" list-formatter="name" (valueChanged)="selectSpareparts($event)" placeholder="Name"
+        type="text" [(ngModel)]="equipmentparts.equipmentcatname" name="equipmentcatname"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Equipment Part" type="text" [(ngModel)]="equipmentparts.name" name="name"></ion-input>
+      <ion-label>Part Name</ion-label>
+      <ion-select [(ngModel)]="equipmentparts.name" name="name" (ngModelChange)="getName(name)">
+        <ion-option *ngFor="let name of names" [value]="name">{{name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <div *ngIf="activeCValve || activeMValve">
+      <ion-item>
+        <ion-input placeholder="Type" type="text" [(ngModel)]="equipmentparts.type" name="type"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Tag" type="text" [(ngModel)]="equipmentparts.tag" name="tag"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Size" type="text" [(ngModel)]="equipmentparts.size" name="size"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Spec" type="text" [(ngModel)]="equipmentparts.spec" name="spec"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Rating" type="text" [(ngModel)]="equipmentparts.rating" name="rating"></ion-input>
+      </ion-item>
+    </div>
+    <!-- PV -->
+    <div *ngIf="activePValve">
+      <ion-item>
+        <ion-input placeholder="Tag" type="text" [(ngModel)]="equipmentparts.tag" name="tag"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Size" type="text" [(ngModel)]="equipmentparts.size" name="size"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Set Point" type="text" [(ngModel)]="equipmentparts.setpoint" name="setpoint"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Rating" type="text" [(ngModel)]="equipmentparts.rating" name="rating"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Calibrated No" type="number" [(ngModel)]="equipmentparts.calibratedno" name="calibratedno"></ion-input>
+      </ion-item>
+    </div>
+    <!-- MGuage -->
+    <div *ngIf="activeGuage">
+      <ion-item>
+        <ion-input placeholder="Tag" type="text" [(ngModel)]="equipmentparts.tag" name="tag"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="AREA" type="text" [(ngModel)]="equipmentparts.area" name="area"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Line Location" type="text" [(ngModel)]="equipmentparts.linelocation" name="linelocation"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Range (Psi)" type="text" [(ngModel)]="equipmentparts.rangep" name="rangep"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Range (Degree Fahrenheit)" type="text" [(ngModel)]="equipmentparts.rangef" name="rangef"></ion-input>
+      </ion-item>
+    </div>
+     <!-- Transmitter -->
+     <div *ngIf="activeTransmitter">
+      <ion-item>
+        <ion-input placeholder="Tag" type="text" [(ngModel)]="equipmentparts.tag" name="tag"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="AREA" type="text" [(ngModel)]="equipmentparts.area" name="area"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Line Location" type="text" [(ngModel)]="equipmentparts.linelocation" name="linelocation"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Instrument Identification" type="text" [(ngModel)]="equipmentparts.instrumentidentification" name="instrumentidentification"></ion-input>
+      </ion-item>
+    </div>
+    <!-- Others -->
+    <div *ngIf="activeOther">
+      <ion-item>
+        <ion-input placeholder="Other Part Name" type="text" [(ngModel)]="equipmentparts.othername" name="othername"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Tag" type="text" [(ngModel)]="equipmentparts.tag" name="tag"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Size" type="text" [(ngModel)]="equipmentparts.size" name="size"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Rating" type="text" [(ngModel)]="equipmentparts.rating" name="rating"></ion-input>
+      </ion-item>
+    </div>
+    <ion-item>
+      <ion-textarea placeholder="Additional Info" type="text" [(ngModel)]="equipmentparts.additionalinfo" name="additionalinfo"></ion-textarea>
     </ion-item>
     <button ion-button type="submit" block>Submit</button>
+    </fieldset>
   </form>
 </ion-content>

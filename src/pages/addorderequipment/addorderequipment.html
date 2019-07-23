@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Work Order</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <form margin-top [formGroup]="workOrderForm">
+    <fieldset [disabled]="showButton">
+      <ion-input type="hidden" [(ngModel)]="workorder.equipmentcatid" name="equipmentcatid"
+        [formControl]="workOrderForm.controls['equipmentcatid']"></ion-input>
+      <ion-input type="hidden" [(ngModel)]="workorder.equipmentpartid" name="equipmentpartid"
+        [formControl]="workOrderForm.controls['equipmentpartid']"></ion-input>
+      <ion-input type="hidden" [(ngModel)]="workorder.tagid" name="tagid"
+        [formControl]="workOrderForm.controls['tagid']"></ion-input>
+
+        <ion-item>
+          <span>Date Created</span>
+          <ion-icon item-right name="md-calendar"></ion-icon>
+          <ion-input placeholder="Date" type="date" [(ngModel)]="workorder.datewo" name="datewo" [formControl]="workOrderForm.controls['datewo']"></ion-input>
+        </ion-item>
+     
+
+      <!--  <ion-item>
+        <ion-input placeholder="WO/PM No" type="text" [(ngModel)]="preventivemaintenance.pmno" (ngModelChange)="checkPMNO()" name="pmno"
+          disabled></ion-input>
+        <ion-label color="danger" no-margin>{{error}}</ion-label>
+      </ion-item> -->
+      <!-- <ion-item>
+        <span>Date Created</span>
+        <ion-icon item-right name="md-calendar"></ion-icon>
+        <ion-input placeholder="Date" type="date" [(ngModel)]="pm.date" name="date"></ion-input>
+      </ion-item> -->
+      <!--  <ion-item>
+        <ion-input placeholder="Facility" type="text" [(ngModel)]="preventivemaintenance.faculty" name="faculty" disabled></ion-input>
+      </ion-item> -->
+      <!-- <ion-item>
+        <ion-input placeholder="Location" type="text" [(ngModel)]="preventivemaintenance.exactlocation" name="exactlocation"></ion-input>
+      </ion-item> -->
+      <br>
+      <div formArrayName="itemArray">
+      <div *ngFor="let item of workOrderForm.controls.itemArray.controls; let i=index">
+          <div  [formGroupName]="i">
+        <ion-icon *ngIf="workOrderForm.controls.itemArray.controls.length > 1" name="close-circle" class="float-right" (click)="deleteItem(i)" class="align-icon"
+          ></ion-icon>
+        <ion-item padding>
+          <ion-input placeholder="Maintenance Items" type="text" 
+            name="maintenanceitem" formControlName="maintenanceitem"></ion-input>
+        </ion-item>
+        <!-- <ion-item>
+        <ion-textarea placeholder="Description" type="text" [(ngModel)]="preventivemaintenance.description" name="description"></ion-textarea>
+      </ion-item> -->
+        <ion-item>
+          <ion-textarea placeholder="Write steps here!" type="text" 
+            name="steps" formControlName="steps"></ion-textarea>
+        </ion-item>
+        <!--  <ion-item>
+        <ion-textarea placeholder="Write job safety advice!" type="text" [(ngModel)]="preventivemaintenance.precautions" name="precautions"></ion-textarea>
+      </ion-item> -->
+        <ion-item>
+          <ion-label>Priority</ion-label>
+          <ion-select  name="priority"
+            formControlName="priority">
+            <ion-option *ngFor="let priority of priorities" [value]="priority"
+              [selected]="selectedPriority == priority">{{priority}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>Responsibility</ion-label>
+          <ion-select  name="responsibility"
+            formControlName="responsibility">
+            <ion-option *ngFor="let responsibility of responsibilities" [value]="responsibility"
+              [selected]="selectedResponsibility == responsibility">{{responsibility}}</ion-option>
+          </ion-select>
+        </ion-item>
+        </div>
+        </div>
+      </div>
+
+      <button ion-fab mini class="float-right" (click)="addItemArray()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+      <button ion-button type="submit" block [disabled]="!workorder.workorderno || error"
+        (click)="submit()">Submit</button>
+    </fieldset>
+  </form>
+</ion-content>

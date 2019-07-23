@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Preventive Maintenance</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (ionInput)="filterWorkorders($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-fab *ngIf="position=='Supervisor'" top right>
+    <button ion-fab mini (click)="newWorkorder()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
+  </ion-fab>
+
+  <button ion-button small *ngIf="!showButton" class="align-right" (click)="activate()" color="secondary">Import</button>
+  <button ion-button small *ngIf="showButton" class="align-right" color="secondary"><a href="assets/images/pmsample.xlsx">Download
+      Sample
+    </a></button>
+  <input accept="*" *ngIf="showButton" class="margin-btm" type="file" (change)="handleFiles($event)" />
+
+
+  <ion-list style="width: 100%" [virtualScroll]="filteredPreventivemaintenance" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let preventivemaintenance" style="margin-top: 5px; margin-bottom: 10px;" [ngClass]="{'high':preventivemaintenance.beepstatus==true && preventivemaintenance.priority=='High',
+        'medium':preventivemaintenance.beepstatus==true && preventivemaintenance.priority=='Medium', 'low':preventivemaintenance.beepstatus==true && preventivemaintenance.priority=='Low'}" [@elementState]="preventivemaintenance.animateswitch">
+    <ion-card-content (press)="deleteWorkorder(preventivemaintenance, i)">
+        <ion-row>
+            <h2 text-bold text-uppercase><strong>PMNO: 00{{ preventivemaintenance.pmno}}</strong></h2>
+          </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-icon color="secondary" item-right small name="md-create" (click)="openWorkorder(preventivemaintenance)"></ion-icon>
+          <ion-icon color="danger" item-right small name="ios-trash" (click)="deleteWorkorder(preventivemaintenance, i)"></ion-icon>
+
+        </ion-item>
+      </ion-row>
+     
+      <ion-row (click)="openWorkorder(preventivemaintenance)">
+        <h2 text-bold text-uppercase><strong>{{ preventivemaintenance.datecreated}}</strong></h2>
+        <p ion-text class="list-price">{{ preventivemaintenance.faculty }}</p>
+      </ion-row>
+      <ion-row (click)="openWorkorder(preventivemaintenance)">
+        <p class="shop">{{ preventivemaintenance.maintenanceitem }}</p>
+        <p  class="list-price">{{ preventivemaintenance.description}}</p>
+      </ion-row>
+      <ion-row (click)="openWorkorder(preventivemaintenance)">
+        <p class="shop eng-color">{{ preventivemaintenance.equipmentcatname }}</p>
+        <p class="list-price eng-color">{{ preventivemaintenance.responsibility }}</p>
+      </ion-row>
+      <ion-row (click)="openWorkorder(preventivemaintenance)">
+        <p class="shop"><b>Next Occurrence</b>: {{ preventivemaintenance.frequencyspandate | date }}</p>
+      </ion-row>
+      <div (click)="openWorkorder(preventivemaintenance)" *ngIf="preventivemaintenance.dstatus && !preventivemaintenance.status">
+        <p class="shop txt-size">Preventive Maintenance was dismissed</p>
+      </div>
+      <ion-row *ngIf="position=='Operator'">
+        <button *ngIf="!preventivemaintenance.status" ion-button small color="attrgreen" class="list-price" (click)="ackWo(preventivemaintenance)" [disabled]="preventivemaintenance.status">Acknowledge</button>
+        <button *ngIf="preventivemaintenance.status" ion-button small color="attrgreen" class="list-price" (click)="navPtw(preventivemaintenance)">Generate PTW</button>
+        <button ion-button small color="danger" class="list-price" (click)="disackWo(preventivemaintenance)" [disabled]="preventivemaintenance.dstatus">Dismiss</button>
+      </ion-row>
+      <ion-row>
+        <button ion-button small color="attrgreen" class="list-price" (click)="viewSubItems(preventivemaintenance)">View Sub Equipments</button>
+      </ion-row>
+    </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-fab bottom left>
+    <button ion-fab mini (click)="back()">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+  </ion-fab>
+</ion-content>

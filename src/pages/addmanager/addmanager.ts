@@ -33,6 +33,7 @@ export class AddmanagerPage {
     address: new FormControl(),
     email: new FormControl(),
     sex: new FormControl(),
+    otp: new FormControl(),
     position: new FormControl(),
     departments: new FormControl(),
     username: new FormControl(),
@@ -58,9 +59,13 @@ export class AddmanagerPage {
         departments: 'Process Operations',
         username: '',
         password: '',
+        otp: '',
         post: 'Manager',
         workpermits: [],
-        workorders: []
+        workorders: [],
+        woalert: [],
+        faultregistrys: [],
+        dailyreports: []
       }
     }
     else {
@@ -83,10 +88,12 @@ export class AddmanagerPage {
       email: [this.manager.email, Validators.compose([Validators.required, Validators.pattern(this.emailValidate)])],
       sex: [this.manager.sex],
       position: [this.manager.position],
+      otp: [this.manager.otp],
       departments: [this.manager.departments],
       username: [this.manager.username],
       password: [this.manager.password],
-      post: [this.manager.post]
+      post: [this.manager.post],
+      woalert: [this.manager.woalert]
     })
   }
 
@@ -99,11 +106,13 @@ export class AddmanagerPage {
       address: [this.manager.address],
       email: [this.manager.email, Validators.compose([Validators.required, Validators.pattern(this.emailValidate)])],
       sex: [this.manager.sex],
+      otp: [this.manager.otp],
       position: [this.manager.position],
       departments: [this.manager.departments],
       username: [this.manager.username],
       password: [this.manager.password],
-      post: [this.manager.post]
+      post: [this.manager.post],
+      woalert: [this.manager.woalert]
     })
   }
 
@@ -114,7 +123,8 @@ export class AddmanagerPage {
       });
     }
     else {
-      this.manager.workorders = [];
+      //this.manager.workorders = [];
+      //this.manager.woalert = [];
       this.db.updateSupervisor(this.manager).then(result => {
         this.viewCtrl.dismiss();
       });

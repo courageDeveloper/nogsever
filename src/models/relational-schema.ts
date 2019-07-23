@@ -21,6 +21,30 @@ export const Schema = [
                         async: true
                     }
                 },
+            },
+            preventivemaintenances: {
+                hasMany: {
+                    type: 'preventivemaintenance',
+                    options: {
+                        async: true
+                    }
+                },
+            },
+            faultregistrys: {
+                hasMany: {
+                    type: 'faultregistry',
+                    options: {
+                        async: true
+                    }
+                },
+            },
+            dailyreports: {
+                hasMany: {
+                    type: 'dailyreport',
+                    options: {
+                        async: true
+                    }
+                },
             }
         }
     },
@@ -41,6 +65,37 @@ export const Schema = [
                 belongsTo: 'supervisor'
             },
         }
+    },
+    {
+        singular: 'preventivemaintenance',
+        plural: 'preventivemaintenances',
+        relations: {
+            supervisor: {
+                belongsTo: 'supervisor'
+            },
+        }
+    },
+    {
+        singular: 'faultregistry',
+        plural: 'faultregistrys',
+        relations: {
+            supervisor: {
+                belongsTo: 'supervisor'
+            },
+        }
+    },
+    {
+        singular: 'dailyreport',
+        plural: 'dailyreports',
+        relations: {
+            supervisor: {
+                belongsTo: 'supervisor'
+            },
+        }
+    },
+    {
+        singular: 'material',
+        plural: 'materials',
     },
     {
         singular: 'equipmentpart',

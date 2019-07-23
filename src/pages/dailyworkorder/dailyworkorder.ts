@@ -21,7 +21,6 @@ filterWorkorder;
 
  ionViewDidLoad() {
     var currentDate = this.navParams.get('currentDate');
-    console.log(currentDate);
     console.log('ionViewDidLoad WorkorderPage');
     this.filterWorkorder = [{ worktype: "Preventive maintenance(PM)", responsibility: "Operator", department:"Instrument and Process", frequency: "45 days", location: "OGPOOC", worktypeno: "PM-001", equipment: "XHP seperator", description: "Calibration of PIT-0900 on XHP seperator" },
     { worktype: "Work Order(WO)", responsibility: "Operator", department:"Mechanical and Process", frequency: "2018-11-21", location: "OGPOOC", worktypeno: "WO-001", equipment: "Compressor 1 K-3600", description: "Service compressor 1 piston cylinder"}
@@ -30,6 +29,10 @@ filterWorkorder;
 
   back() {
     this.navCtrl.pop();
+  }
+
+  trackByName = (index, item) => {
+    return item.responsibility;
   }
 
   newWorkorder() {

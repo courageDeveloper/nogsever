@@ -1,0 +1,219 @@
+<!--
+  Generated template for the PrintdailyreportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons right>
+      <button color="primary" ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">Print Daily Report</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="overflow-x:auto">
+    <div id="printArea">
+      <div *ngFor="let dailyReport of dailyReport; let i = index">
+        <ion-row class="wlm-msg" align-items-start>
+          <ion-col align-self-baseline col-12>
+            <ion-list text-center class="bottom-align">
+              <img class="logo-print" src="assets/images/NOG-LOGO.jpg" width="200px" />
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="txt-align">
+            <h1 style="text-align: center"><b> Network Oil & Gas Limited </b></h1>
+            <h2 color="danger" style="color:#f53d3d; text-align: center">Daily Report</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Date Created: {{dailyReport.datecreated}}
+          </ion-col>
+        </ion-row>
+        <table>
+          <tr class="border-line">
+            <th>
+              Oil Production
+            </th>
+            <th>
+              Gas Production
+            </th>
+          </tr>
+          <tr>
+            <td>
+              {{dailyReport.optrain1}} (Oil produced from oil stabilization train 1)
+            </td>
+            <td>
+              {{dailyReport.tgngc}} (Total gas exported to NGC)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{dailyReport.optrain2}} (Oil produced from oil stabilization train 2)
+            </td>
+            <td>
+              {{dailyReport.tghp}} (Total gas fled from HP)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{dailyReport.opsurgevessel}} (Oil produced to surge vessel)
+            </td>
+            <td>
+              {{dailyReport.tglp}} (Total gas fled from LP)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{dailyReport.otnpdc}} (Oil transferred to NPDC storage tank)
+            </td>
+            <td>
+              {{dailyReport.tvfuelgas}} (Total volume of fuel gas)
+            </td>
+          </tr>
+        </table>
+
+        <!-- Equipment Status -->
+        <ion-row align-items-start>
+          <ion-col align-self-baseline col-12>
+            <ion-list text-center class="print-align">
+              <strong> Equipment Status </strong>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <table>
+          <tr class="border-line">
+            <th>
+              Equipment Name
+            </th>
+            <th>
+              Status
+            </th>
+          </tr>
+          <tr>
+            <td>
+              Gas Compressor 1
+            </td>
+            <td>
+              {{dailyReport.gascompressor1}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Gas Compressor 2
+            </td>
+            <td>
+              {{dailyReport.gascompressor2}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Process Train 1
+            </td>
+            <td>
+              {{dailyReport.pt1}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Process Train 2
+            </td>
+            <td>
+              {{dailyReport.pt2}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Instrument Air Compressor A
+            </td>
+            <td>
+              {{dailyReport.iaircompressora}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Instrument Air Compressor B
+            </td>
+            <td>
+              {{dailyReport.iaircompressorb}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Gas Gen 1
+            </td>
+            <td>
+              {{dailyReport.gasgen1}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Gas Gen 3
+            </td>
+            <td>
+              {{dailyReport.gasgen3}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Gas Gen 4
+            </td>
+            <td>
+              {{dailyReport.gasgen4}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Gas Gen 5
+            </td>
+            <td>
+              {{dailyReport.gasgen5}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Diesel Gen Set
+            </td>
+            <td>
+              {{dailyReport.dieselgenset}}
+            </td>
+          </tr>
+        </table>
+
+        <!-- Daily Activities -->
+        <ion-row align-items-start>
+          <ion-col align-self-baseline col-12>
+            <ion-list text-center>
+              <strong> Daily Activities </strong>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <table>
+          <tr class="border-line">
+            <th>
+              Department
+            </th>
+            <th>
+              Activities
+            </th>
+          </tr>
+          <tr>
+            <td>
+              {{dailyReport.department}}
+            </td>
+            <td>
+              {{dailyReport.dailyactivities}}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</ion-content>

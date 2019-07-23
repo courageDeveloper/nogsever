@@ -12,6 +12,10 @@ export interface Supervisor {
     username: string,
     password: string,
     post: string,
+    otp: string,
     workpermits: Array<string>,
-    workorders: Array<string>
+    workorders: Array<string>,
+    woalert: Array<any>,
+    faultregistrys: Array<string>,
+    dailyreports: Array<string>
 }

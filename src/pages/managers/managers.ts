@@ -69,7 +69,6 @@ export class ManagersPage {
     }
 
     openManager(manager?: any): void {
-        console.log(manager);
         let modal = this.modalCtrl.create('AddmanagerPage', { type: 'Edit', manager: manager });
         modal.onDidDismiss((data) => {
             this._loadSupervisors();

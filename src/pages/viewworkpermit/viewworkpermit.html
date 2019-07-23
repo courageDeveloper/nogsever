@@ -15,22 +15,31 @@
     <button ion-fab mini (click)="newWorkPermit()" color="secondary"><ion-icon name="ios-copy"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let workpermit of filteredWorkpermit; let i = index">
+  <button ion-button mini (click)="printSelected()" color="danger" [disabled]="disable"><div>Print Selected</div> <ion-icon class="text-space" name="print"></ion-icon></button>
+
+  <ion-list style="width: 100%" [virtualScroll]="filteredWorkpermit" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let workpermit" style="margin-top: 15px; margin-bottom: 20px;">
     <ion-card-content (press)="deleteWorkpermit(workpermit, i)">
-         <ion-row>
-           <ion-item>
-        <button class="list-price" color="primary" title="Print Workpermit" ion-fab item-right mini (click)="print(workpermit)"><ion-icon name="print"></ion-icon></button>
-         </ion-item>  
-      </ion-row>  
-        <ion-row (click)="openWorkpermit(workpermit)">
-            <span><strong>PTWNO: {{ workpermit.ptwno}}</strong></span>
-          </ion-row>
-          <ion-row (click)="openWorkpermit(workpermit)">
-            <p ion-text class="align-details"><strong>PERMIT HOLDER:</strong> {{ workpermit.permitholdername }}</p>
-          </ion-row>
-          <ion-row (click)="openWorkpermit(workpermit)">
-            <p ion-text class="align-details"><strong>DEPARTMENT:</strong> {{ workpermit.department}}</p>
-          </ion-row>
+      <ion-row>
+          <ion-checkbox color="primary" (click)="checkboxClicked(workpermit)"></ion-checkbox>
+        <ion-item>
+          <img class="equip-image" *ngIf="workpermit.picture != ''" [src]="_DomSanitizer.bypassSecurityTrustUrl(workpermit.picture)" alt="equipment" imageViewer/>
+          <img class="equip-image" *ngIf="workpermit.picture == ''"  src="assets/images/no-image.png" alt="equipment" imageViewer/> 
+          <button *ngIf="position=='Operator'" class="list-price" color="secondary" title="Fixed It?" ion-button item-right mini (click)="fixed(workpermit)" [disabled]="workpermit.wostatus=='Pending'">Fixed It?</button>
+          <button class="list-price" color="primary" title="Print Workpermit" ion-fab item-right mini (click)="print(workpermit)"><ion-icon
+              name="print"></ion-icon></button>
+        </ion-item>
+      </ion-row>
+      
+      <ion-row (click)="openWorkpermit(workpermit)">
+        <span><strong>PTWNO: 00{{ workpermit.ptwno}}</strong></span>
+      </ion-row>
+      <ion-row (click)="openWorkpermit(workpermit)">
+        <p ion-text class="align-details"><strong>PERMIT HOLDER:</strong> {{ workpermit.permitholdername }}</p>
+      </ion-row>
+      <ion-row (click)="openWorkpermit(workpermit)">
+        <p ion-text class="align-details"><strong>DEPARTMENT:</strong> {{ workpermit.department}}</p>
+      </ion-row>
       <ion-row>
         <ion-item>
           <ion-icon color="secondary" item-right small name="md-create" (click)="openWorkpermit(workpermit)"></ion-icon>
@@ -47,22 +56,53 @@
         <p ion-text class="list-price">{{ workpermit.enddate}}</p>
       </ion-row>
       <ion-row *ngIf="!show">
-        <button ion-button small color="attrgreen" class="list-price" (click)="approve(workpermit)" [disabled] = 'workpermit.disabled'>Approve</button>
-        <button ion-button small color="danger" class="list-price" (click)="disapprove(workpermit)" [disabled] = 'workpermit.disabled2'>Disapprove</button>
+        <button ion-button small color="attrgreen" class="list-price" (click)="approve(workpermit)" [disabled]='workpermit.disabled'>Approve</button>
+        <button ion-button small color="danger" class="list-price" (click)="disapprove(workpermit)" [disabled]='workpermit.disabled2'>Disapprove</button>
       </ion-row>
       <ion-row *ngIf="show">
-          <p *ngIf="!workpermit.areasupervisordisapprove || !workpermit.managerdisapprove || !workpermit.hsedisapprove" class="attrgreen">Approved by: <span *ngIf="!workpermit.areasupervisordisapprove">{{workpermit.sname}}</span> <span *ngIf="!workpermit.managerdisapprove">{{workpermit.mname}}</span> <span *ngIf="!workpermit.hsedisapprove">{{workpermit.hname}}</span> </p>
-        <div *ngIf="workpermit.wostatus=='Approved'" class="list-price attrgreen">{{workpermit.wostatus}} <ion-icon color="attrgreen" item-right small name="md-done-all"></ion-icon></div>
-        <div *ngIf="workpermit.wostatus=='Pending'" class="list-price attrpend">{{workpermit.wostatus}} <ion-icon color="danger" item-right small name="md-information-circle"></ion-icon></div>
+        <p *ngIf="!workpermit.areasupervisordisapprove || !workpermit.managerdisapprove || !workpermit.hsedisapprove" class="attrgreen">Approved
+          by: <span *ngIf="!workpermit.areasupervisordisapprove">{{workpermit.sname}}</span> <span *ngIf="!workpermit.managerdisapprove">{{workpermit.mname}}</span>
+          <span *ngIf="!workpermit.hsedisapprove">{{workpermit.hname}}</span> </p>
+        <div *ngIf="workpermit.wostatus=='Approved'" class="list-price attrgreen">{{workpermit.wostatus}}
+          <ion-icon color="attrgreen" item-right small name="md-done-all"></ion-icon>
+        </div>
+        <div *ngIf="workpermit.wostatus=='Pending'" class="list-price attrpend">{{workpermit.wostatus}}
+          <ion-icon color="danger" item-right small name="md-information-circle"></ion-icon>
+        </div>
       </ion-row>
       <ion-row *ngIf="show">
-          <p *ngIf="workpermit.areasupervisordisapprove || workpermit.managerdisapprove || workpermit.hsedisapprove" class="danger">Disapproved by: <span *ngIf="workpermit.areasupervisordisapprove">{{workpermit.sname}}</span> <span *ngIf="workpermit.managerdisapprove">{{workpermit.mname}}</span> <span *ngIf="workpermit.hsedisapprove">{{workpermit.hname}}</span> </p>
+        <p *ngIf="workpermit.areasupervisordisapprove || workpermit.managerdisapprove || workpermit.hsedisapprove" class="danger">Disapproved
+          by:
+          <span *ngIf="workpermit.areasupervisordisapprove">{{workpermit.sname}}</span>
+          <span *ngIf="workpermit.managerdisapprove">{{workpermit.mname}}</span>
+          <span *ngIf="workpermit.hsedisapprove">{{workpermit.hname}}</span> </p>
       </ion-row>
+      <ion-row *ngIf="show">
+        <p *ngIf="workpermit.areasupervisordisapprove || workpermit.managerdisapprove || workpermit.hsedisapprove" class="danger">
+         <u> REASONS FOR DISAPPROVAL </u>
+        </p>
+      </ion-row>
+      <ion-row *ngIf="show">
+        <ion-col *ngIf="workpermit.areasupervisordisapprove"> {{workpermit.sname}} </ion-col>
+        <ion-col *ngIf="workpermit.areasupervisordisapprove">
+        {{workpermit.messageareasupervisor}} </ion-col>
+      </ion-row>
+      <ion-row *ngIf="show">
+        <ion-col *ngIf="workpermit.managerdisapprove"> {{workpermit.mname}}</ion-col>
+        <ion-col *ngIf="workpermit.managerdisapprove">
+        {{workpermit.messagemanager}} </ion-col>
+      </ion-row>
+      <ion-row *ngIf="show">
+          <ion-col *ngIf="workpermit.hsedisapprove">{{workpermit.hname}}</ion-col>
+          <ion-col *ngIf="workpermit.hsedisapprove">
+          {{workpermit.messagehse}} </ion-col>
+        </ion-row>
     </ion-card-content>
   </ion-card>
+</ion-list>
   <ion-fab bottom left>
     <button ion-fab mini (click)="back()">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
   </ion-fab>
 </ion-content>

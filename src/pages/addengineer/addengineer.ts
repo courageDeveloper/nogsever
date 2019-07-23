@@ -32,6 +32,7 @@ export class AddengineerPage {
     mobile: new FormControl(),
     address: new FormControl(),
     email: new FormControl(),
+    otp: new FormControl(),
     sex: new FormControl(),
     position: new FormControl(),
     departments: new FormControl(),
@@ -58,14 +59,17 @@ export class AddengineerPage {
         departments: 'Process Operations',
         username: '',
         password: '',
+        otp: '',
         post: 'Supervisor',
         workpermits: [],
-        workorders: []
+        workorders: [],
+        woalert: [],
+        faultregistrys: [],
+        dailyreports: []
       }
     }
     else {
       this.supervisor = this.navParams.get('engineer');
-      console.log(this.supervisor);
     }
   }
 
@@ -84,10 +88,12 @@ export class AddengineerPage {
       email: [this.supervisor.email, Validators.compose([Validators.required, Validators.pattern(this.emailValidate)])],
       sex: [this.supervisor.sex],
       position: [this.supervisor.position],
+      otp: [this.supervisor.otp],
       departments: [this.supervisor.departments],
       username: [this.supervisor.username],
       password: [this.supervisor.password],
-      post: [this.supervisor.post]
+      post: [this.supervisor.post],
+      woalert: [this.supervisor.woalert]
     })
   }
 
@@ -98,13 +104,15 @@ export class AddengineerPage {
       name: [this.supervisor.name],
       mobile: [this.supervisor.mobile],
       address: [this.supervisor.address],
+      otp: [this.supervisor.otp],
       email: [this.supervisor.email, Validators.compose([Validators.required, Validators.pattern(this.emailValidate)])],
       sex: [this.supervisor.sex],
       position: [this.supervisor.position],
       departments: [this.supervisor.departments],
       username: [this.supervisor.username],
       password: [this.supervisor.password],
-      post: [this.supervisor.post]
+      post: [this.supervisor.post],
+      woalert: [this.supervisor.woalert]
     })
   }
 
@@ -115,7 +123,8 @@ export class AddengineerPage {
       });
     }
     else {
-      this.supervisor.workorders = [];
+      //this.supervisor.workorders = [];
+      //this.supervisor.woalert = [];
       this.db.updateSupervisor(this.supervisor).then(result => {
         this.viewCtrl.dismiss();
       });

@@ -2,7 +2,7 @@
 export interface Workpermit {
     id?: string,
     rev?: string,
-    ptwno: string,
+    ptwno: any,
     tagname: string,
     tagid: string,
     equipmentpartname: string,
@@ -23,6 +23,7 @@ export interface Workpermit {
     mastatus: any,
     hastatus: any,
     enddate: any,
+    equipmenttag: string,
     noofworkers: any,
     precautions: string,
     managerid: string,
@@ -40,5 +41,10 @@ export interface Workpermit {
     permitholdername: string,
     holderdate: any,
     post: string,
-    wono: any
+    wono: any,
+    messagemanager: string,
+    messagehse: string,
+    messageareasupervisor: string,
+    picture: string,
+    fixed: any
 }

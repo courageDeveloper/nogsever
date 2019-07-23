@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Preventive Maintenance</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <ion-fab top right edge *ngIf="platform.is('cordova')">
+    <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
+  </ion-fab>
+
+  <form margin-top (ngSubmit)="submit()">
+    <fieldset [disabled] = 'disabled'>
+    <ion-input type="hidden" [(ngModel)]="preventivemaintenance.equipmentcatid" name="equipmentcatid"></ion-input>
+    <ion-input type="hidden" [(ngModel)]="preventivemaintenance.equipmentpartid" name="equipmentpartid"></ion-input>
+    <ion-input type="hidden" [(ngModel)]="preventivemaintenance.tagid" name="tagid"></ion-input>
+    <ion-item>
+      <ion-input placeholder="WO/PM No" type="text" [(ngModel)]="preventivemaintenance.pmno" (ngModelChange)="checkPMNO()" name="pmno"
+        disabled></ion-input>
+      <ion-label color="danger" no-margin>{{error}}</ion-label>
+    </ion-item>
+    <!-- <ion-item>
+      <span>Date Created</span>
+      <ion-icon item-right name="md-calendar"></ion-icon>
+      <ion-input placeholder="Date" type="date" [(ngModel)]="pm.date" name="date"></ion-input>
+    </ion-item> -->
+    <ion-item>
+      <ion-input placeholder="Facility" type="text" [(ngModel)]="preventivemaintenance.faculty" name="faculty" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Location" type="text" [(ngModel)]="preventivemaintenance.exactlocation" name="exactlocation"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-input ng2-auto-complete [source]="equipmentsCatArray" list-formatter="name" (valueChanged)="selectEquipmentsCats($event)"
+        placeholder="Main Equipment Name" type="text" [(ngModel)]="preventivemaintenance.equipmentcatname" name="equipmentcatname"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+        <ion-input ng2-auto-complete [source]="equipmentsTagArray" list-formatter="tag" (valueChanged)="selectEquipmentsTags($event)"
+          placeholder="Main Equipment Tag" type="text" [(ngModel)]="preventivemaintenance.equipmentcattag" name="equipmenttag"></ion-input>
+      </ion-item>
+    <ion-item no-padding>
+      <ion-input placeholder="Maintenance Items" type="text" [(ngModel)]="preventivemaintenance.maintenanceitem" name="maintenanceitem"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Description" type="text" [(ngModel)]="preventivemaintenance.description" name="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Write steps here!" type="text" [(ngModel)]="preventivemaintenance.steps" name="steps"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Write job safety advice!" type="text" [(ngModel)]="preventivemaintenance.precautions" name="precautions"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Priority</ion-label>
+      <ion-select [(ngModel)]="preventivemaintenance.priority" name="priority">
+        <ion-option *ngFor="let priority of priorities" [value]="priority" [selected]="selectedPriority == priority">{{priority}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Responsibility</ion-label>
+      <ion-select [(ngModel)]="preventivemaintenance.responsibility" name="responsibility">
+        <ion-option *ngFor="let responsibility of responsibilities" [value]="responsibility" [selected]="selectedResponsibility == responsibility">{{responsibility}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-list radio-group class="list-color">
+
+       <ion-list-header>
+          Enter Frequency
+        </ion-list-header>
+      
+        <ion-item>
+          <ion-label>Daily</ion-label>
+          <ion-radio value="daily" (click)= "radioClickday()"></ion-radio>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Weekly</ion-label>
+          <ion-radio value="weekly" (click)= "radioClickwek()"></ion-radio>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Monthly</ion-label>
+          <ion-radio value="monthly" (click)= "radioClickMnth()"></ion-radio>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Others</ion-label>
+          <ion-radio value="others" (click)="radioClick($event)"></ion-radio>
+        </ion-item>
+      
+      </ion-list>
+    <ion-item *ngIf="radioOther">
+      <ion-label>Enter Frequency in hours</ion-label>
+      <ion-input  type="number" [(ngModel)]="preventivemaintenance.frequency" name="frequency"></ion-input>
+    </ion-item>
+
+    <p class="danger" *ngIf=!show> Enter the period for reminder </p>
+    <button ion-button type="submit" block [disabled]="!preventivemaintenance.pmno || error">Submit</button>
+    </fieldset>
+  </form>
+</ion-content>

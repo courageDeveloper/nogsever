@@ -15,7 +15,8 @@
     <button ion-fab mini (click)="newWorkorder()" color="secondary"><ion-icon name="ios-copy"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let workorder of filterWorkorder; let i = index">
+  <ion-list style="width: 100%" [virtualScroll]="filterWorkorder" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let workorder" style="margin-top: 25px; margin-bottom: 30px;">
     <ion-card-content (press)="deleteWorkorder(workorder, i)">
       <ion-row>
         <ion-item>
@@ -46,6 +47,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
+</ion-list>
   <ion-fab bottom left>
     <button ion-fab mini (click)="back()">
             <ion-icon name="arrow-back"></ion-icon>

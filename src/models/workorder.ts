@@ -11,10 +11,16 @@ export interface Workorder {
     equipmentcatid: any,
     equipmentcatname: string,
     name: string,
+    steps: string,
+    maintenanceitem: string,
+    performedby: string,
     faculty: any,
     exactlocation: string,
+    itemarray: any,
+    equipmenttag: string,
     description: string,
     workprocedure: string,
+    ipaddress: string,
     precautions: string,
     priority: string,
     responsibility: string,
@@ -32,5 +38,6 @@ export interface Workorder {
     animateswitch: string,
     gstatus: any,
     woid: any,
+    woId: any,
     dstatus: any
 }

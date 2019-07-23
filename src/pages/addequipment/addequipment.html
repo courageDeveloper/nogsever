@@ -10,14 +10,28 @@
 </ion-header>
 
 <ion-content class="bg-primary50" padding>
-  <ion-fab top right edge *ngIf="platform.is('cordova')">
-    <button ion-fab mini margin-left (click)="open()" color="secondary"><ion-icon name="phone-portrait"></ion-icon></button>
-  </ion-fab>
-
+  
   <form margin-top (ngSubmit)="submit()">
+    <fieldset [disabled]="showButton">
     <ion-item>
       <ion-input placeholder="Name" type="text" [(ngModel)]="equipmentcats.name" name="name"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-input placeholder="Tag" type="text" [(ngModel)]="equipmentcats.tag" name="tag"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Size" type="text" [(ngModel)]="equipmentcats.size" name="size"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Design Condition" type="text" [(ngModel)]="equipmentcats.designcondition" name="designcondition"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Design Temperature" type="text" [(ngModel)]="equipmentcats.designtemperature" name="designtemperature"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Additional Info" type="text" [(ngModel)]="equipmentcats.additionalinfo" name="additionalinfo"></ion-textarea>
+    </ion-item>
     <button ion-button type="submit" block>Submit</button>
+    </fieldset>
   </form>
 </ion-content>

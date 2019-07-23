@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Material List</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-primary50">
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (ionInput)="filtermaterialcats($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-fab top right>
+    <button ion-fab mini (click)="newmaterialcat()" color="secondary"><ion-icon name="ios-construct"></ion-icon></button>
+  </ion-fab>
+
+  <div class="wrapper" *ngIf="tableCheck">
+    <button class="align-center" color="primary" title="Delete Material" ion-fab mini (click)="deleteSelected()"><ion-icon
+        name="trash"></ion-icon></button>
+  </div>
+
+  <!-- <button ion-button small *ngIf="!show" class="align-right"  (click)="activate()" color="secondary">Import</button>
+  <button ion-button small *ngIf="show" class="align-right" color="secondary"><a href="assets/images/samplematerials.xlsx">Download Sample</a></button>
+  <input accept="*" *ngIf="show" class="margin-btm" type="file" (change)="handleFiles($event)" /> -->
+  <ion-list style="width: 100%" [virtualScroll]="filteredmaterial" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+    <ion-card *virtualItem="let material" style="margin-top: 5px; margin-bottom: 10px;">
+      <ion-card-content (press)="deletematerialcat(material, i)">
+        <ion-row>
+          <ion-item>
+            <ion-checkbox color="primary" (ionChange)="checkboxClicked(material, $event)"></ion-checkbox>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-icon color="secondary" item-right small name="md-create" (click)="openmaterialcat(material)"></ion-icon>
+            <ion-icon color="danger" item-right small name="ios-trash" (click)="deletematerialcat(material, i)"></ion-icon>
+
+          </ion-item>
+        </ion-row>
+        <ion-row (click)="openmaterialcat(material)">
+          <h2 text-bold text-uppercase><strong>Date:</strong> {{material.date }}</h2>
+        </ion-row>
+        <ion-row (click)="openmaterialcat(material)">
+          <h2 text-bold text-uppercase><strong>Name:</strong> {{material.name }}</h2>
+          <p ion-text class="list-price"><strong>Quantity:</strong> {{ material.quantity }}</p>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-fab bottom left>
+    <button ion-fab mini (click)="back()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

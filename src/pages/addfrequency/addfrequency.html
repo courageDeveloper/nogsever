@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Frequency</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-primary50" padding>
+  <ion-card style="margin-top: 25px; margin-bottom: 30px;">
+  <ion-row>
+    <ion-item>
+      <h2 text-bold text-uppercase><strong>Name:</strong> {{equipment.name }}</h2>
+      <p ion-text class="list-price"><strong>Tag:</strong> {{ equipment.tag }}</p>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <h2 text-bold text-uppercase><strong>Size:</strong> {{equipment.size }}</h2>
+      <h2 text-bold text-uppercase><strong>Design Condition:</strong> {{equipment.designcondition}}</h2>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-col><button ion-button small (click)="Addfrequency(equipment)" color="secondary">Add Frequency</button></ion-col>
+    <ion-col><button ion-button small (click)="Viewfrequency(equipment)" color="secondary">View Frequency</button></ion-col>
+  </ion-row>
+  </ion-card>
+</ion-content>

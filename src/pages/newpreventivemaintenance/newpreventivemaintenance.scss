@@ -1,0 +1,61 @@
+page-newpreventivemaintenance {
+.bar-container {
+        border: 1px solid color($colors, secondary);
+
+        ion-col {
+            background-color: white;
+
+            &.bar-success {
+                background-color: color($colors, primary);
+            }
+        }
+    }
+
+    .eng-color{
+        color: color($colors, attrgreen);
+    }
+
+    .align-right{
+        float: right;
+        background-color: red;
+    }
+
+    .margin-btm{
+        margin-top: 20px;
+    }
+
+    .list-price, .items-count {
+        margin-left: auto;
+        padding: 2px 5px;
+    }
+    .text-success{
+        background-color: red;
+    }
+
+    .txt-size{
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .high{
+        background-color: red;
+    }
+
+    .medium{
+        background-color: #ffcc00;
+    }
+
+    .low{
+        background-color: #fffae6;
+    }
+
+    .normal{
+        background-color: white;
+    }
+
+    @media screen and (min-width: 768px) {
+        .margin-top{
+            margin-top:56px;
+        }
+    }
+}

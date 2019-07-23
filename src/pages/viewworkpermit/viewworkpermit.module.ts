@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ViewworkpermitPage } from './viewworkpermit';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { ViewworkpermitPage } from './viewworkpermit';
   ],
   imports: [
     IonicPageModule.forChild(ViewworkpermitPage),
+    IonicImageViewerModule
   ],
 })
 export class ViewworkpermitPageModule {}

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="title-color">{{title}} Sub Equipments</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="margin-bottom">
+    <span> <b>MAIN EQUIPMENT:</b> {{equipment}} </span>
+  </div>
+
+  <div class="margin-bottom">
+    <span><b> DATE FOR REPAIRS:</b> {{workorder.datewo}} </span>
+  </div>
+
+  <ion-list [virtualScroll]="workorder.itemarray" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+    <ion-item *virtualItem="let wo">
+      <ion-row>
+        <ion-col>
+          <div class="margin-bottom"> <strong text-uppercase> Sub-Equipments </strong> </div>
+          <div>
+            {{wo.maintenanceItem}}
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="margin-bottom"> <strong text-uppercase> Steps </strong></div>
+          <div>
+            {{wo.steps}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <hr>
+  </ion-list>
+</ion-content>

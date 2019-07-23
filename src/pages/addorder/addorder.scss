@@ -1,0 +1,21 @@
+page-addorder {
+.big-left{
+        margin-left: 32px;
+    }
+
+    .title-color{
+        color: #ffcc00 !important;
+    }
+
+    .danger{
+        color: color($colors, danger);
+    }
+    fieldset{
+        border: 0px;
+    }
+
+    .list-price, .items-count {
+        margin-left: auto;
+        padding: 2px 5px;
+    }
+}

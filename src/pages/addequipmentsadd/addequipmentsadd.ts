@@ -42,7 +42,6 @@ export class AddequipmentsaddPage {
     }
     else {
       this.equipmentsadds = this.navParams.get('equipmentsadd');
-      console.log(this.equipmentsadds);
     }
   }
 
@@ -77,7 +76,6 @@ export class AddequipmentsaddPage {
 
   selectEquipmentsParts(newVal) {
     this.equipmentPartObject = newVal;
-    console.log(this.equipmentPartObject);
     if (this.add) {
       this.equipmentsadds.equipmentpartname = newVal.name;
     }

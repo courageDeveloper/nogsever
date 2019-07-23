@@ -1,0 +1,38 @@
+page-addfrequencyequipment {
+.big-left{
+        margin-left: 32px;
+    }
+
+    .title-color{
+        color: #ffcc00 !important;
+    }
+
+    .danger{
+        color: color($colors, danger);
+    }
+    fieldset{
+        border: 0px;
+    }
+
+    .list-price, .items-count {
+        margin-left: auto;
+        padding: 2px 5px;
+    }
+
+    .list-color{
+        background-color: white;
+        margin-bottom: 0px;
+    }
+
+    .float-right{
+        float: right;
+    }
+
+    .align-icon{
+        font-size: 3.5rem;
+        float: right;
+        color: red !important;
+        cursor: pointer;
+        margin-bottom: 0px;
+    }
+}

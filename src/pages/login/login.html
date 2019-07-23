@@ -1,13 +1,15 @@
 <ion-content class="background-image">
   <div class="bg-color bg-size">
+    <button ion-button attrgreen class="padding-end" (click)="sync()"> SYNC </button>
     <ion-list text-center class="bottom-align">
       <img src="assets/images/NOG-LOGO.jpg" width="250px" />
     </ion-list>
 
     <span class="txt-align" padding>
       <h1>Welcome!</h1>
-      <p tect-center>Login into your account.</p>  
-  </span>
+      <p tect-center>Login into your account.</p>
+    </span>
+    
     <ion-item>
       <ion-label>
         <ion-icon name="person"></ion-icon>
@@ -30,7 +32,7 @@
 
 
     <ion-list margin text-center>
-     <span><a class="fgt-color"><b>Forgot Password?</b></a></span>
+      <span><a class="fgt-color" (click)="navFpassword()"><b>Forgot Password?</b></a></span>
     </ion-list>
   </div>
 </ion-content>

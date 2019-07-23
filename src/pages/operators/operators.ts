@@ -46,12 +46,14 @@ export class OperatorsPage {
   private _loadSupervisors(): void {
     this.db.getSupervisors()
       .then((supervisors: Array<Supervisor>) => {
-        console.log(this.user);
+        if (this.user != undefined) {
         this.filteredSupervisors = supervisors.filter(data => data.departments == this.user.departments && data.post == 'Operator');
         this.supervisors = supervisors.filter(data => data.departments == this.user.departments && data.post == 'Operator');
-        if (this.user.departments == 'HSE' || this.user.departments == 'Admin') {
-          this.filteredSupervisors = supervisors.filter(data => data.post == "Operator");
-          this.supervisors = supervisors.filter(data => data.post == "Operator");
+        
+          if (this.user.departments == 'HSE' || this.user.departments == 'Admin') {
+            this.filteredSupervisors = supervisors.filter(data => data.post == "Operator");
+            this.supervisors = supervisors.filter(data => data.post == "Operator");
+          }
         }
       });
   }
@@ -71,12 +73,31 @@ export class OperatorsPage {
   }
 
   openOperator(operator?: any): void {
-    console.log(operator);
-    let modal = this.modalCtrl.create('AddoperatorPage', { type: 'Edit', operator: operator });
-    modal.onDidDismiss((data) => {
-      this._loadSupervisors();
-    });
-    modal.present();
+    var loggedInUser = JSON.parse(localStorage.getItem('user'));
+    this.db.getSupervisor(loggedInUser).then(user => {
+      if (user.post != 'Supervisor') {
+        let modal = this.modalCtrl.create('AddoperatorPage', { type: 'Edit', operator: operator });
+        modal.onDidDismiss((data) => {
+          this._loadSupervisors();
+        });
+        modal.present();
+      }
+      else {
+        var alert = this.alertCtrl.create({
+          title: 'NOT ALLOWED!',
+          cssClass: 'alertHeader',
+          message: 'Supervisors are not allowed to Edit',
+          buttons: [
+            {
+              text: 'OK',
+              role: 'cancel'
+            }
+          ]
+        });
+        alert.present();
+      }
+    })
+
   }
 
   filterSupervisors($event: any): void {
@@ -111,6 +132,10 @@ export class OperatorsPage {
       ]
     });
     alert.present();
+  }
+
+  trackByName = (index, item) => {
+    return item.id;
   }
 
 }

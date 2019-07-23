@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Workpermit } from '../../models/workpermit';
 import { PouchService } from '../../pouch-service/pouch.service';
-
+import { Material } from '../../models/material';
+import { PopupProvider } from '../../pouch-service/popup';
 
 @IonicPage()
 @Component({
@@ -17,23 +18,41 @@ export class AdminHomePage {
   filteredWorkpermitLength: any;
   filteredWorkpermit: Array<Workpermit> = [];
   public workpermits: Array<Workpermit> = [];
+  dailyWo: any;
+  dailyWolength: any;
+  totalWolength: any;
+  currentDate;
+  faultRegistrylength: any;
+  deptWorkpermits: any;
+  equipmentLength: any;
+  deptWorkpermitslength: any;
+  dailyallReportlength: any;
+  dailyallReport: any;
+  materialList: any;
 
-  constructor(public navCtrl: NavController, public db: PouchService) {
+  constructor(public navCtrl: NavController, public db: PouchService, public popUp: PopupProvider) {
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SupervisorhomePage');
+    console.log('ionViewDidLoad AdminhomePage');
     this.localStorageItem = JSON.parse(localStorage.getItem('user'));
-    console.log('ionViewDidLoad ViewworkpermitPage');
+
     this.db.getSupervisor(this.localStorageItem).then(item => {
       this.user = item;
     });
 
     this._loadWorkpermits();
+    this.dailyWorkorder();
+    this.allWorkpermit();
+    this.allEquipments();
+    this.allFaultregistrys();
+    this.allReport();
+    this._loadMateriallist();
   }
 
   ionViewDidEnter() {
+    this.popUp.displayPopUp();
     this.localStorageItem = JSON.parse(localStorage.getItem('user'));
     console.log('ionViewDidLoad ViewworkpermitPage');
     this.db.getSupervisor(this.localStorageItem).then(item => {
@@ -41,16 +60,68 @@ export class AdminHomePage {
     });
 
     this._loadWorkpermits();
+    this.dailyWorkorder();
+    this.allWorkpermit();
+    this.allEquipments();
+    this.allFaultregistrys();
+    this.allReport();
+    this._loadMateriallist();
   }
 
   private _loadWorkpermits(): void {
     this.db.getWorkpermits()
       .then((workpermits: Array<Workpermit>) => {
-        this.filteredWorkpermit = workpermits.filter(data => data.astatus == true);
+        this.filteredWorkpermit = workpermits.filter(data => data.astatus == true || data.fixed == true);
         this.filteredWorkpermitLength = this.filteredWorkpermit.length;
       })
   }
 
+
+  private dailyWorkorder(): void {
+    this.db.getWorkorders().then((res: any) => {
+      this.totalWolength = res.length;
+      if (this.currentDate == undefined) {
+        this.dailyWo = res.filter(data => new Date(data.datecreated).toJSON().slice(0, 10).replace(/-/g, '-') == new Date().toJSON().slice(0, 10).replace(/-/g, '-'));
+        this.dailyWolength = this.dailyWo.length;
+      }
+      else {
+        this.dailyWo = res.filter(data => new Date(data.datecreated).toJSON().slice(0, 10).replace(/-/g, '-') == this.currentDate);
+        this.dailyWolength = this.dailyWo.length;
+      }
+    })
+  }
+
+  private allWorkpermit(): void {
+    this.db.getWorkpermits().then(res => {
+        this.deptWorkpermitslength = res.length;
+    })
+  }
+
+  private allEquipments(): void {
+    this.db.getEquipmentcats().then(res => {
+      this.equipmentLength = res.length;
+    })
+  }
+
+  private allFaultregistrys(): void {
+    this.db.getfaultregistrys().then(res => {
+      this.faultRegistrylength = res.length;
+    })
+  }
+
+  private _loadMateriallist() {
+    this.db.getmaterials()
+      .then((materialList: Array<Material>) => {
+        this.materialList = materialList.length;
+      })
+  }
+
+  private allReport(): void {
+    this.db.getdailyreports().then(res => {
+       this.dailyallReport = res.filter(data => data.datecreated == new Date().toJSON().slice(0, 10).replace(/-/g, '-'));
+       this.dailyallReportlength = this.dailyallReport.length;
+     })
+   }
 
   toggleSelection(index) {
     this.show = !this.show;
@@ -74,8 +145,16 @@ export class AdminHomePage {
     this.navCtrl.push('OperatorsPage')
   }
 
+  openDailyreport() {
+    this.navCtrl.push('ViewdailyreportPage');
+  }
+
   openEngineer() {
     this.navCtrl.push('EngineersPage');
+  }
+
+  openMaterial(){
+    this.navCtrl.push('MaterialPage');
   }
 
   openRegistry() {
@@ -107,9 +186,9 @@ export class AdminHomePage {
     this.db.getWorkpermits()
       .then((workpermits: Array<Workpermit>) => {
         this.filteredWorkpermit = workpermits.filter(data => data.astatus == true);
-        console.log(this.filteredWorkpermit);
         this.filteredWorkpermit.forEach(item => {
           item.astatus = false;
+          item.fixed = false;
           this.db.updateWorkpermit(item).then(res => {
             this._loadWorkpermits();
           });

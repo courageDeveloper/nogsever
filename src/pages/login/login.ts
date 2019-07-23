@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { PouchService } from '../../pouch-service/pouch.service';
 
 /**
@@ -20,51 +20,68 @@ export class LoginPage {
   users: {};
   password: string;
   error = "";
+  pullState: any;
+  finishSync: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: PouchService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: PouchService, public load: LoadingController) {
     this.user = [];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-    this.user = [{ name: "Godspower Idhude", username: "idhude", sex: "Male", email: "lawal@gmail.com", address: "No 8, east circular road, benin city", position: "Operations Surpevisor", mobile: "08023467585", department: "Operations" }, { name: "Amaka", username: "amaka", sex: "Female", email: "amaka@gmail.com", address: "No 8, east circular road, benin city", position: "Operator", mobile: "08023467585", department: "Operations" },
-    { name: "Siloko Akpobor", username: "siloko", email: "kate@gmail.com", sex: "Male", address: "No 18, siluko road, benin city", position: "Instrument Surpevisor", mobile: "08023467566", department: "Instruments" }, { name: "Bright Okunbor", username: "bright", email: "bright@gmail.com", sex: "Male", address: "No 7, Ihama road, benin city", position: "Electrical Surpevisor", mobile: "08023467455", department: "Electrical" },
-    { name: "Osazee Emumwen", username: "da", email: "da@gmail.com", address: "No 7, sapele road, benin city", position: "Manager", mobile: "08023467545", department: "HSE" }
-    ]
+
+  }
+
+  ionViewDidEnter() {
+    //this.db.checkRemoteSync();
   }
 
   login() {
+
     this.error = "";
+    this.db.getEquipmentcats().then(equipments => {
+
+    })
     //Get Staffs
     this.db.getSupervisors().then(user => {
+
       var found = false;
-      
+
       for (var i = 0; i < user.length; i++) {
+
         if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Manager") {
           found = true;
-          this.navCtrl.setRoot('HomePage');
           localStorage.setItem('user', JSON.stringify(user[i].id));
+          this.navCtrl.setRoot('HomePage');
         }
         else if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Supervisor") {
           found = true;
-          this.navCtrl.setRoot('SupervisorhomePage');
           localStorage.setItem('user', JSON.stringify(user[i].id));
+          this.navCtrl.setRoot('SupervisorhomePage');
         }
         else if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Operator") {
           found = true;
-          this.navCtrl.setRoot('OperatorhomePage');
           localStorage.setItem('user', JSON.stringify(user[i].id));
+          this.navCtrl.setRoot('OperatorhomePage');
         }
         else if (user[i].username == this.username && user[i].password == this.password && user[i].post == "Admin") {
           found = true;
-          this.navCtrl.setRoot('AdminHomePage');
           localStorage.setItem('user', JSON.stringify(user[i].id));
+          this.navCtrl.setRoot('AdminHomePage');
         }
       }
       if (found == false) {
         this.error = "Username or Password is not correct, click forgot password for account recovery";
       }
     });
+  }
+
+  navFpassword() {
+    this.navCtrl.push("ForgotpasswordPage");
+  }
+
+  sync() {
+    this.db.initDB();
   }
 
 }

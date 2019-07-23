@@ -1,0 +1,38 @@
+page-printdailyreport {
+    @media print{
+        printed-div{
+            display:block;
+        }
+    }
+
+    .logo-print{
+        width:291px;
+        height:109px;
+        display: list-item;
+        list-style-image: url(../assets/images/NOG-LOGO.jpg);
+        list-style-position: inside;
+    }
+
+    .border-line{
+        border: solid;
+        border-width: 0.1em;
+    }
+
+    .td1{
+        width: 100%;
+    }
+   
+    td {
+        padding: 5px 0px 5px 15px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      table, td, th {
+        border: 1px solid black;
+        /* width: 50%; */
+      }
+}

@@ -1,0 +1,22 @@
+page-viewsubitems {
+.big-left{
+        margin-left: 32px;
+    }
+
+    .title-color{
+        color: #ffcc00 !important;
+    }
+
+    .danger{
+        color: color($colors, danger);
+    }
+
+    .margin-bottom{
+        margin-bottom: 10px !important;
+        color: #032c03;
+    }
+
+    fieldset{
+        border: 0;
+      }
+}

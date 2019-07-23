@@ -14,7 +14,8 @@
       <button ion-fab mini (click)="newOperator()" color="secondary"><ion-icon name="person-add"></ion-icon></button>
   </ion-fab>
 
-  <ion-card *ngFor="let operator of filteredSupervisors; let i = index">
+  <ion-list style="width: 100%" [virtualScroll]="filteredSupervisors" [virtualTrackBy]="trackByName" [approxItemHeight]="'200px'">
+  <ion-card *virtualItem="let operator" style="margin-top: 5px; margin-bottom: 10px;">
       <ion-card-content (press)="deleteOperator(operator, i)">
           <ion-row>
               <ion-item>
@@ -40,6 +41,7 @@
           </ion-row>
       </ion-card-content>
   </ion-card>
+</ion-list>
   <ion-fab bottom left>
       <button ion-fab mini (click)="back()">
           <ion-icon name="arrow-back"></ion-icon>

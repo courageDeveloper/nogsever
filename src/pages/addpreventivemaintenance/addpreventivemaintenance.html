@@ -15,6 +15,7 @@
   </ion-fab>
 
   <form margin-top (ngSubmit)="submit()">
+    <fieldset [disabled] = 'disabled'>
     <ion-input type="hidden" [(ngModel)]="workorder.equipmentcatid" name="equipmentcatid"></ion-input>
     <ion-input type="hidden" [(ngModel)]="workorder.equipmentpartid" name="equipmentpartid"></ion-input>
     <ion-input type="hidden" [(ngModel)]="workorder.tagid" name="tagid"></ion-input>
@@ -38,22 +39,26 @@
       <ion-input placeholder="Date" type="date" [(ngModel)]="pm.date" name="date"></ion-input>
     </ion-item> -->
     <ion-item>
-      <ion-input placeholder="Facility" type="text" [(ngModel)]="workorder.faculty" name="faculty"></ion-input>
+      <ion-input placeholder="Facility" type="text" [(ngModel)]="workorder.faculty" name="faculty" disabled></ion-input>
     </ion-item>
     <ion-item>
       <ion-input placeholder="Location" type="text" [(ngModel)]="workorder.exactlocation" name="exactlocation"></ion-input>
     </ion-item>
     <ion-item no-padding>
       <ion-input ng2-auto-complete [source]="equipmentsCatArray" list-formatter="name" (valueChanged)="selectEquipmentsCats($event)"
-        placeholder="Equipment Name" type="text" [(ngModel)]="workorder.equipmentcatname" name="equipmentcatname"></ion-input>
+        placeholder="Main Equipment Name" type="text" [(ngModel)]="workorder.equipmentcatname" name="equipmentcatname"></ion-input>
     </ion-item>
+    <ion-item no-padding>
+        <ion-input ng2-auto-complete [source]="equipmentsTagArray" list-formatter="tag" (valueChanged)="selectEquipmentsTags($event)"
+          placeholder="Main Equipment Tag" type="text" [(ngModel)]="workorder.equipmentcattag" name="equipmenttag"></ion-input>
+      </ion-item>
     <ion-item no-padding>
       <ion-input ng2-auto-complete [source]="equipmentsPartArray" list-formatter="name" (valueChanged)="selectEquipmentsParts($event)"
         placeholder="Part Name" type="text" [(ngModel)]="workorder.equipmentpartname" name="equipmentpartname"></ion-input>
     </ion-item>
     <ion-item no-padding>
-      <ion-input ng2-auto-complete [source]="equipmentsTagArray" list-formatter="tagname" (valueChanged)="selectEquipmentsTags($event)"
-        placeholder="Tag name" type="text" [(ngModel)]="workorder.tagname" name="tagname"></ion-input>
+      <ion-input ng2-auto-complete [source]="equipmentsPartTagArray" list-formatter="tag" (valueChanged)="selectEquipmentsPartsTags($event)"
+        placeholder="Part Tag" type="text" [(ngModel)]="workorder.tagname" name="tagname"></ion-input>
     </ion-item>
     <ion-item>
       <ion-textarea placeholder="Description" type="text" [(ngModel)]="workorder.description" name="description"></ion-textarea>
@@ -86,5 +91,6 @@
     </ion-item>
     <p class="danger" *ngIf=!show> Enter the period for reminder </p>
     <button ion-button type="submit" block [disabled]="!workorder.workorderno || error">Submit</button>
+    </fieldset>
   </form>
 </ion-content>

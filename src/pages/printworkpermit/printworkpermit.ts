@@ -127,7 +127,6 @@ export class PrintworkpermitPage {
 
   private _loadWorkpermits(): void {
     this.workpermit = this.navParams.get('workpermit');
-    console.log(this.workpermit);
   }
 
 
@@ -204,7 +203,7 @@ export class PrintworkpermitPage {
             type: 'approve'
           }
           this.httpService.sendEmail(emailInfo).subscribe(res => {
-            console.log(res);
+            
           });
         })
 
@@ -235,7 +234,7 @@ export class PrintworkpermitPage {
             type: 'approve'
           }
           this.httpService.sendEmail(emailInfo).subscribe(res => {
-            console.log(res);
+            
           });
         })
       })
@@ -265,7 +264,7 @@ export class PrintworkpermitPage {
             type: 'approve'
           }
           this.httpService.sendEmail(emailInfo).subscribe(res => {
-            console.log(res);
+            
           });
         })
       })
@@ -299,7 +298,7 @@ export class PrintworkpermitPage {
             type: 'disapprove'
           }
           this.httpService.sendEmail(emailInfo).subscribe(res => {
-            console.log(res);
+            
           });
         })
       })
@@ -329,7 +328,7 @@ export class PrintworkpermitPage {
             type: 'disapprove'
           }
           this.httpService.sendEmail(emailInfo).subscribe(res => {
-            console.log(res);
+            
           });
         })
       })
@@ -359,7 +358,7 @@ export class PrintworkpermitPage {
             type: 'disapprove'
           }
           this.httpService.sendEmail(emailInfo).subscribe(res => {
-            console.log(res);
+            
           });
         })
       })
@@ -410,7 +409,7 @@ export class PrintworkpermitPage {
       list-style-position: inside;
     }
 
-           </style></head><body><img src="assets/images/NOG-LOGO.jpg" width="250px" /></body></html>`);
+           </style></head><body></body></html>`);
     printWindow.document.write(printContent);
     printWindow.document.close();
     printWindow.print();

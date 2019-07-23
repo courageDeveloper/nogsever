@@ -1,0 +1,19 @@
+page-addnewpreventivemaintenance {
+.big-left{
+        margin-left: 32px;
+    }
+
+    .title-color{
+        color: #ffcc00 !important;
+    }
+
+    .danger{
+        color: color($colors, danger);
+    }
+
+    .list-color{
+        background-color: white;
+        margin-bottom: 0px;
+    }
+
+}

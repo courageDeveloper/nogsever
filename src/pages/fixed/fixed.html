@@ -1,0 +1,47 @@
+<!--
+  Generated template for the FixedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons left>
+      <button color="primary" ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Evidence of Fixed Equipment</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form margin-top>
+      <div input-field>
+          <ion-item padding>
+              <div><button ion-fab mini (click)="picture()" color="secondary">
+            <ion-icon name="camera"></ion-icon>
+            </button> Add picture of equipment Fixed </div>
+            <input *ngIf="showfileinput" type="file" accept="image/*" (change)="handleFiles($event)">
+            <br />
+            <input type="hidden" name="picture" [(ngModel)]="workpermit.picture">
+            <ion-card *ngIf="oncam && !platform.is('cordova')">
+                <ack-webcam [(ref)]="webcam" [options]="options" (onSuccess)="onCamSuccess($event)" (onError)="onCamError($event)"></ack-webcam>
+                <ion-card-content>
+                  <ion-item>
+                    <a ion-button block margin-bottom color="primary" (click)="camera()">
+                          Snap
+                        </a>
+                  </ion-item>
+                </ion-card-content>
+              </ion-card>
+          </ion-item>
+        <ion-item no-padding>
+          <img imageViewer  [src]="_DomSanitizer.bypassSecurityTrustUrl(workpermit.picture)" />
+        </ion-item>
+      </div>
+      <button ion-button (click)="submit(workpermit)" type="submit" block>Submit</button>
+      
+  </form>
+</ion-content>

@@ -56,7 +56,6 @@ export class EquipmentsaddPage {
   }
 
   openEquipmentsadd(equipmentsadd) {
-    console.log(equipmentsadd)
     let modal = this.modalCtrl.create('AddequipmentsaddPage', { type: 'Edit', equipmentsadd: equipmentsadd });
     modal.onDidDismiss((data) => {
       this._loadEquipmentsadd();
@@ -96,6 +95,10 @@ export class EquipmentsaddPage {
       ]
     });
     alert.present();
+  }
+
+  trackByName = (index, item) => {
+    return item.id;
   }
 
 }
