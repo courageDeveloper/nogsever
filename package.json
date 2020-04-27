@@ -42,8 +42,8 @@
     }
   },
   "engines": {
-    "node": "10.16.3",
-    "npm": "6.7.0"
+    "node": "9.10.1",
+    "npm": "5.6.0"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -96,7 +96,6 @@
     "nodemon": "^1.18.9",
     "onesignal-cordova-plugin": "^2.4.1",
     "papaparse": "^4.6.3",
-    "pouchdb": "^6.1.1",
     "pouchdb-adapter-websql": "^7.0.0",
     "pouchdb-all-dbs": "^1.0.2",
     "pouchdb-find": "^0.10.5",
