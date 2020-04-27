@@ -559,7 +559,7 @@ function preventivemaintenanceBeep() {
 //Static Folder
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname+'/www/index.html'));
 })
 
