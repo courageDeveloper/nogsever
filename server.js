@@ -560,7 +560,7 @@ function preventivemaintenanceBeep() {
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
 app.get('/', (req, res) => {
-    res.send('Welcome to Node API');
+    res.sendFile(path.join(__dirname+'/www/index.html'));
 })
 
 app.get('/test', (req, res) => {
