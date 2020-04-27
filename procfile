@@ -1,2 +1,3 @@
 ionic: npm start
 electron: node electron-wait-ionic.js
+web: ionic serve --port $PORT --nobrowser --nolivereload --noopen
