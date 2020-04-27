@@ -107,6 +107,7 @@
     "electron": "^2.0.2",
     "electron-builder": "^19.52.1",
     "electron-packager": "^13.1.0",
+    "enhanced-resolve": "^3.3.0",
     "pouchdb": "^6.1.1",
     "typescript": "~2.6.2"
   },

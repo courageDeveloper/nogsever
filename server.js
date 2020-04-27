@@ -161,7 +161,7 @@ database.setSchema([
     },
 ])
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 //Newest Update;
 
 //FUNCTIONS

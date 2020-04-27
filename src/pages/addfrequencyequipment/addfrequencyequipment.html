@@ -70,41 +70,39 @@
       </ion-item> -->
       <br>
       <div formArrayName="itemArray">
-      <div *ngFor="let item of preventiveMaintenaceForm.controls.itemArray.controls; let i=index">
-          <div  [formGroupName]="i">
-        <ion-icon *ngIf="preventiveMaintenaceForm.controls.itemArray.controls.length > 1" name="close-circle" class="float-right" (click)="deleteItem(i)" class="align-icon"
-          ></ion-icon>
-        <ion-item padding>
-          <ion-input placeholder="Maintenance Items" type="text" 
-            name="maintenanceitem" formControlName="maintenanceitem"></ion-input>
-        </ion-item>
-        <!-- <ion-item>
+        <div *ngFor="let item of preventiveMaintenaceForm.controls.itemArray.controls; let i=index">
+          <div [formGroupName]="i">
+            <ion-icon *ngIf="preventiveMaintenaceForm.controls.itemArray.controls.length > 1" name="close-circle"
+              class="float-right" (click)="deleteItem(i)" class="align-icon"></ion-icon>
+            <ion-item padding>
+              <ion-input placeholder="Maintenance Items" type="text" name="maintenanceitem"
+                formControlName="maintenanceitem"></ion-input>
+            </ion-item>
+            <!-- <ion-item>
         <ion-textarea placeholder="Description" type="text" [(ngModel)]="preventivemaintenance.description" name="description"></ion-textarea>
       </ion-item> -->
-        <ion-item>
-          <ion-textarea placeholder="Write steps here!" type="text" 
-            name="steps" formControlName="steps"></ion-textarea>
-        </ion-item>
-        <!--  <ion-item>
+            <ion-item>
+              <ion-textarea placeholder="Write steps here!" type="text" name="steps" formControlName="steps">
+              </ion-textarea>
+            </ion-item>
+            <!--  <ion-item>
         <ion-textarea placeholder="Write job safety advice!" type="text" [(ngModel)]="preventivemaintenance.precautions" name="precautions"></ion-textarea>
       </ion-item> -->
-        <ion-item>
-          <ion-label>Priority</ion-label>
-          <ion-select  name="priority"
-            formControlName="priority">
-            <ion-option *ngFor="let priority of priorities" [value]="priority"
-              [selected]="selectedPriority == priority">{{priority}}</ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label>Responsibility</ion-label>
-          <ion-select  name="responsibility"
-            formControlName="responsibility">
-            <ion-option *ngFor="let responsibility of responsibilities" [value]="responsibility"
-              [selected]="selectedResponsibility == responsibility">{{responsibility}}</ion-option>
-          </ion-select>
-        </ion-item>
-        </div>
+            <ion-item>
+              <ion-label>Priority</ion-label>
+              <ion-select name="priority" formControlName="priority">
+                <ion-option *ngFor="let priority of priorities" [value]="priority"
+                  [selected]="selectedPriority == priority">{{priority}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Responsibility</ion-label>
+              <ion-select name="responsibility" formControlName="responsibility">
+                <ion-option *ngFor="let responsibility of responsibilities" [value]="responsibility"
+                  [selected]="selectedResponsibility == responsibility">{{responsibility}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
         </div>
       </div>
 
