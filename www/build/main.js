@@ -286,11 +286,11 @@ var map = {
 		45
 	],
 	"../pages/addfaultregistry/addfaultregistry.module": [
-		775,
+		777,
 		10
 	],
 	"../pages/addfrequency/addfrequency.module": [
-		749,
+		750,
 		44
 	],
 	"../pages/addfrequencyequipment/addfrequencyequipment.module": [
@@ -298,7 +298,7 @@ var map = {
 		14
 	],
 	"../pages/addmanager/addmanager.module": [
-		750,
+		749,
 		43
 	],
 	"../pages/addmaterial/addmaterial.module": [
@@ -306,15 +306,15 @@ var map = {
 		42
 	],
 	"../pages/addnewpreventivemaintenance/addnewpreventivemaintenance.module": [
-		776,
+		775,
 		41
 	],
 	"../pages/addoperator/addoperator.module": [
-		751,
+		753,
 		40
 	],
 	"../pages/addorder/addorder.module": [
-		753,
+		751,
 		39
 	],
 	"../pages/addorderequipment/addorderequipment.module": [
@@ -322,43 +322,43 @@ var map = {
 		13
 	],
 	"../pages/addpreventivemaintenance/addpreventivemaintenance.module": [
-		777,
+		776,
 		9
 	],
 	"../pages/addspareparts/addspareparts.module": [
-		757,
+		754,
 		38
 	],
 	"../pages/addworkerschedule/addworkerschedule.module": [
-		754,
+		755,
 		37
 	],
 	"../pages/adminhome/adminhome.module": [
-		755,
+		759,
 		36
 	],
 	"../pages/changepassword/changepassword.module": [
-		760,
+		756,
 		35
 	],
 	"../pages/dailyreport/dailyreport.module": [
-		756,
+		762,
 		8
 	],
 	"../pages/dailyworkorder/dailyworkorder.module": [
-		759,
+		758,
 		34
 	],
 	"../pages/engineers/engineers.module": [
-		758,
+		757,
 		33
 	],
 	"../pages/equipment/equipment.module": [
-		779,
+		780,
 		3
 	],
 	"../pages/equipmentsadd/equipmentsadd.module": [
-		761,
+		760,
 		32
 	],
 	"../pages/faultregistry/faultregistry.module": [
@@ -366,15 +366,15 @@ var map = {
 		31
 	],
 	"../pages/fixed/fixed.module": [
-		762,
+		761,
 		7
 	],
 	"../pages/forgotpassword/forgotpassword.module": [
-		765,
+		764,
 		30
 	],
 	"../pages/home/home.module": [
-		780,
+		779,
 		17
 	],
 	"../pages/login/login.module": [
@@ -382,11 +382,11 @@ var map = {
 		29
 	],
 	"../pages/managers/managers.module": [
-		764,
+		766,
 		28
 	],
 	"../pages/material/material.module": [
-		767,
+		765,
 		27
 	],
 	"../pages/newpreventivemaintenance/newpreventivemaintenance.module": [
@@ -394,15 +394,15 @@ var map = {
 		2
 	],
 	"../pages/operatorhome/operatorhome.module": [
-		766,
+		767,
 		26
 	],
 	"../pages/operators/operators.module": [
-		768,
+		770,
 		25
 	],
 	"../pages/otp/otp.module": [
-		769,
+		768,
 		24
 	],
 	"../pages/preventivemaintenance/preventivemaintenance.module": [
@@ -410,19 +410,19 @@ var map = {
 		23
 	],
 	"../pages/printdailyreport/printdailyreport.module": [
-		770,
+		769,
 		16
 	],
 	"../pages/printworkpermit/printworkpermit.module": [
-		783,
+		786,
 		15
 	],
 	"../pages/spareparts/spareparts.module": [
-		782,
+		785,
 		1
 	],
 	"../pages/supervisorhome/supervisorhome.module": [
-		784,
+		787,
 		22
 	],
 	"../pages/viewdailyreport/viewdailyreport.module": [
@@ -430,7 +430,7 @@ var map = {
 		21
 	],
 	"../pages/viewfrequencyequipment/viewfrequencyequipment.module": [
-		786,
+		782,
 		12
 	],
 	"../pages/viewnewpreventivemaintenance/viewnewpreventivemaintenance.module": [
@@ -438,31 +438,31 @@ var map = {
 		0
 	],
 	"../pages/vieworderequipment/vieworderequipment.module": [
-		785,
+		783,
 		11
 	],
 	"../pages/viewpreventivemaintenance/viewpreventivemaintenance.module": [
-		787,
+		784,
 		20
 	],
 	"../pages/viewsubitems/viewsubitems.module": [
-		772,
+		774,
 		6
 	],
 	"../pages/viewsubitemspm/viewsubitemspm.module": [
-		773,
+		772,
 		5
 	],
 	"../pages/viewworkpermit/viewworkpermit.module": [
-		792,
+		793,
 		19
 	],
 	"../pages/workerschedule/workerschedule.module": [
-		774,
+		773,
 		18
 	],
 	"../pages/workpermit/workpermit.module": [
-		793,
+		792,
 		4
 	]
 };
@@ -569,51 +569,51 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/addengineer/addengineer.module#AddengineerPageModule', name: 'AddengineerPage', segment: 'addengineer', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addequipment/addequipment.module#AddequipmentPageModule', name: 'AddequipmentPage', segment: 'addequipment', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addequipmentsadd/addequipmentsadd.module#AddequipmentsaddPageModule', name: 'AddequipmentsaddPage', segment: 'addequipmentsadd', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/addfrequency/addfrequency.module#AddfrequencyPageModule', name: 'AddfrequencyPage', segment: 'addfrequency', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addmanager/addmanager.module#AddmanagerPageModule', name: 'AddmanagerPage', segment: 'addmanager', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/addoperator/addoperator.module#AddoperatorPageModule', name: 'AddoperatorPage', segment: 'addoperator', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/addmaterial/addmaterial.module#AddmaterialPagePageModule', name: 'AddmaterialPage', segment: 'addmaterial', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addfrequency/addfrequency.module#AddfrequencyPageModule', name: 'AddfrequencyPage', segment: 'addfrequency', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addorder/addorder.module#AddorderPageModule', name: 'AddorderPage', segment: 'addorder', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/addworkerschedule/addworkerschedule.module#AddworkerschedulePageModule', name: 'AddworkerschedulePage', segment: 'addworkerschedule', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/adminhome/adminhome.module#AdminHomePageModule', name: 'AdminHomePage', segment: 'adminhome', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/dailyreport/dailyreport.module#DailyreportPageModule', name: 'DailyreportPage', segment: 'dailyreport', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addmaterial/addmaterial.module#AddmaterialPagePageModule', name: 'AddmaterialPage', segment: 'addmaterial', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addoperator/addoperator.module#AddoperatorPageModule', name: 'AddoperatorPage', segment: 'addoperator', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addspareparts/addspareparts.module#AddsparepartsPageModule', name: 'AddsparepartsPage', segment: 'addspareparts', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addworkerschedule/addworkerschedule.module#AddworkerschedulePageModule', name: 'AddworkerschedulePage', segment: 'addworkerschedule', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/changepassword/changepassword.module#AddchangepasswordPageModule', name: 'AddchangepasswordPage', segment: 'changepassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/engineers/engineers.module#EngineersPageModule', name: 'EngineersPage', segment: 'engineers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dailyworkorder/dailyworkorder.module#DailyworkorderPageModule', name: 'DailyworkorderPage', segment: 'dailyworkorder', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/changepassword/changepassword.module#AddchangepasswordPageModule', name: 'AddchangepasswordPage', segment: 'changepassword', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/adminhome/adminhome.module#AdminHomePageModule', name: 'AdminHomePage', segment: 'adminhome', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/equipmentsadd/equipmentsadd.module#EquipmentsaddPageModule', name: 'EquipmentsaddPage', segment: 'equipmentsadd', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/fixed/fixed.module#FixedPageModule', name: 'FixedPage', segment: 'fixed', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dailyreport/dailyreport.module#DailyreportPageModule', name: 'DailyreportPage', segment: 'dailyreport', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/managers/managers.module#ManagersPageModule', name: 'ManagersPage', segment: 'managers', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgotpassword/forgotpassword.module#ForgotpasswordPageModule', name: 'ForgotpasswordPage', segment: 'forgotpassword', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/operatorhome/operatorhome.module#OperatorhomePageModule', name: 'OperatorhomePage', segment: 'operatorhome', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/material/material.module#materialPageModule', name: 'MaterialPage', segment: 'material', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/operators/operators.module#OperatorsPageModule', name: 'OperatorsPage', segment: 'operators', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/managers/managers.module#ManagersPageModule', name: 'ManagersPage', segment: 'managers', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/operatorhome/operatorhome.module#OperatorhomePageModule', name: 'OperatorhomePage', segment: 'operatorhome', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/otp/otp.module#otpPageModule', name: 'otpPage', segment: 'otp', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/printdailyreport/printdailyreport.module#PrintdailyreportPageModule', name: 'PrintdailyreportPage', segment: 'printdailyreport', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/operators/operators.module#OperatorsPageModule', name: 'OperatorsPage', segment: 'operators', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/viewdailyreport/viewdailyreport.module#ViewdailyreportPageModule', name: 'ViewdailyreportPage', segment: 'viewdailyreport', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewsubitems/viewsubitems.module#ViewsubitemsPageModule', name: 'ViewsubitemsPage', segment: 'viewsubitems', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/viewsubitemspm/viewsubitemspm.module#ViewsubitemspmPageModule', name: 'ViewsubitemspmPage', segment: 'viewsubitemspm', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/workerschedule/workerschedule.module#WorkerschedulePageModule', name: 'WorkerschedulePage', segment: 'workerschedule', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/addfaultregistry/addfaultregistry.module#AddfaultregistryPageModule', name: 'AddfaultregistryPage', segment: 'addfaultregistry', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewsubitems/viewsubitems.module#ViewsubitemsPageModule', name: 'ViewsubitemsPage', segment: 'viewsubitems', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addnewpreventivemaintenance/addnewpreventivemaintenance.module#AddnewpreventivemaintenancePageModule', name: 'AddnewpreventivemaintenancePage', segment: 'addnewpreventivemaintenance', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addpreventivemaintenance/addpreventivemaintenance.module#AddpreventivemaintenancePageModule', name: 'AddpreventivemaintenancePage', segment: 'addpreventivemaintenance', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addfaultregistry/addfaultregistry.module#AddfaultregistryPageModule', name: 'AddfaultregistryPage', segment: 'addfaultregistry', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/faultregistry/faultregistry.module#FaultregistryPageModule', name: 'FaultregistryPage', segment: 'faultregistry', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/equipment/equipment.module#EquipmentPageModule', name: 'EquipmentPage', segment: 'equipment', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/equipment/equipment.module#EquipmentPageModule', name: 'EquipmentPage', segment: 'equipment', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/preventivemaintenance/preventivemaintenance.module#PreventivemaintenancePageModule', name: 'PreventivemaintenancePage', segment: 'preventivemaintenance', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewfrequencyequipment/viewfrequencyequipment.module#ViewfrequencyequipmentPageModule', name: 'ViewfrequencyequipmentPage', segment: 'viewfrequencyequipment', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/vieworderequipment/vieworderequipment.module#VieworderequipmentPageModule', name: 'VieworderequipmentPage', segment: 'vieworderequipment', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewpreventivemaintenance/viewpreventivemaintenance.module#ViewpreventivemaintenancePageModule', name: 'ViewpreventivemaintenancePage', segment: 'viewpreventivemaintenance', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/spareparts/spareparts.module#SparepartsPageModule', name: 'SparepartsPage', segment: 'spareparts', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/printworkpermit/printworkpermit.module#PrintworkpermitPageModule', name: 'PrintworkpermitPage', segment: 'printworkpermit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/supervisorhome/supervisorhome.module#SupervisorhomePageModule', name: 'SupervisorhomePage', segment: 'supervisorhome', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/vieworderequipment/vieworderequipment.module#VieworderequipmentPageModule', name: 'VieworderequipmentPage', segment: 'vieworderequipment', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewfrequencyequipment/viewfrequencyequipment.module#ViewfrequencyequipmentPageModule', name: 'ViewfrequencyequipmentPage', segment: 'viewfrequencyequipment', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewpreventivemaintenance/viewpreventivemaintenance.module#ViewpreventivemaintenancePageModule', name: 'ViewpreventivemaintenancePage', segment: 'viewpreventivemaintenance', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addfrequencyequipment/addfrequencyequipment.module#AddfrequencyequipmentPageModule', name: 'AddfrequencyequipmentPage', segment: 'addfrequencyequipment', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/addorderequipment/addorderequipment.module#AddorderequipmentPageModule', name: 'AddorderequipmentPage', segment: 'addorderequipment', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/newpreventivemaintenance/newpreventivemaintenance.module#NewpreventivemaintenancePageModule', name: 'NewpreventivemaintenancePage', segment: 'newpreventivemaintenance', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/viewnewpreventivemaintenance/viewnewpreventivemaintenance.module#ViewnewpreventivemaintenancePageModule', name: 'ViewnewpreventivemaintenancePage', segment: 'viewnewpreventivemaintenance', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/viewworkpermit/viewworkpermit.module#ViewworkpermitPageModule', name: 'ViewworkpermitPage', segment: 'viewworkpermit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/workpermit/workpermit.module#WorkpermitPageModule', name: 'WorkpermitPage', segment: 'workpermit', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/workpermit/workpermit.module#WorkpermitPageModule', name: 'WorkpermitPage', segment: 'workpermit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/viewworkpermit/viewworkpermit.module#ViewworkpermitPageModule', name: 'ViewworkpermitPage', segment: 'viewworkpermit', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],

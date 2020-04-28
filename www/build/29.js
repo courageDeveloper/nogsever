@@ -81,12 +81,33 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage.prototype.login = function () {
         var _this = this;
+        var setAdmin = {
+            name: "Admin",
+            mobile: "+2347032230384",
+            address: "Benin City",
+            email: "gaby@yahoo.com",
+            sex: "Male",
+            position: "Admin",
+            departments: "Admin",
+            username: "adminTest",
+            password: "1234AdmiN",
+            post: "Admin",
+            workpermits: [],
+            workorders: [],
+            woalert: [],
+            faultregistrys: [],
+            dailyreports: [],
+            otp: "",
+            id: "",
+            rev: "",
+        };
         this.error = "";
-        this.db.getEquipmentcats().then(function (equipments) {
-        });
         //Get Staffs
         this.db.getSupervisors().then(function (user) {
             var found = false;
+            if (user.length == 0) {
+                _this.db.updateSupervisor(setAdmin);
+            }
             for (var i = 0; i < user.length; i++) {
                 if (user[i].username == _this.username && user[i].password == _this.password && user[i].post == "Manager") {
                     found = true;
